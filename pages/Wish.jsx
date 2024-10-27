@@ -47,7 +47,7 @@ export default function Wish() {
           {wishItems.map(({ id, title, rating, price, image, quantity }) => (
             <Wishitem
               productId={id}
-              key={title}
+              key={id}
               title={title}
               price={price}
               quantity={quantity}

@@ -77,8 +77,6 @@ const slice = createSlice({
 const getWishItems = ({ products, wishList }) => {
   return wishList.list
     .map(({ productId, quantity }) => {
-      
-      
       const wishProduct = products.list.find(
         (product) => product.id === productId
       )
@@ -90,7 +88,7 @@ const getWishItems = ({ products, wishList }) => {
 // for selector 
 
 export const getAllWishItems = createSelector(getWishItems, (wishItems) => wishItems)
-
+// export const getAllWishItems = createSelector(getWishItems, (wishItems) => [...wishItems])
 // export const getCartLoadingState = (state) => state.products.loading
 // export const getCartError = (state) => state.products.error
 
