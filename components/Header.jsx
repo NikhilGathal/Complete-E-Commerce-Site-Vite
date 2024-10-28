@@ -228,8 +228,7 @@ export default function Header({
             onClick={(e) => {
               setislog(true)
               toggleMenu(e)
-
-              console.log('hi')
+              // console.log('hi')
             }}
             style={{ display: username ? 'none' : 'block' }}
           >
@@ -260,6 +259,9 @@ export default function Header({
             {' '}
             Logout{' '}
           </h3>
+
+            <h3 style={{ display: username ? 'block' : 'none' }} >My Orders</h3>
+
           <NavLink
             className={({ isActive }) => (isActive ? 'underline' : '')}
             to="/about"

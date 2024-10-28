@@ -74,21 +74,49 @@ const slice = createSlice({
   },
 })
 
-const getWishItems = ({ products, wishList }) => {
-  return wishList.list
-    .map(({ productId, quantity }) => {
-      const wishProduct = products.list.find(
-        (product) => product.id === productId
-      )
-      return { ...wishProduct, quantity }
-    })
-    .filter(({ title }) => title)
-}
+// const getWishItems = ({ products, wishList }) => {
+//   return wishList.list
+//     .map(({ productId, quantity }) => {
+//       const wishProduct = products.list.find(
+//         (product) => product.id === productId
+//       )
+//       return { ...wishProduct, quantity }
+//     })
+//     .filter(({ title }) => title)
+// }
 
-// for selector 
+// // for selector 
 
-export const getAllWishItems = createSelector(getWishItems, (wishItems) => wishItems)
-// export const getAllWishItems = createSelector(getWishItems, (wishItems) => [...wishItems])
+// export const getAllWishItems = createSelector(getWishItems, (wishItems) => wishItems)
+
+
+const getWishItems = (state) => state.wishList.list;
+
+export const getAllWishItems = createSelector(
+  [getWishItems, (state) => state.products.list], // Pass the products list as an input
+  (wishItems, products) => {
+    return wishItems
+      .map(({ productId, quantity }) => {
+        const wishProduct = products.find(product => product.id === productId);
+        return { ...wishProduct, quantity };
+      })
+      .filter(({ title }) => title); // Ensure you filter out any items without titles
+  }
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // export const getCartLoadingState = (state) => state.products.loading
 // export const getCartError = (state) => state.products.error
 

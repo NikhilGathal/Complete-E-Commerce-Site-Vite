@@ -14,7 +14,16 @@ export default function CartItem({
   imageUrl,
   quantity,
 }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+const handleRemove = ()=>
+{
+  const username = localStorage.getItem('username');
+  const cartKey = username ? `${username}cart` : 'cartItems';
+  let storedCart = JSON.parse(localStorage.getItem(cartKey)) || [];
+  const updatedCart = storedCart.filter(item => item.productId !== productId);
+  localStorage.setItem(cartKey, JSON.stringify(updatedCart));
+  dispatch(removeCartItem({productId}))
+}
   return (
     <div className="cart-item-container">
       <div className="cart-item">
@@ -44,7 +53,7 @@ export default function CartItem({
               }
               // Save the updated cart back to localStorage
               localStorage.setItem(
-                username ? `${username}logincart` : 'cartItems',
+                username ? `${username}cart` : 'cartItems',
                 JSON.stringify(storedCart)
               )
             }
@@ -72,7 +81,7 @@ export default function CartItem({
             }
             // Save the updated cart back to localStorage
             localStorage.setItem(
-              username ? `${username}logincart` : 'cartItems',
+              username ? `${username}cart` : 'cartItems',
               JSON.stringify(storedCart)
             )
             // Dispatch the action to increase the quantity in Redux
@@ -84,33 +93,12 @@ export default function CartItem({
       </div>
       <div className="item-total">${quantity * price}</div>
       <div>
-        {' '}
         <button
           className="remove"
-          onClick={() => {
-            const username = localStorage.getItem('username')
-            const cartKey = username ? `${username}cart` : 'cartItems'
-            let storedCart = JSON.parse(localStorage.getItem(cartKey)) || []
-            // Find the index of the product to be removed
-            const existingProductIndex = storedCart.findIndex(
-              (item) => item.productId === productId
-            )
-            // console.log(productId)
-            if (existingProductIndex !== -1) {
-              // Remove item from local storage
-              storedCart.splice(existingProductIndex, 1)
-              // Save the updated cart back to localStorage
-              localStorage.setItem(
-                username ? `${username}cart` : 'cartItems',
-                JSON.stringify(storedCart)
-              )
-            }
-            // Dispatch the action to remove the item from Redux
-            dispatch(removeCartItem(productId))
-          }}
+          onClick={handleRemove}
         >
           Remove
-        </button>{' '}
+        </button>
       </div>
     </div>
   )

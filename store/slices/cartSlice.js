@@ -62,20 +62,79 @@ const slice = createSlice({
 
 
 
- const getCartItems = ({ products, cartItems }) => {
-  return cartItems.list
+//  const getCartItems = ({ products, cartItems }) => {
+//   return cartItems.list
+//     .map(({ productId, quantity }) => {
+//       const cartProduct = products.list.find(
+//         (product) => {
+//         return  product.id === productId })
+//       return { ...cartProduct, quantity }
+//     })
+
+    
+// }
+
+// export const getAllCartItems = createSelector(getCartItems, (cartItems) => {
+//  return cartItems
+// } )
+
+
+const getCartItems = (state) => {
+  return state.cartItems.list // Accessing the correct part of the state
     .map(({ productId, quantity }) => {
-      const cartProduct = products.list.find(
-        (product) => {
-        return  product.id === productId })
-      return { ...cartProduct, quantity }
+      const cartProduct = state.products.list.find(
+        (product) => product.id === productId
+      );
+      return { ...cartProduct, quantity };
     })
-    .filter(({ title }) => title)
+    .filter(({ title }) => title); // Ensure there's a title
 }
 
-export const getAllCartItems = createSelector(getCartItems, (cartItems) => {
- return cartItems
-} )
+
+export const getAllCartItems = createSelector(
+  (state) => state.cartItems.list, // Input selector
+  (state) => state.products.list,   // Input selector
+  (cartItems, products) => {
+    return cartItems.map(({ productId, quantity }) => {
+      const cartProduct = products.find((product) => product.id === productId);
+      return { ...cartProduct, quantity };
+    }).filter(({ title }) => title);
+  }
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// createSelector([state => state.todos], todos => todos)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
