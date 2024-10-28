@@ -122,10 +122,11 @@ button:hover {
 .place {
   cursor: pointer;
   font-weight: bold;
-  max-width: 35%;
+  max-width: 25%;
+  padding-inline: 8px;
 }
 .place:hover {
-  background-color: rgba(147, 197, 253, 0.8);
+  background-color: #898989;
 }
 
 .error-msg {
