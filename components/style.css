@@ -1,5 +1,7 @@
 
   .swiper {
+    position: relative;
+    z-index: 0;
     max-width: 1200px;
     width: 100%;
     height: 100%; /* This ensures the Swiper takes the full height of its container */

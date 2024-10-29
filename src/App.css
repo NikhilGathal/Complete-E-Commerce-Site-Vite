@@ -525,6 +525,7 @@ h3 {
 }
 
 .search-container .list-contain {
+  z-index: 10;
   display: none;
   max-width: 374px;
   width: 100%;
@@ -548,7 +549,7 @@ h3 {
   width: 88.1%;
   max-width: 374px;
   list-style-type: none;
-  margin-left: -40;
+  margin-left: -40px;
   cursor: pointer;
   font-size: 15px;
   padding: 15px;
@@ -564,10 +565,10 @@ li {
 }
 
 ul li:first-child {
-  margin-top: -16;
+  margin-top: -16px;
 }
 ul li:last-child {
-  margin-bottom: -16;
+  margin-bottom: -16px;
 }
 .list-item.highlighted {
   background-color: #e0e0e0;
@@ -578,9 +579,6 @@ ul li:last-child {
 @media (max-width: 932px) {
   .header-contents h1 {
     font-size: 20px;
-  }
-  .cart-container {
-    /* font-size: 13px; */
   }
 }
 
