@@ -11,6 +11,8 @@ import AboutUs from '../components/About'
 import ContactUs from '../components/Contact'
 import ItemDetail from '../components/ItemDetail'
 import ContactForm from '../components/ContactForm'
+import Myorders from '../pages/Myorders'
+
 
 
 const router = createBrowserRouter([
@@ -25,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: '/cart',
         element: <Cart />,
+      },
+      {
+        path: '/myorder',
+        element: <Myorders/>,
       },
       {
         path: '/wish',

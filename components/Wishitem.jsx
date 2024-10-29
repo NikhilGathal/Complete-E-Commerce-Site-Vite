@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { removeWishItem } from '../store/slices/wishListSlice'
+import { Link } from 'react-router-dom';
 
 export default function Wishitem({ productId, title, rating, price, imageUrl, quantity }) {
   const dispatch = useDispatch()
@@ -22,9 +23,9 @@ export default function Wishitem({ productId, title, rating, price, imageUrl, qu
   return (
     <div className="cart-item-container" key={productId}>
       <div className="cart-item">
-        <img src={imageUrl} alt={title} />
+      <Link to={`/${productId}`}> <img src={imageUrl} alt={title} />  </Link>  
         <div>
-          <h3>{title}</h3>
+        <Link to={`/${productId}`}>  <h3>{title}</h3> </Link>  
           <p>{rating} ★ ★ ★ ★</p>
         </div>
       </div>

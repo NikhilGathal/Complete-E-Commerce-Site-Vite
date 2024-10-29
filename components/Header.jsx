@@ -260,7 +260,7 @@ export default function Header({
             Logout{' '}
           </h3>
 
-            <h3 style={{ display: username ? 'block' : 'none' }} >My Orders</h3>
+           <NavLink  className={({ isActive }) => (isActive ? 'underline' : '')}  to="/myorder">  <h3 style={{ display: username ? 'block' : 'none' }} >My Orders</h3> </NavLink>
 
           <NavLink
             className={({ isActive }) => (isActive ? 'underline' : '')}

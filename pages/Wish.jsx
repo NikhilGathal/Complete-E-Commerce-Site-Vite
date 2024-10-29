@@ -11,7 +11,7 @@ export default function Wish() {
   let storedWish = JSON.parse(localStorage.getItem('wishItems')) || []
   const [isLoading, setIsLoading] = useState(true);
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
 
   useEffect(() => {
@@ -24,10 +24,6 @@ export default function Wish() {
   
     fetchCartItems();
   }, []);
-  
-  if (isLoading) {
-   
-  }
   
   return (
     <>

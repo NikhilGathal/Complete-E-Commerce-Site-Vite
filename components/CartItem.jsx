@@ -5,6 +5,7 @@ import {
   increaseCartItemQuantity,
   removeCartItem,
 } from '../store/slices/cartSlice'
+import { Link } from 'react-router-dom';
 
 export default function CartItem({
   productId,
@@ -26,11 +27,12 @@ const handleRemove = ()=>
 }
   return (
     <div className="cart-item-container">
+
       <div className="cart-item">
-        <img src={imageUrl} alt={title} />
+      <Link to={`/${productId}`}>   <img src={imageUrl} alt={title} /> </Link>
         <div>
-          <h3>{title}</h3>
-          <p>{rating} ★ ★ ★ ★</p>
+          <Link to={`/${productId}`}>  <h3>{title}</h3>  </Link>    
+           <p>{rating} ★ ★ ★ ★</p>
         </div>
       </div>
 

@@ -33,7 +33,7 @@
 
 .item-price {
     font-size: 2rem;
-    color: #1a202c;
+    color: var(--text-color);
     margin-bottom: 1rem;
     font-weight: bold;
 }
