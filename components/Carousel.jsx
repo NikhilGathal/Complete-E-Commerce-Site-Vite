@@ -57,7 +57,7 @@ export default function Carousel() {
         <SwiperSlide>
           <img
             className='i'
-            src='https://rukminim2.flixcart.com/fk-p-flap/1200/170/image/d1b7c1632f530edd.jpeg?q=100'
+            src='https://rukminim2.flixcart.com/fk-p-flap/1200/250/image/d1b7c1632f530edd.jpeg?q=100'
             alt="Slide 3"
           />
         </SwiperSlide>
