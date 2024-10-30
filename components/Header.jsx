@@ -256,11 +256,11 @@ export default function Header({
             }}
             style={{ display: username ? 'block' : 'none' }}
           >
-            {' '}
-            Logout{' '}
+           
+            Logout
           </h3>
 
-           <NavLink  className={({ isActive }) => (isActive ? 'underline' : '')}  to="/myorder">  <h3 style={{ display: username ? 'block' : 'none' }} >My Orders</h3> </NavLink>
+           <NavLink style={{ display: username ? 'inline' : 'none' }}  className={({ isActive }) => (isActive ? 'underline' : '')}  to="/myorder">  <h3  >My Orders</h3> </NavLink>
 
           <NavLink
             className={({ isActive }) => (isActive ? 'underline' : '')}
