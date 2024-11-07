@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import wishIcon from '../assets/heart-solid.svg'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import CartIcon from '../assets/cart-icon.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProductdata } from '../store/slices/productsSlice'
@@ -20,6 +20,9 @@ export default function Header({
   const [signname, setsignname] = useState(false)
   const [islog, setislog] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false);
+  const navigate = useNavigate();
+// console.log(isAdmin);
 
   const dispatch = useDispatch()
 
@@ -29,6 +32,7 @@ export default function Header({
 
   useEffect(() => {
     if (username) {
+      setIsAdmin(true)
       // Fetch and load the user's cart and wishlist from localStorage when username changes (i.e., user logs in)
       const storedCart =
         JSON.parse(localStorage.getItem(`${username}cart`)) || []
@@ -44,6 +48,7 @@ export default function Header({
     const storedUsername = localStorage.getItem('username')
     if (storedUsername) {
       setusername(storedUsername)
+      setIsAdmin(storedUsername);
     }
     const signedUp = localStorage.getItem('signedUp')
     if (signedUp === 'true') {
@@ -170,6 +175,7 @@ export default function Header({
             localStorage.setItem('isdarkmode', !dark)
             isdark(!dark)
           }}
+          title={`${dark ? 'light mode' : 'dark mode'}`}
           className={`mode fa-solid fa-2xl fa-${dark ? 'sun ' : 'moon '}  `}
         ></i>
         <h1> {username ? `Welcome ${username}` : ''} </h1>
@@ -211,7 +217,6 @@ export default function Header({
             className="H"
             onClick={(e) => {
               setissign(true)
-
               toggleMenu(e)
             }}
             style={{ display: signname || username ? 'none' : 'block' }}
@@ -239,6 +244,7 @@ export default function Header({
             setislog={setislog}
             setusername={setusername}
             setuserlogin={setuserlogin}
+            setIsAdmin={setIsAdmin}
           />
           <h3
             className="H"
@@ -253,6 +259,7 @@ export default function Header({
               setuserlogin(false)
               setusername('')
               setsignname(false)
+              navigate('/');
             }}
             style={{ display: username ? 'block' : 'none' }}
           >
@@ -260,7 +267,7 @@ export default function Header({
             Logout
           </h3>
 
-           <NavLink style={{ display: username ? 'inline' : 'none' }}  className={({ isActive }) => (isActive ? 'underline' : '')}  to="/myorder">  <h3  >My Orders</h3> </NavLink>
+           <NavLink style={{ display: (username && username !== 'Admin') ? 'inline' : 'none', }}  className={({ isActive }) => (isActive ? 'underline' : '')}  to="/myorder">  <h3  >My Orders</h3> </NavLink>
 
           <NavLink
             className={({ isActive }) => (isActive ? 'underline' : '')}

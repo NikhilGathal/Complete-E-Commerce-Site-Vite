@@ -12,7 +12,7 @@
 
 
 .item-image img {
-    max-width: 400px; /* Ensure the image is responsive */
+    max-width: 250px; /* Ensure the image is responsive */
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);

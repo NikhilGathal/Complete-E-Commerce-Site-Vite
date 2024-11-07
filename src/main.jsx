@@ -14,6 +14,7 @@ import ContactForm from '../components/ContactForm'
 import Myorders from '../pages/Myorders'
 import CarouselPage from '../components/CarouselPage'
 import Diwali from '../components/Diwali'
+import AdminDashBoard from '../components/AdminDashBoard'
 
 
 
@@ -64,9 +65,15 @@ const router = createBrowserRouter([
         path: '/:productId',
         element: <ItemDetail />,
       },
+
       {
         path: '/carousel/:carousel',
         element: <CarouselPage />,
+      },
+     
+      {
+        path: '/Admin',
+        element: <AdminDashBoard />,
       },
     ],
   },

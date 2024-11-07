@@ -64,7 +64,16 @@ export default function Cart() {
                 <button
                   onClick={() => {
                     const username = localStorage.getItem('username')
+                    console.log(username);
+                    
                     if (username) {
+
+                      if(username === "Admin")
+                        {
+                          alert('Please Login As normal user')
+                        }
+
+
                       dispatch(removeallCartItem())
                       localStorage.removeItem(`${username}cart`)
                       navigate('/Order') // Navigate to the Order page only if username exists
@@ -72,7 +81,10 @@ export default function Cart() {
                         JSON.parse(localStorage.getItem(`${username}orders`)) ||[]
                       existingOrders.push(...cartItems)
                       localStorage.setItem( `${username}orders`,JSON.stringify(existingOrders))
-                    } else {
+                    } 
+                    
+                    
+                    else {
                       alert('Please Login First')
                     }
                   }}

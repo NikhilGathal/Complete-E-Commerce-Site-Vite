@@ -261,6 +261,7 @@ button:hover {
   margin-inline: auto;
   display: grid;
   padding: 16px;
+  color: var(--text-color);
 }
 
 .product {
@@ -273,9 +274,9 @@ button:hover {
   border: 2px solid #898989;
   padding: 16px;
 }
-/* .product:hover {
-  transform: scale(1.05);
-} */
+.product:hover {
+  transform: scale(1.02);
+}
 .H {
   transition: all 0.2s ease-in-out;
 }
@@ -442,6 +443,9 @@ h3 {
   align-items: center;
   gap: 12px;
 }
+.cart-header .cart-item {
+  margin-left: 15px;
+}
 
 .cart-icon {
   position: relative;
@@ -593,7 +597,10 @@ ul li:last-child {
 
 .search-filter-container select
 {
+  background-color: var(--elements-color);
+  color: var(--text-color);
  padding: 10px;
+ cursor: pointer;
 }
 
 @media(max-width : 972px)
@@ -670,7 +677,7 @@ ul li:last-child {
     padding: 11px;
     transition: right 0.4s ease-in-out;
     color: var(--text-color);
-    border: 2px solid rgb(220, 210, 210);
+    border: 2px solid #ddd;
     z-index: 10;
     font-size: 12px;
   }

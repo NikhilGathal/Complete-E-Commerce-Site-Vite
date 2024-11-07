@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom';
 // import './Search.css'
 export default function SearchBar({ setquery }) {
   let element = document.querySelector('.list-contain')
@@ -9,12 +10,12 @@ export default function SearchBar({ setquery }) {
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const [query1, setQuery1] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+  const navigate = useNavigate();
   const data = ['jewelery', "men's clothing", 'electronics', "women's clothing"]
   
   const handleChange = (e) => {
     const value = e.target.value;
     setQuery1(value);
-  
     let element = document.querySelector('.list-contain');
   
     // Filter data based on user input
@@ -40,7 +41,6 @@ export default function SearchBar({ setquery }) {
 
   const handlesearch = () => {
     console.log('hi');
-    
     // Trigger search with the current query1 value
     if (query1.trim() !== '') {
       setquery(query1.toLowerCase());
@@ -49,13 +49,13 @@ export default function SearchBar({ setquery }) {
 
   
   const handleKeyDown = (e) => {
-    console.log('Before update:', highlightedIndex);
-    console.log('sugge-len',suggestions.length);
+    // console.log('Before update:', highlightedIndex);
+    // console.log('sugge-len',suggestions.length);
     
     if (e.key === 'ArrowDown') {
       setHighlightedIndex((prevIndex) => {
         const newIndex = prevIndex < suggestions.length - 1 ? prevIndex + 1 : 0;
-        console.log('New index:', newIndex);
+        // console.log('New index:', newIndex);
         return newIndex;
       });
     } else if (e.key === 'ArrowUp') {
@@ -65,17 +65,19 @@ export default function SearchBar({ setquery }) {
         return newIndex;
       });
     } else if (e.key === 'Enter' && highlightedIndex >= 0) {
-      console.log('Enter pressed, selected suggestion:', suggestions[highlightedIndex]);
+      // console.log('Enter pressed, selected suggestion:', suggestions[highlightedIndex]);
       handleSuggestionClick(suggestions[highlightedIndex]);
     }
   };
 
 
   const handleSuggestionClick = (suggestion) => {
+    console.log('clicked suggestion', suggestion);
     setQuery1(suggestion);
     setquery(suggestion);
     setSuggestions([]);
     setHighlightedIndex(-1);
+    navigateToSuggestion(suggestion);
   };
 
   useEffect(() => {
@@ -91,6 +93,11 @@ export default function SearchBar({ setquery }) {
       }
     };
   }, [suggestions, highlightedIndex]);
+
+
+  const navigateToSuggestion = (suggestion) => {
+    navigate(`/carousel/${suggestion}`);
+  };
 
   return (
     <div className="search-container">

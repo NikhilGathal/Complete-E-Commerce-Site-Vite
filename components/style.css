@@ -39,7 +39,7 @@
 }
 
 .swiper-container {
-    padding: 16px; /* Add padding here */
+    padding-inline: 16px; /* Add padding here */
     max-width: 1200px;
     height: 250px;
     margin: auto; /* Center the Swiper within its container */
@@ -54,6 +54,7 @@
 {
   font-size: 20px;
 }
+
 
 @media(max-width : 1190px)
 {
