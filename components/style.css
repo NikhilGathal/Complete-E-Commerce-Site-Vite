@@ -12,14 +12,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* Make sure the slide takes the full height */
+    height: 100%;  
   }
   
   .swiper-slide img {
     display: block;
     width: 100%;
-    height: 100%; /* Ensure the image takes the full height of the slide */
-    object-fit: cover; /* Adjust how the image fills the space */
+    height: 100%; 
+    object-fit: cover;
   }
 
 .swiper-button-next,.swiper-button-prev{
@@ -41,6 +41,7 @@
 .swiper-container {
     padding: 16px; /* Add padding here */
     max-width: 1200px;
+    height: 250px;
     margin: auto; /* Center the Swiper within its container */
   }
 

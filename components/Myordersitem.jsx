@@ -1,9 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function Myordersitem({ productId, title, rating, price, imageUrl, quantity }) {
+function Myordersitem({ productId, title, rating, price, imageUrl, quantity ,index  } ) {
+
+
+  
   return (
-    <div className="cart-item-container" key={productId}>
+
+    
+    <div className="cart-item-container"   >
       <div className="cart-item">
       <Link to={`/${productId}`}> <img src={imageUrl} alt={title} />  </Link>  
 

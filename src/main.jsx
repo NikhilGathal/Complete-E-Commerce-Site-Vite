@@ -12,6 +12,8 @@ import ContactUs from '../components/Contact'
 import ItemDetail from '../components/ItemDetail'
 import ContactForm from '../components/ContactForm'
 import Myorders from '../pages/Myorders'
+import CarouselPage from '../components/CarouselPage'
+import Diwali from '../components/Diwali'
 
 
 
@@ -45,6 +47,10 @@ const router = createBrowserRouter([
         element: <AboutUs />,
       },
       {
+        path: '/diwali',
+        element: <Diwali />,
+      },
+      {
         path: '/contact',
         element: <ContactUs />,
         children: [
@@ -57,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: '/:productId',
         element: <ItemDetail />,
+      },
+      {
+        path: '/carousel/:carousel',
+        element: <CarouselPage />,
       },
     ],
   },

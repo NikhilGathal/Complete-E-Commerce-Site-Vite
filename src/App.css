@@ -400,7 +400,7 @@ form button {
 
 .cart-container h2 {
   text-align: center;
-  margin: 32px 0;
+  margin: 12px 0;
 }
 
 .cart-header {
@@ -574,26 +574,59 @@ ul li:last-child {
   background-color: #e0e0e0;
 }
 
+.diwali 
+{
+  padding: 16px;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+.diwali img 
+{
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.diwali h3 
+{
+  margin: 0px;
+}
 
+.search-filter-container select
+{
+ padding: 10px;
+}
 
+@media(max-width : 972px)
+{
+  .header-contents h1 {
+    font-size: 19px;
+  }
+}
 @media (max-width: 932px) {
   .header-contents h1 {
-    font-size: 20px;
+    font-size: 16px;
   }
+
 }
 
 @media (max-width: 804px) {
   .header-contents h1 {
-    font-size: 18px;
+    font-size: 16px;
   }
   .header-contents .ham h3 {
     font-size: 15px;
   }
+  .item-wish 
+  {
+    font-size: 26px;  
+  }
+
+
 }
 
 @media (max-width: 730px) {
   .header-contents h1 {
-    font-size: 16px;
+    font-size: 15px;
   }
   .header-contents .ham h3 {
     font-size: 13px;
@@ -720,6 +753,10 @@ ul li:last-child {
 }
 
 @media (max-width: 563px) {
+  .item-wish 
+  {
+    font-size: 24px;  
+  }
   .search-filter-container {
     flex-direction: column;
   }
@@ -859,6 +896,11 @@ ul li:last-child {
 }
 
 @media (max-width: 408px) {
+
+  .item-wish 
+  {
+    font-size: 20px;  
+  }
   .cart-container h3 {
     font-size: 8px;
   }
