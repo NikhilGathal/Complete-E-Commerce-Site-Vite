@@ -307,17 +307,6 @@ export default function Header({
           </NavLink>
 
 
-
-
-
-
-
-
-
-
-
-
-
           <NavLink
             className={({ isActive }) => (isActive ? 'underline' : '')}
             to="/contact"
