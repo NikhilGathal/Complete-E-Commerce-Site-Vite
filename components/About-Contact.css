@@ -23,7 +23,8 @@
   margin-top: 28px;
 }
 .about-us-container {
-  padding: 20px;
+  padding-inline: 25px;
+  padding-bottom: 20px;
   max-width: 500px;
   margin: auto;
   color: var(--text-color);
@@ -95,7 +96,8 @@ textarea {
     gap: 10px;
   }
   .about-us-container {
-    padding: 20px;
+    padding-inline: 25px;
+   padding-bottom: 20px;
     max-width: 300px;
     margin: auto;
     color: var(--text-color);
@@ -142,7 +144,8 @@ form {
 @media(max-height : 710px)
 {
   .about-us-container {
-    padding:0 25px;
+   padding-inline: 25px;
+   padding-bottom: 20px;
     margin-top: 14px;
   
   }

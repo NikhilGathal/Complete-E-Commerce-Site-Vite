@@ -3,10 +3,11 @@ import React from 'react'
 function Diwali() {
   return (
     <>
-      <div className="diwali">
+    <div className='diwali-contain'>
+    <h3>  Big Diwali Sale </h3>
         <p>
           {' '}
-         <h3>  Big Diwali Sale </h3> <br/>   Enjoy this festive season with the Big Diwali Sale
+          <br/>   Enjoy this festive season with the Big Diwali Sale
           2024 and celebrate unlimited shopping. Starting October 21, the sale
           comes with great discounts and offers on various items. You can up
           your fashion game with trendy and stylish fashion-wear items available
@@ -85,6 +86,8 @@ function Diwali() {
           for them to be delivered right at your doorstep.
         </p>
       </div>
+  
+      
     </>
   )
 }

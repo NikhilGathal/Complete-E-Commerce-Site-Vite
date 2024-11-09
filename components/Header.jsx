@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import wishIcon from '../assets/heart-solid.svg'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import CartIcon from '../assets/cart-icon.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProductdata } from '../store/slices/productsSlice'
@@ -20,9 +20,9 @@ export default function Header({
   const [signname, setsignname] = useState(false)
   const [islog, setislog] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false);
-  const navigate = useNavigate();
-// console.log(isAdmin);
+  const [isAdmin, setIsAdmin] = useState(false)
+  const navigate = useNavigate()
+  // console.log(isAdmin);
 
   const dispatch = useDispatch()
 
@@ -48,7 +48,7 @@ export default function Header({
     const storedUsername = localStorage.getItem('username')
     if (storedUsername) {
       setusername(storedUsername)
-      setIsAdmin(storedUsername);
+      setIsAdmin(storedUsername)
     }
     const signedUp = localStorage.getItem('signedUp')
     if (signedUp === 'true') {
@@ -146,6 +146,15 @@ export default function Header({
       window.removeEventListener('click', handleClickOutside)
     }
   }, [menuOpen])
+
+  const handleClick = () => {
+    if (username === 'Admin') {
+      navigate('/Admin') // Navigate to the Admin page if username is Admin
+    } else {
+      navigate('/myorder') // Navigate to My Orders if username is not Admin
+    }
+  }
+
 
   // const dark = false
   return (
@@ -259,15 +268,35 @@ export default function Header({
               setuserlogin(false)
               setusername('')
               setsignname(false)
-              navigate('/');
+              navigate('/')
             }}
             style={{ display: username ? 'block' : 'none' }}
           >
-           
             Logout
           </h3>
+          {/* <NavLink
+            style={{
+              display: username ? 'inline' : 'none', // Show only if someone is logged in
+            }}
+            className={({ isActive }) => (isActive ? 'underline' : '')}
+            to="/myorder"
+          >
+            <h3 className="H">
+              {username === 'Admin' ? 'Orders' : 'My Orders'}
+            </h3>
+          </NavLink> */}
 
-           <NavLink style={{ display: (username && username !== 'Admin') ? 'inline' : 'none', }}  className={({ isActive }) => (isActive ? 'underline' : '')}  to="/myorder">  <h3  >My Orders</h3> </NavLink>
+          <NavLink
+            style={{
+              display: username ? 'inline' : 'none', // Show only if someone is logged in
+            }}
+            className={({ isActive }) => (isActive ? 'underline' : '')}
+            to={username === 'Admin' ? '/Admin' : '/myorder'}
+          >
+            <h3 className="H">
+              {username === 'Admin' ? 'Orders' : 'My Orders'}
+            </h3>
+          </NavLink>
 
           <NavLink
             className={({ isActive }) => (isActive ? 'underline' : '')}
@@ -276,6 +305,19 @@ export default function Header({
             {' '}
             <h3 className="H">About Us</h3>{' '}
           </NavLink>
+
+
+
+
+
+
+
+
+
+
+
+
+
           <NavLink
             className={({ isActive }) => (isActive ? 'underline' : '')}
             to="/contact"

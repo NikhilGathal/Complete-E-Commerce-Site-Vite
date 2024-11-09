@@ -1,13 +1,12 @@
 
 
-
 .order-grid {
-    --background-color: white;
-    --text-color: black;
-    --elements-color: white;
-    --header-back :#f1f1f1; ;
+  --background-color: white;
+  --text-color: black;
+  --elements-color: white;
+  --header-back: #f1f1f1;
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr; /* Three columns: Username, Orders, and Total Price */
+  grid-template-columns: 1fr 2fr 2fr 1fr; /* Default layout with four columns */
   gap: 10px;
   padding: 20px;
   font-family: Arial, sans-serif;
@@ -16,12 +15,11 @@
   margin-inline: auto;
 }
 
-.order-grid.dark 
-{
-    --background-color: #2c4760;
-    --text-color: white;
-    --elements-color: hsl(209, 23%, 22%);
-    --header-back :hsl(209, 23%, 22%); ;
+.order-grid.dark {
+  --background-color: #2c4760;
+  --text-color: white;
+  --elements-color: hsl(209, 23%, 22%);
+  --header-back: hsl(209, 23%, 22%);
 }
 
 .grid-header {
@@ -46,30 +44,229 @@
 }
 
 .grid-item {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* flex-direction: column; */
+  gap: 16px;
   background-color: var(--background-color);
 }
 
+/* Username Column */
+.username-column {
+  grid-column: 1;
+}
+
+/* User Details Column */
+.user-details-column {
+  grid-column: 2;
+}
+
+/* Orders Column */
+.orders-column {
+  grid-column: 3;
+}
+
+/* Total Price Column */
+.total-price-column {
+  grid-column: 4;
+}
+
+/* Grid Item Content */
 .grid-item span {
   display: block;
   margin: 5px 0;
 }
 
-.grid-row .grid-item {
-  /* background-color: #f1f1f1; */
-  background-color: var(--background-color);
-}
-
 .grid-header .header-item {
-
-  /* background-color: var(--elements-color); */
   background-color: var(--header-back);
   color: var(--text-color);
 }
-.ord 
-{
-    gap: 32px;
+
+/* Styling for Orders */
+.ord {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
+.ord span {
+  display: block;
+  text-align: left;
+  margin: 3px 0;
+}
+
+/* Optional styling for User Details */
+.user-details-column p {
+  margin: 4px 0;
+  font-size: 0.9em;
+  color: var(--text-color);
+}
+
+.admin 
+{
+  font-size:45px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .admin 
+{
+  font-size:30px;
+}
+
+  
+  .order-grid {
+    --background-color: white;
+    --text-color: black;
+    --elements-color: white;
+    --header-back: #f1f1f1;
+    display: grid;
+    gap: 10px;
+    padding: 16px;
+    font-family: Arial, sans-serif;
+    color: var(--text-color);
+    max-width: 1200px;
+    margin-inline: auto;
+    font-size: 15px;
+  }
+  
+  .order-grid.dark {
+    --background-color: #2c4760;
+    --text-color: white;
+    --elements-color: hsl(209, 23%, 22%);
+    --header-back: hsl(209, 23%, 22%);
+  }
+
+  .username-column {
+    grid-row: 1;
+  }
+  
+  /* User Details Column */
+  .user-details-column {
+    grid-row: 2;
+  }
+  
+  /* Orders Column */
+  .orders-column {
+    grid-row: 3;
+  }
+  
+  /* Total Price Column */
+  .total-price-column {
+    grid-row: 4;
+  }
+  
+  .grid-header {
+    display: contents;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .header-item,
+  .grid-item {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .grid-body {
+    display: contents;
+  }
+  
+  .grid-row {
+    display: contents;
+  }
+  
+  .grid-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* flex-direction: column; */
+    gap: 16px;
+    background-color: var(--background-color);
+  }
+  .grid-header .u 
+  {
+    grid-column: 1;
+  }
+  .grid-header .us 
+  {
+    grid-column: 1;
+  }
+  .grid-header .o 
+  {
+    grid-column: 1;
+  }
+  .grid-header .t 
+  {
+    grid-column: 1;
+  }
+  /* Grid Item Content */
+  .grid-item span {
+    display: block;
+    margin: 5px 0;
+  }
+  
+  .grid-header .header-item {
+    background-color: var(--header-back);
+    color: var(--text-color);
+  }
+  
+  /* Styling for Orders */
+  .ord {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .ord span {
+    display: block;
+    text-align: left;
+    margin: 3px 0;
+  }
+  
+  /* Optional styling for User Details */
+  .user-details-column p {
+    margin: 4px 0;
+    font-size: 0.9em;
+    color: var(--text-color);
+  }
+  
+}
+
+@media(max-width : 510px)
+{
+  .order-grid 
+  {
+    font-size: 13px;
+  }
+  .grid-item 
+  {
+    padding: 5px;
+  }
+}
+
+@media(max-width : 440px)
+{
+  .order-grid 
+  {
+    font-size: 11px;
+  }
+  .grid-item 
+  {
+    padding: 3px;
+  }
+}
+
+@media(max-width : 380px)
+{
+  .order-grid 
+  {
+    font-size: 9px;
+  }
+  .grid-item 
+  {
+    padding: 2px;
+  }
+}

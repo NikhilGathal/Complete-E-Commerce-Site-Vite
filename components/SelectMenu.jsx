@@ -34,3 +34,6 @@ export default function SelectMenu({ setquery1 ,setquery}) {
   )
 }
 
+
+
+

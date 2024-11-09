@@ -278,7 +278,7 @@ button:hover {
   transform: scale(1.02);
 }
 .H {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.0s ease-in-out;
 }
 .H:hover {
   /* transform: scale(1.05); */
@@ -578,21 +578,33 @@ ul li:last-child {
   background-color: #e0e0e0;
 }
 
-.diwali 
+.diwali-contain 
 {
-  padding: 16px;
   max-width: 1200px;
   margin-inline: auto;
+  padding: 16px;
 }
-.diwali img 
+.diwali-contain img 
 {
   display: block;
-  max-width: 100%;
+  width: 100%;
   height: auto;
 }
-.diwali h3 
+.diwali-contain h3 
 {
   margin: 0px;
+}
+
+@media (max-width :1245px)
+{
+
+  .diwali-contain img 
+  {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
 }
 
 .search-filter-container select
@@ -606,12 +618,12 @@ ul li:last-child {
 @media(max-width : 972px)
 {
   .header-contents h1 {
-    font-size: 19px;
+    font-size: 22px;
   }
 }
 @media (max-width: 932px) {
   .header-contents h1 {
-    font-size: 16px;
+    font-size: 21px;
   }
 
 }
