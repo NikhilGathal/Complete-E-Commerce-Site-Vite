@@ -89,6 +89,10 @@ textarea {
   background-color: #898989;
 }
 
+ ul li:first-child {
+  margin-top: -12px;
+}
+
 @media(max-width : 590px)
 {
   .value {
