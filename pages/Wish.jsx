@@ -58,7 +58,7 @@ export default function Wish() {
           </div>
         </div>
         </div>
-      </main> ) : <div> <h1 className='empty-wish'> Wishlist is empty </h1> </div>}
+      </main> ) : <div className="empty-wish-container"> <h1 className='empty-wish'> Wishlist is empty </h1> </div>}
     </>
   )
 }

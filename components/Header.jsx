@@ -9,7 +9,8 @@ import ModalSign from './ModalSign'
 import ModalLogin from './ModalLogin'
 import { loadWishItem } from '../store/slices/wishListSlice'
 import Hamburger from './Hamburger'
-
+import './Hover.css'
+// import SuggestionBox from './SuggestionBox'
 export default function Header({
   issign,
   setissign,
@@ -54,6 +55,7 @@ export default function Header({
     if (signedUp === 'true') {
       setsignname(true)
     }
+   
   }, [])
 
   useEffect(() => {
@@ -154,7 +156,7 @@ export default function Header({
       navigate('/myorder') // Navigate to My Orders if username is not Admin
     }
   }
-
+  // console.log(username);
 
   // const dark = false
   return (
@@ -222,6 +224,8 @@ export default function Header({
           <span onClick={toggleMenu} className="close-icon">
             &times;
           </span>
+
+
           <h3
             className="H"
             onClick={(e) => {
@@ -236,7 +240,31 @@ export default function Header({
             issign={issign}
             setissign={setissign}
             setsignname={setsignname}
-          />
+          />          
+          
+{(username && username !== 'Admin') || username === 'Admin' ? (
+  <div className={`heading-container ${dark ? 'dark' : ''}`}>
+    {username === 'Admin' ? (
+      <Link to="/Admin">
+        <h3 className="H heading">Orders</h3>
+      </Link>
+    ) : (
+      username !== 'Admin' && <h3 className="H heading">Profile</h3>
+    )}
+    
+    {/* Render suggestion box only if username is not 'Admin' and exists */}
+    {username && username !== 'Admin' && (
+      <div className="suggestion-box">
+        <Link to="/myorder"><p>My Orders</p></Link>
+        <Link to="/cart"><p>Cart</p></Link>
+        <Link to="/wish"><p>WishList</p></Link>
+        <Link to="/"><p>Buy Again</p></Link>
+      </div>
+    )}
+  </div>
+) : null}
+
+
           <h3
             className="H"
             onClick={(e) => {
@@ -268,6 +296,7 @@ export default function Header({
               setuserlogin(false)
               setusername('')
               setsignname(false)
+              localStorage.setItem('signedUp', 'false');
               navigate('/')
             }}
             style={{ display: username ? 'block' : 'none' }}
@@ -286,17 +315,14 @@ export default function Header({
             </h3>
           </NavLink> */}
 
-          <NavLink
+          {/* <NavLink
             style={{
               display: username ? 'inline' : 'none', // Show only if someone is logged in
             }}
             className={({ isActive }) => (isActive ? 'underline' : '')}
-            to={username === 'Admin' ? '/Admin' : '/myorder'}
+            to=""
           >
-            <h3 className="H">
-              {username === 'Admin' ? 'Orders' : 'My Orders'}
-            </h3>
-          </NavLink>
+             </NavLink> */}
 
           <NavLink
             className={({ isActive }) => (isActive ? 'underline' : '')}
@@ -305,7 +331,6 @@ export default function Header({
             {' '}
             <h3 className="H">About Us</h3>{' '}
           </NavLink>
-
 
           <NavLink
             className={({ isActive }) => (isActive ? 'underline' : '')}

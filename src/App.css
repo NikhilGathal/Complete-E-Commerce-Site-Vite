@@ -1,5 +1,5 @@
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family:  sans-serif;
   margin: 0;
   --background-color: white;
   --text-color: black;
@@ -184,19 +184,15 @@ button:hover {
   margin: 25px;
   font-size: 35px;
 }
-.empty-wish {
-  font-size: 45px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.empty-wish-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 97.2px); /* Full viewport height */
 }
+
 .empty-wish {
   font-size: 45px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 .opp 
 {
@@ -594,6 +590,14 @@ ul li:last-child {
 {
   margin: 0px;
 }
+
+
+
+.suggestion-box p:hover 
+{
+  color: #a870f1;
+}
+
 
 @media (max-width :1245px)
 {
