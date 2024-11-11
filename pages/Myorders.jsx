@@ -57,7 +57,7 @@ function Myorders() {
           </div>
         </div>
         </div>
-      </main> ) : <div className="empty-wish-container"> <h1 className='empty-wish'> Not Orders Yet </h1> </div>}
+      </main> ) : <div className="empty-wish-container"> <h1 className='empty-wish'> No Orders Yet </h1> </div>}
     </>
 
   ) 
