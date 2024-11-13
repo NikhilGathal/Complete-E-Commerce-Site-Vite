@@ -25,7 +25,7 @@ export default function SelectMenu({ setquery1 ,setquery}) {
 
     }
     }>
-      <option >Filter by Category</option>
+      <option hidden >Filter by Category</option>
       <option value="jewelery">Jewelery</option>
       <option value="men's clothing">Men's Clothing</option>
       <option value="electronics">Electronics</option>

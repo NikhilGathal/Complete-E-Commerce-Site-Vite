@@ -271,7 +271,7 @@ button:hover {
   padding: 16px;
 }
 .product:hover {
-  transform: scale(1.02);
+  /* transform: scale(1.02); */
 }
 .H {
   transition: all 0.0s ease-in-out;
