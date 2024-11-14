@@ -11,7 +11,7 @@ const AboutUs = () => {
       <h1>About Us</h1>
       <p>
         Welcome to Shopee, where we are passionate about providing our customers with the best shopping experience possible.
-        Our journey began in [Year], with a mission to offer high-quality products at affordable prices.
+        Our journey began in 2024, with a mission to offer high-quality products at affordable prices.
       </p>
       <p>
         We believe in sustainability and ethical sourcing, and we work closely with our partners to ensure that our products are made with care for the environment and the people who create them.
