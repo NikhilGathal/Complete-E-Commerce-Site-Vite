@@ -30,7 +30,7 @@ function Myorders() {
       Myorders.length ? (
       <main className="cart-container">
         <div className="cart-container"> 
-        <h2 className='item-wish'>Ordered Items</h2>
+        <h2 className='item-wish'>My Orders</h2>
         <div className="cart-items-container">
           <div className="cart-header cart-item-container">
             <div className="cart-item">Item</div>

@@ -38,7 +38,7 @@ export default function Cart() {
       ) : cartItems.length ? ( // Check for items after loading is done
         <main className={`cart-container ${dark ? 'dark' : ''}`}>
           <div className="cart-container">
-            <h2 className="item-wish">Items in Your Cart</h2>
+            <h2 className="item-wish">Cart Items</h2>
             <div className="cart-items-container">
               <div className="cart-header cart-item-container">
                 <div className="cart-item">Item</div>

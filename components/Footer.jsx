@@ -15,10 +15,10 @@ const Footer = ({dark}) => {
         <div className="footer-column">
           <h4>Shop</h4>
           <ul>
-            <li><a href="/gift-cards">Gift cards</a></li>
-            <li><a href="/registry">Registry</a></li>
-            <li><a href="/sitemap">Sitemap</a></li>
-            <li><a href="/blog">Blog</a></li>
+            <li><a href="#">Gift cards</a></li>
+            <li><a href="#">Registry</a></li>
+            <li><a href="#">Sitemap</a></li>
+            <li><a href="#">Blog</a></li>
            
           </ul>
         </div>
@@ -26,30 +26,30 @@ const Footer = ({dark}) => {
         <div className="footer-column">
           <h4>Sell</h4>
           <ul>
-            <li><a href="/sell">Sell on OurSite</a></li>
-            <li><a href="/teams">Teams</a></li>
-            <li><a href="/forums">Forums</a></li>
-            <li><a href="/affiliates">Affiliates & Creators</a></li>
+            <li><a href="#">Sell on OurSite</a></li>
+            <li><a href="#">Teams</a></li>
+            <li><a href="#">Forums</a></li>
+            <li><a href="#">Affiliates & Creators</a></li>
           </ul>
         </div>
 
         <div className="footer-column">
           <h4>About</h4>
           <ul>
-            <li><a href="/company">Our Company</a></li>
-            <li><a href="/policies">Policies</a></li>
-            <li><a href="/investors">Investors</a></li>
-            <li><a href="/careers">Careers</a></li>
+            <li><a href="#">Our Company</a></li>
+            <li><a href="#">Policies</a></li>
+            <li><a href="#">Investors</a></li>
+            <li><a href="#">Careers</a></li>
           
-            <li><a href="/impact">Impact</a></li>
+            <li><a href="#">Impact</a></li>
           </ul>
         </div>
 
         <div className="footer-column help">
           <h4>Help</h4>
           <ul>
-            <li><a href="/help">Help Center</a></li>
-            <li><a href="/privacy">Privacy Settings</a></li>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Privacy Settings</a></li>
           </ul>
           <div className="social-icons">
             <a href="#"><i className="fab fa-instagram"></i></a>
