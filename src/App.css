@@ -335,14 +335,29 @@ button:hover {
 }
 
 header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 50%; /* Center the header horizontally */
+  transform: translateX(-50%); /* Adjust for exact centering */
   margin-bottom: 20px;
-  z-index: 1;
-  /* background-color: white; */
+  z-index: 9999;
+  background-color: white;
   box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.1);
-  /* border-bottom: 2px solid #898989; */
+  width: 100%; /* Ensure it spans the full width of the viewport */
+  /* max-width: 1200px; */
+  padding: 0 16px; /* Ensure padding */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
+
+.header-contents {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
 
 .header-contents {
   display: flex;
@@ -632,6 +647,14 @@ ul li:last-child {
 
 }
 
+
+@media (max-width: 854px) {
+  .header-contents h1 {
+    font-size: 16px;
+  }
+
+}
+
 @media (max-width: 804px) {
   .header-contents h1 {
     font-size: 16px;
@@ -644,6 +667,12 @@ ul li:last-child {
     font-size: 26px;  
   }
 
+}
+
+@media (max-width: 739px) {
+  .header-contents h1 {
+    font-size: 15px;
+  }
 
 }
 
@@ -764,7 +793,7 @@ ul li:last-child {
   }
 
   .header-contents h1 {
-    font-size: 25px;
+    font-size: 22px;
   }
   .header-contents .mode {
     font-size: 1.5rem;
@@ -775,6 +804,8 @@ ul li:last-child {
     height: 13px;
   }
 }
+
+
 
 @media (max-width: 563px) {
   .item-wish 
@@ -843,6 +874,10 @@ ul li:last-child {
 
 @media (max-width: 479px) {
 
+  .header-contents h1 {
+    font-size: 12px;
+  }
+
   .orderplace {
     font-size: 25px;
     font-weight: bold;
@@ -859,6 +894,7 @@ ul li:last-child {
   .cart-container button {
     padding: 3px;
   }
+
 }
 
 @media (max-width: 437px) {
@@ -883,7 +919,7 @@ ul li:last-child {
   }
   .header-contents h1 
   {
-    font-size: 17px;
+    font-size: 10px;
   }
   .cart-container #p {
     margin-right: -5px;
@@ -908,9 +944,7 @@ ul li:last-child {
   .cart-container button {
     padding: 1px;
   }
-  .header-contents h1 {
-    font-size: 15px;
-  }
+
   .cart-container img {
     width: 35px;
   }
@@ -971,7 +1005,7 @@ ul li:last-child {
   }
   .header-contents h1 
   {
-    font-size: 12px;
+    font-size: 9px;
   }
   .orderplace {
     font-size: 21px;
@@ -993,7 +1027,7 @@ ul li:last-child {
   }
   .header-contents h1 
   {
-    font-size: 11px;
+    font-size: 8px;
   }
 
   .header-contents 
