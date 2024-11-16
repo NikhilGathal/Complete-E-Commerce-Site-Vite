@@ -194,6 +194,7 @@ function CarouselPage() {
   const [sortPriceOrder, setSortPriceOrder] = useState('');
   const [sortRatingOrder, setSortRatingOrder] = useState('');
   const productsList = useSelector(getAllProducts);
+  const [Error, setError] = useState(null);
 
   useEffect(() => {
     setLoading(true);
@@ -205,7 +206,11 @@ function CarouselPage() {
         setLoading(false);
       })
       .catch((error) => {
+        
+        
         console.error("Error fetching data:", error);
+        setError("Something went wrong!");
+        console.log(Error);
         setLoading(false);
       });
   }, [carousel, dispatch]);
@@ -223,6 +228,10 @@ function CarouselPage() {
 
   if (loading) {
     return <h1 style={{ textAlign: 'center' }}>Loading...</h1>;
+  }
+
+  if (Error) {
+    return <h1 className='some' style={{ textAlign: 'center' }}>{Error}</h1>;
   }
 
   return (

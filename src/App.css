@@ -623,6 +623,12 @@ ul li:last-child {
 }
 
 
+.some 
+{
+  margin-top: 250px;
+  color: var(--text-color);
+}
+
 
 .suggestion-box p:hover 
 {
