@@ -231,7 +231,7 @@ function CarouselPage() {
   }
 
   if (Error) {
-    return <h1 className='some' style={{ textAlign: 'center' }}>{Error}</h1>;
+    return <h1 className='home-error S' style={{ textAlign: 'center' }}>{Error}</h1>;
   }
 
   return (
