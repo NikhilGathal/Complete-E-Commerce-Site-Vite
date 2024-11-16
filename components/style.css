@@ -1,4 +1,6 @@
 
+  
+  
   .swiper {
     position: relative;
     z-index: 0;
@@ -7,6 +9,8 @@
     height: 100%; /* This ensures the Swiper takes the full height of its container */
     padding: 0; /* Remove padding to prevent extra space */
   }
+
+
   
   .swiper-slide {
     display: flex;
@@ -22,13 +26,7 @@
     object-fit: cover;
   }
 
-.swiper-button-next,.swiper-button-prev{
-  background-color: #fff;
-  padding-block: 16px;
-  padding-inline: 8px;
-  margin-top: -38px;
-  
-}
+
 .swiper-button-next
 {
   margin-right: -10px;
@@ -38,6 +36,18 @@
   margin-left: -9.7px; 
 }
 
+.swiper-container
+{
+  --text-color: black;
+  --elements-color: white;
+}
+
+.swiper-container.dark 
+{
+  --elements-color: hsl(209, 23%, 22%);
+    --text-color: white;
+}
+
 .swiper-container {
     padding-inline: 16px; /* Add padding here */
     max-width: 1200px;
@@ -45,13 +55,23 @@
     margin: auto; /* Center the Swiper within its container */
   }
 
+  .swiper-button-next,.swiper-button-prev{
+    background-color:var(--elements-color);
+    padding-block: 16px;
+    padding-inline: 8px;
+    margin-top: -38px;
+    
+  }
+
 
 .swiper-button-next::after
 {
   font-size: 20px;
+  color: var(--text-color)
 }
 .swiper-button-prev::after
 {
+  color: var(--text-color);
   font-size: 20px;
 }
 

@@ -11,9 +11,11 @@ import './style.css';
 
 // Import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 
 export default function Carousel() {
+
+  const [, dark] = useOutletContext()
 
   const categories = ['electronics','jewelery',"men's clothing","women's clothing"]
 
@@ -24,7 +26,7 @@ export default function Carousel() {
     
   return (
     <>
-    <div className='swiper-container'>
+    <div className={ ` swiper-container  ${dark ? 'dark' : ''}`}>
     <Swiper
         spaceBetween={0}
         centeredSlides={true}
