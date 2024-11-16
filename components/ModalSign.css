@@ -12,7 +12,7 @@
     padding-left: 16px; /* px-4 */
     padding-right: 16px;
   
-    z-index: 1;
+    z-index: 10000;
     /* backdrop-filter: blur(14px); */
   }
   

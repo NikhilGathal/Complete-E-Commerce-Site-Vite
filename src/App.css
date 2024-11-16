@@ -656,7 +656,7 @@ ul li:last-child {
  cursor: pointer;
 }
 
-@media(max-width : 983px)
+@media(max-width : 989px)
 {
   .header-contents h1 {
     font-size: 22px;

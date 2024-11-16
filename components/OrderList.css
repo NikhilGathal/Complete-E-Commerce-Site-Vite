@@ -13,6 +13,7 @@
   color: var(--text-color);
   max-width: 1200px;
   margin-inline: auto;
+  margin-top: 100px;
 }
 
 .order-grid.dark {
@@ -106,6 +107,14 @@
 .admin 
 {
   font-size:45px;
+}
+
+@media(max-width:983px)
+{
+  .order-grid
+  {
+    margin-top: 80px;
+  }
 }
 
 /* Responsive Design */
