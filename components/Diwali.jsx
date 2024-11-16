@@ -1,9 +1,11 @@
 import React from 'react'
+import { useOutletContext } from 'react-router-dom'
 
 function Diwali() {
+  const [, dark] = useOutletContext()
   return (
     <>
-    <div className='diwali-contain'>
+    <div className={ `diwali-contain ${dark ? 'dark' : ''}`}>
     <h3>  Big Diwali Sale </h3>
         <p>
           {' '}

@@ -3,6 +3,7 @@
   --text-color: black;
   --elements-color: white;
   border: 2px solid rgb(220, 210, 210);
+  margin-top: 115px;
 }
 .contact-us-container .dark
 ,.about-us-container .dark {
@@ -10,6 +11,7 @@
   --text-color: white;
   --elements-color: hsl(209, 23%, 22%);
   border: 2px solid rgb(220, 210, 210);
+  margin-top: 115px;
 }
 
 .contact-us-container {
@@ -20,7 +22,7 @@
   margin: auto;
   color: var(--text-color);
   background-color:var(--background-color);
-  margin-top: 45px;
+  margin-top: 115px;
 }
 .about-us-container {
   padding-inline: 25px;
@@ -29,7 +31,7 @@
   margin: auto;
   color: var(--text-color);
   background-color: var(--background-color);
-  margin-top: 45px;
+  margin-top: 115px;
 
 }
 .value {
@@ -93,6 +95,22 @@ textarea {
   margin-top: -12px;
 }
 
+@media(max-width :983px)
+{
+  .contact-us-container ,.about-us-container
+  {
+    margin-top: 96px;
+  }
+}
+
+@media(max-width :805px)
+{
+  .contact-us-container ,.about-us-container
+  {
+    margin-top: 86px;
+  }
+}
+
 @media(max-width : 590px)
 {
   .value {
@@ -106,7 +124,7 @@ textarea {
     margin: auto;
     color: var(--text-color);
     background-color: var(--background-color);
-    margin-top: 28px;
+    margin-top:105px;
     font-size: 13px;
   }
 
@@ -122,7 +140,7 @@ textarea {
     margin: auto;
     color: var(--text-color);
     background-color:var(--background-color);
-    margin-top: 28px;
+    margin-top: 80px;
   }
 
   
@@ -145,13 +163,17 @@ form {
 
 }
 
-@media(max-height : 710px)
+@media(max-width : 710px)
 {
   .about-us-container {
    padding-inline: 25px;
    padding-bottom: 20px;
-    margin-top: 14px;
+    margin-top:100px;
   
+  }
+  .contact-us-container
+  {
+    margin-top: 100px;
   }
   .value {
     gap: 10px;

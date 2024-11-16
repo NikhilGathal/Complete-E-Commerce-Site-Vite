@@ -157,7 +157,7 @@ button:hover {
 
 .cart-container {
   padding: 10px;
-  /* margin-top: 20px; */
+  margin-top: 40px;
   margin-bottom: 20px;
   background-color: #fff;
 }
@@ -591,10 +591,22 @@ ul li:last-child {
 
 .diwali-contain 
 {
+  --text-color: black;
+}
+.diwali-contain.dark 
+{
+  --text-color: white;
+}
+
+.diwali-contain 
+{
+  margin-top: 105px;
   max-width: 1200px;
   margin-inline: auto;
   padding: 16px;
+  color: var(--text-color);
 }
+
 .diwali-contain img 
 {
   display: block;
@@ -604,6 +616,10 @@ ul li:last-child {
 .diwali-contain h3 
 {
   margin: 0px;
+}
+.diwali-contain p
+{
+  margin-top: 0px;
 }
 
 
@@ -634,6 +650,16 @@ ul li:last-child {
  cursor: pointer;
 }
 
+@media(max-width : 983px)
+{
+  .header-contents h1 {
+    font-size: 22px;
+  }
+  .cart-container {
+    margin-top: 30px;
+  }
+}
+
 @media(max-width:975px)
 {
   .search-filter-container {
@@ -649,7 +675,7 @@ ul li:last-child {
 }
 @media (max-width: 932px) {
   .header-contents h1 {
-    font-size: 21px;
+    font-size: 20px;
   }
 
 }
@@ -657,20 +683,26 @@ ul li:last-child {
 
 @media (max-width: 854px) {
   .header-contents h1 {
-    font-size: 16px;
+    font-size: 15px;
+  }
+  .cart-container {
+    margin-top: 25px;
   }
 
 }
 
 @media (max-width: 805px) {
+  .cart-container {
+    margin-top: 20px;
+  }
   .search-filter-container {
     margin-top: 65px;
   }
   .header-contents h1 {
-    font-size: 16px;
+    font-size: 14px;
   }
   .header-contents .ham h3 {
-    font-size: 15px;
+    font-size: 14px;
   }
   .item-wish 
   {
@@ -681,14 +713,14 @@ ul li:last-child {
 
 @media (max-width: 739px) {
   .header-contents h1 {
-    font-size: 15px;
+    font-size: 13px;
   }
 
 }
 
 @media (max-width: 730px) {
   .header-contents h1 {
-    font-size: 15px;
+    font-size: 13px;
   }
   .header-contents .ham h3 {
     font-size: 13px;
@@ -696,6 +728,11 @@ ul li:last-child {
 }
 
 @media (max-width: 697px) {
+
+  .cart-container {
+    margin-top: 26px;
+  }
+ 
   .search-filter-container {
     margin-top: 80px;
   }
@@ -775,6 +812,7 @@ ul li:last-child {
 }
 
 @media (max-width: 590px) {
+ 
   .cart-header #p {
     margin-right: -2px;
   }
@@ -806,7 +844,7 @@ ul li:last-child {
   }
 
   .header-contents h1 {
-    font-size: 22px;
+    font-size:17px;
   }
   .header-contents .mode {
     font-size: 1.5rem;
@@ -932,7 +970,7 @@ ul li:last-child {
   }
   .header-contents h1 
   {
-    font-size: 10px;
+    font-size: 9px;
   }
   .cart-container #p {
     margin-right: -5px;
@@ -1018,7 +1056,7 @@ ul li:last-child {
   }
   .header-contents h1 
   {
-    font-size: 9px;
+    font-size: 8px;
   }
   .orderplace {
     font-size: 21px;
@@ -1040,7 +1078,7 @@ ul li:last-child {
   }
   .header-contents h1 
   {
-    font-size: 8px;
+    font-size: 7px;
   }
 
   .header-contents 
