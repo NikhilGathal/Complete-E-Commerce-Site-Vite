@@ -69,7 +69,7 @@ label {
 
 .form input,
 textarea {
-  max-width: 95%;
+  max-width:96%;
   margin-bottom: 15px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -80,7 +80,7 @@ textarea {
   padding: 10px;
   background-color:var(--elements-color);
   color: var(--text-color);
-  /* max-width: 100%; */
+  max-width: 100%;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -160,9 +160,39 @@ form {
   font-size: 13px;
 }
 
+.form input,
+textarea {
+  max-width:88%;
+  padding: 7px;
+}
+
+.contact-button {
+  padding: 7px;
+  max-width: 93%;
+}
+
 
 }
 
+@media(max-width : 450px)
+{
+  .contact-us-container
+  {
+    padding: 22px;
+  }
+
+  .form input,
+textarea {
+  max-width:90%;
+  padding: 7px;
+}
+
+.contact-button {
+  padding: 7px;
+  max-width: 95%;
+}
+ 
+}
 @media(max-width : 710px)
 {
   .about-us-container {
