@@ -21,20 +21,20 @@ export default function Cart() {
 
   useEffect(() => {
     const fetchCartItems = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 300))
+      await new Promise((resolve) => setTimeout(resolve, 1000))
       setIsLoading(false)
     }
     fetchCartItems()
   }, [])
 
   if (isLoading) {
-    return <h1 style={{ textAlign: 'center' }}>Loading Cart items...</h1> // Correct return statement
+    return <h1 className='Load' style={{ textAlign: 'center' }}>Loading Cart items...</h1> // Correct return statement
   }
 
   return (
     <>
       {isLoading ? ( // Display loading state until data is fetched
-        <h1 style={{ textAlign: 'center' }}>Loading Cart items...</h1>
+        <h1  style={{ textAlign: 'center' }}>Loading Cart items...</h1>
       ) : cartItems.length ? ( // Check for items after loading is done
         <main className={`cart-container ${dark ? 'dark' : ''}`}>
           <div className="cart-container">
@@ -117,3 +117,14 @@ export default function Cart() {
     </>
   )
 }
+
+
+
+
+
+
+
+
+
+
+

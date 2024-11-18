@@ -93,6 +93,7 @@ export default function ModalLogin({ islog, setislog  ,setusername ,setuserlogin
             setuserlogin(true);
             setIsAdmin(false); // Indicate user is a regular user
             setislog(false);
+            navigate('/');
         } else {
             alert('Login failed. Username or password is incorrect.');
         }

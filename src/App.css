@@ -628,6 +628,10 @@ ul li:last-child {
   margin-top: 250px;
   color: var(--text-color);
 }
+.Load 
+{
+  margin-top: 120px;
+}
 
 
 .suggestion-box p:hover 
@@ -684,6 +688,10 @@ ul li:last-child {
     font-size: 20px;
   }
 
+}
+
+@media(max-width:905px)
+{
 }
 
 
@@ -756,7 +764,7 @@ ul li:last-child {
     gap: 7px;
   }
   .cart-container .sum-total {
-    margin-right: 11px;
+    margin-right:10px;
   }
   .cart-container {
     font-size: 12px;
@@ -817,7 +825,18 @@ ul li:last-child {
   }
 }
 
+@media(max-width : 594px)
+{
+  .cart-container .sum-total {
+    margin-right:20px;
+  }
+}
+
 @media (max-width: 590px) {
+
+  .cart-container .sum-total {
+    margin-right:5px;
+  }
 
   .empty-cart img {
   margin-top: 160px;
@@ -1022,6 +1041,9 @@ ul li:last-child {
 
 @media (max-width: 408px) {
 
+  .cart-container .sum-total {
+    margin-right:4px;
+  }
   .item-wish 
   {
     font-size: 20px;  
