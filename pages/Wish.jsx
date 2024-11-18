@@ -90,7 +90,9 @@ export default function Wish() {
     <>
       {wishItems.length ? (
         <main className="cart-container">
-          <h2 className="item-wish">Wishlist Items</h2>
+         <div className="cart-container">
+         <h2 className="item-wish">Wishlist Items</h2>
+         </div>
           <div className="cart-items-container">
             <div className="cart-header cart-item-container">
               <div className="cart-item">Item</div>
