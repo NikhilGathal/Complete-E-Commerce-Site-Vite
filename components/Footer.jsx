@@ -1,13 +1,14 @@
 import React from 'react';
 import './footer.css'; // You will style it in this CSS file
 import shop from '../assets/Sho.jpg'
+import { Link } from 'react-router-dom';
 const Footer = ({dark}) => {
   return (
     <footer className={`footer ${dark ? 'dark' : ''}`}>
       <div className="footer-left">
         <div className="footer-brand">
           <img src={shop} alt="Logo" className="footer-logo" />
-          <button className="download-btn">Download App</button>
+ <a href="#">  <button  className="download-btn">Download App</button> </a>
         </div>
       </div>
 
