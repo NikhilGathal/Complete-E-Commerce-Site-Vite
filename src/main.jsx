@@ -6,7 +6,6 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from '../pages/Home'
 import Cart from '../pages/Cart'
 import Wish from '../pages/Wish'
-import OrderPlace from '../components/OrderPlace'
 import AboutUs from '../components/About'
 import ContactUs from '../components/Contact'
 import ItemDetail from '../components/ItemDetail'
@@ -15,13 +14,14 @@ import Myorders from '../pages/Myorders'
 import CarouselPage from '../components/CarouselPage'
 import Diwali from '../components/Diwali'
 import AdminDashBoard from '../components/AdminDashBoard'
-
-
+import UpdateProduct from '../components/UpdateProduct'
+import AddNewProduct from '../components/AddNewProduct'
+import OrderConfirmation from '../components/OrderConfirmation'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App/>,
+    element: <App />,
     children: [
       {
         path: '/',
@@ -33,15 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/myorder',
-        element: <Myorders/>,
+        element: <Myorders />,
       },
       {
         path: '/wish',
         element: <Wish />,
-      },
-      {
-        path: '/Order',
-        element: <OrderPlace />,
       },
       {
         path: '/about',
@@ -56,10 +52,10 @@ const router = createBrowserRouter([
         element: <ContactUs />,
         children: [
           {
-            path: 'feedback',  // Nested route for /contact/form
+            path: 'feedback', // Nested route for /contact/form
             element: <ContactForm />,
           },
-        ]
+        ],
       },
       {
         path: '/:productId',
@@ -70,11 +66,22 @@ const router = createBrowserRouter([
         path: '/carousel/:carousel',
         element: <CarouselPage />,
       },
-     
+
       {
         path: '/Admin',
         element: <AdminDashBoard />,
       },
+      { path: '/update-product/:id', 
+        element: <UpdateProduct /> 
+      },
+      {
+        path: '/Add',
+        element: <AddNewProduct/>
+      }
+      ,{
+        path:"/OrderConfirmation",
+        element: <OrderConfirmation/>
+      }
     ],
   },
 ])
@@ -83,5 +90,3 @@ createRoot(document.querySelector('#root')).render(
     <RouterProvider router={router} />
   </Provider>
 )
-
-

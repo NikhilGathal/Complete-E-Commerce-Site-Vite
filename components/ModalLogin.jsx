@@ -72,7 +72,7 @@ export default function ModalLogin({ islog, setislog  ,setusername ,setuserlogin
             setuserlogin(true);
             setislog(false);
 
-            navigate('/Admin');
+            navigate('/');
             setLoginData({ username: '', password: '' });
             return;
         }

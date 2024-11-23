@@ -48,7 +48,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* flex-direction: column; */
+  flex-direction: column;
   gap: 16px;
   background-color: var(--background-color);
 }
@@ -107,6 +107,7 @@
 .admin 
 {
   font-size:45px;
+  color: var(--text-color);
 }
 
 @media(max-width:983px)

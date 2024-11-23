@@ -26,6 +26,9 @@ export default function Home() {
   const productsList = useSelector(getAllProducts)
   // console.log(productsList);
   
+  
+  // console.log(productsList[0]);
+  
   const [setissign,dark,isdark,issign,userlogin] = useOutletContext()
   // console.log(userlogin);
   // console.log(issign);

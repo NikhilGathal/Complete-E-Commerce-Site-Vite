@@ -5,7 +5,7 @@ body {
   --text-color: black;
   --elements-color: white;
   --inpback: white;
-  --inphover: rgb(240, 245, 255);
+  --inphover:  rgb(217, 220, 226);
 }
 
 main,
@@ -19,7 +19,7 @@ header {
   --text-color: white;
   --elements-color: hsl(209, 23%, 22%);
   --inpback: black;
-  --inphover: #898989;
+  --inphover: #898989 ;
   min-height: 100vh;
 }
 
@@ -107,6 +107,7 @@ body.dark {
 }
 
 button {
+  font-size: 13.5px;
   font-family: inherit;
   padding: 10px;
   cursor: pointer;
@@ -192,15 +193,20 @@ button:hover {
 }
 
 .empty-wish {
+  color: var(--text-color);
   font-size: 45px;
 }
 .opp 
 {
+  margin-top: 100px;
   padding: 16px;
+  color: var(--text-color);
+  
 }
 
 .op 
 {
+  border: 2px solid rgb(220, 210, 210);
   padding-inline: 16px;
   gap: 60px;
   flex-direction: column;
@@ -211,12 +217,26 @@ button:hover {
   display: flex; /* Enable Flexbox on body */
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-  background-color: #f0f0f0; /* Optional: background color for better visibility */
+  background-color: var(--background-color); /* Optional: background color for better visibility */
 }
 
 .orderplace {
   font-size: 45px;
   font-weight: bold;
+}
+
+.order-confirm
+{
+  color: var(--text-color);
+  margin-top: 150px;
+}
+.order-confirm h1 
+{
+  font-size: 45px;
+}
+.order-confirm p
+{
+  text-align: center;
 }
 
 .button-wrapper {
@@ -586,7 +606,7 @@ ul li:last-child {
   margin-bottom: -16px;
 }
 .list-item.highlighted {
-  background-color: #e0e0e0;
+  background-color: var(--inphover);
 }
 
 .diwali-contain 
@@ -630,6 +650,7 @@ ul li:last-child {
 }
 .Load 
 {
+  color: var(--text-color);
   margin-top: 120px;
 }
 
@@ -639,6 +660,22 @@ ul li:last-child {
   color: #a870f1;
 }
 
+.search-filter-container select
+{
+  font-size: 1rem;
+  background-color: var(--elements-color);
+  color: var(--text-color);
+ padding: 10px;
+ cursor: pointer;
+}
+select 
+{
+  appearance: none; 
+}
+select option:hover 
+{
+  background-color: var(--inphover);
+}
 
 @media (max-width :1245px)
 {
@@ -652,18 +689,19 @@ ul li:last-child {
   
 }
 
-.search-filter-container select
-{
-  background-color: var(--elements-color);
-  color: var(--text-color);
- padding: 10px;
- cursor: pointer;
-}
-
-@media(max-width : 989px)
+@media(max-width : 1014px)
 {
   .header-contents h1 {
     font-size: 22px;
+  }
+  
+}
+
+
+@media(max-width : 994px)
+{
+  .header-contents h1 {
+    font-size: 21px;
   }
   .cart-container {
     margin-top: 30px;
@@ -690,14 +728,21 @@ ul li:last-child {
 
 }
 
-@media(max-width:905px)
+@media(max-width:872px)
 {
+  @media(max-width : 994px)
+{
+  .header-contents h1 {
+    font-size: 16px;
+  }
+ 
+}
 }
 
 
-@media (max-width: 854px) {
+@media (max-width: 858px) {
   .header-contents h1 {
-    font-size: 15px;
+    font-size: 14px;
   }
   .cart-container {
     margin-top: 25px;
@@ -961,7 +1006,7 @@ ul li:last-child {
 @media (max-width: 479px) {
 
   .header-contents h1 {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .orderplace {

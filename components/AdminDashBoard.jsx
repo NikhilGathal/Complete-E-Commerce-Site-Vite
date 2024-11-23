@@ -3,6 +3,8 @@ import './OrderList.css';
 import { useOutletContext } from 'react-router-dom';
 
 function AdminDashBoard() {
+  // console.log('Adminnnn');
+  
   const [setissign, dark, isdark, issign, userlogin] = useOutletContext();
   
   const [orders, setOrders] = useState([]);
@@ -50,16 +52,26 @@ setIsLoading(false)
     setOrders(allOrders);
   }, []);
 
-  const groupedOrders = orders.reduce((acc, order) => {
-    const { username, price } = order;
-    if (!acc[username]) {
-      acc[username] = { orders: [], totalPrice: 0 };
-    }
-    acc[username].orders.push(order);
-    acc[username].totalPrice += price;
-    return acc;
-  }, {});
+  // const groupedOrders = orders.reduce((acc, order) => {
+  //   const { username, price } = order;
+  //   if (!acc[username]) {
+  //     acc[username] = { orders: [], totalPrice: 0 };
+  //   }
+  //   acc[username].orders.push(order);
+  //   acc[username].totalPrice += price;
+  //   return acc;
+  // }, {});
 // console.log(groupedOrders);
+const groupedOrders = orders.reduce((acc, order) => {
+  const { username, price } = order;
+  if (!acc[username]) {
+    acc[username] = { orders: [], totalPrice: 0 };
+  }
+  acc[username].orders.push(order);
+  // Make sure price is a number
+  acc[username].totalPrice += parseFloat(price) || 0;  // fallback to 0 if it's not a valid number
+  return acc;
+}, {});
 
   const hasOrders = Object.keys(groupedOrders).length > 0;
  

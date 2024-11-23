@@ -3,7 +3,7 @@ import wishIcon from '../assets/heart-solid.svg'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import CartIcon from '../assets/cart-icon.svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchProductdata } from '../store/slices/productsSlice'
+import { fetchProductdata, updateAllProducts } from '../store/slices/productsSlice'
 import { loadCartItemsFromLocal } from '../store/slices/cartSlice'
 import ModalSign from './ModalSign'
 import ModalLogin from './ModalLogin'
@@ -55,7 +55,6 @@ export default function Header({
     if (signedUp === 'true') {
       setsignname(true)
     }
-   
   }, [])
 
   useEffect(() => {
@@ -157,6 +156,8 @@ export default function Header({
     }
   }
   // console.log(username);
+// const statedata = useSelector((state)=> state.products.list)
+// console.log(statedata);
 
   // const dark = false
   return (
@@ -172,7 +173,9 @@ export default function Header({
           <h1
             onClick={() => {
               //  setquery('')
+              // dispatch(fetchdata())
               dispatch(fetchProductdata())
+              // dispatch(updateAllProducts(statedata))
               //  console.log('clicked');
             }}
             className="H"
@@ -225,7 +228,6 @@ export default function Header({
             &times;
           </span>
 
-
           <h3
             className="H"
             onClick={(e) => {
@@ -240,30 +242,69 @@ export default function Header({
             issign={issign}
             setissign={setissign}
             setsignname={setsignname}
-          />          
-          
-{(username && username !== 'Admin') || username === 'Admin' ? (
-  <div className={`heading-container ${dark ? 'dark' : ''}`}>
+          />
+
+          {(username && username !== 'Admin') || username === 'Admin' ? (
+            <div className={`heading-container ${dark ? 'dark' : ''}`}>
+             
+             
+              {username === 'Admin' ? (
+               
+                  <h3 className="H heading">Profile</h3>
+              ) : (
+                username !== 'Admin' && <h3 className="H heading">Profile</h3>
+              )}
+
+              {/* Render suggestion box only if username is not 'Admin' and exists */}
+              {/* {username && username !== 'Admin' && (
+                <div className="suggestion-box">
+                  <Link to="/myorder">
+                    <p>My Orders</p>
+                  </Link>
+                  <Link to="/Add">
+                    <p>Cart</p>
+                  </Link>
+                  <Link to="/wish">
+                    <p>WishList</p>
+                  </Link>
+                  <Link to="/">
+                    <p>Buy Again</p>
+                  </Link>
+                </div>
+              )} */}
+
+{username && (
+  <div className="suggestion-box">
     {username === 'Admin' ? (
-      <Link to="/Admin">
-        <h3 className="H heading">Orders</h3>
-      </Link>
+      <>
+        <Link to="/Admin">
+          <p>Orders</p>
+        </Link>
+        <Link to="/Add">
+          <p>Add Product</p>
+        </Link>
+      </>
     ) : (
-      username !== 'Admin' && <h3 className="H heading">Profile</h3>
-    )}
-    
-    {/* Render suggestion box only if username is not 'Admin' and exists */}
-    {username && username !== 'Admin' && (
-      <div className="suggestion-box">
-        <Link to="/myorder"><p>My Orders</p></Link>
-        <Link to="/cart"><p>Cart</p></Link>
-        <Link to="/wish"><p>WishList</p></Link>
-        <Link to="/"><p>Buy Again</p></Link>
-      </div>
+      <>
+        <Link to="/myorder">
+          <p>My Orders</p>
+        </Link>
+        <Link to="/cart">
+          <p>Cart</p>
+        </Link>
+        <Link to="/wish">
+          <p>WishList</p>
+        </Link>
+        <Link to="/">
+          <p>Buy Again</p>
+        </Link>
+      </>
     )}
   </div>
-) : null}
+)}
 
+            </div>
+          ) : null}
 
           <h3
             className="H"
@@ -296,7 +337,7 @@ export default function Header({
               setuserlogin(false)
               setusername('')
               setsignname(false)
-              localStorage.setItem('signedUp', 'false');
+              localStorage.setItem('signedUp', 'false')
               navigate('/')
             }}
             style={{ display: username ? 'block' : 'none' }}
