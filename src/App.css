@@ -659,10 +659,10 @@ ul li:last-child {
   display: none;
   position: absolute;
   left: -9px;
-  top: 25px;
-  background-color: white;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  top: 23px;
+  background-color: var(--background-color);
+  /* border: 1px solid #ccc; */
+  box-shadow:0px 0px 5px 3px rgba(0, 0, 0, 0.2); /* Adds shadow for a popup effect */
   padding: 12px;
   z-index: 10;
 }
@@ -677,6 +677,7 @@ ul li:last-child {
   font-weight: 200;
   cursor: pointer;
   font-size: 16px;
+  color: var(--text-color);
 }
 .suggestion-box-log p:hover {
   color: #a870f1;
