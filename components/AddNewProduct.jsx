@@ -9,7 +9,6 @@ const AddNewProduct = () => {
   const dispatch = useDispatch()
   const [, dark] = useOutletContext()
 
-
   // Accessing the current state of p0roducts from the Redux store
   const products = useSelector((state) => state.products.list)
 
@@ -44,7 +43,7 @@ const AddNewProduct = () => {
   }
 
   return (
-    <div className={ `mode  ${ dark ? 'dark' : ''} `}>
+    <div className={`mode  ${dark ? 'dark' : ''} `}>
       <h2 className="update-head">Add New Product</h2>
       <div className="update-product-container">
         <div className="update-product-container-content">
@@ -66,7 +65,7 @@ const AddNewProduct = () => {
             />
           </div>
 
-          <div>
+          {/* <div>
             <label>Category:</label>
             <input
               type="text"
@@ -74,6 +73,19 @@ const AddNewProduct = () => {
               onChange={(e) => setNewCategory(e.target.value)}
               placeholder="Enter product category"
             />
+          </div> */}
+
+          <div>
+            <label>Category:</label>
+            <select
+              value={newCategory}
+              onChange={(e) => setNewCategory(e.target.value)}>
+              <option value="">Select Category</option>
+              <option value="jewelery">Jewelery</option>
+              <option value="men's clothing">Men's Clothing</option>
+              <option value="electronics">Electronics</option>
+              <option value="women's clothing">Women's Clothing</option>
+            </select>
           </div>
 
           <div>
@@ -116,7 +128,6 @@ const AddNewProduct = () => {
 }
 
 export default AddNewProduct
-
 
 // import React, { useEffect, useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -176,7 +187,7 @@ export default AddNewProduct
 //   useEffect(() => {
 //     if (productsList.length > 0) {
 //       // Filter products by category
-//       const filtered = productsList.filter(product => 
+//       const filtered = productsList.filter(product =>
 //         product.category.toLowerCase().includes(carousel.toLowerCase()) // Category filter
 //       );
 
@@ -250,4 +261,3 @@ export default AddNewProduct
 // }
 
 // export default CarouselPage;
-

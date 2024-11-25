@@ -9,7 +9,10 @@
     height: 100%; /* This ensures the Swiper takes the full height of its container */
     padding: 0; /* Remove padding to prevent extra space */
   }
-
+  .pdt 
+  {
+    margin-top: -10px;
+  }
 
   
   .swiper-slide {

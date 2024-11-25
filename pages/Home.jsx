@@ -17,6 +17,7 @@ import { useOutletContext } from 'react-router-dom'
 import ProductShimmer from '../components/ProductShimmer'
 import Footer from '../components/Footer'
 import Carousel from '../components/Carousel'
+import ImageContainer from '../components/ImageContainer'
 
 export default function Home() {
   
@@ -134,6 +135,7 @@ useEffect(() => {
   
   <>
      <main className={` ${dark ? 'dark' : ''}`}>
+        <ImageContainer/>
       <div className="search-filter-container">
         <SearchBar query={query} setquery={setquery} />
         <SelectMenu setquery1={setquery1} setquery={setquery} />

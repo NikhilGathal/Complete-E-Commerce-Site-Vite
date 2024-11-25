@@ -370,7 +370,7 @@ function CarouselPage() {
 
   return (
     <>
-      <div className="search-filter-container filter">
+      <div className="search-filter-container filter extra">
         <select
           id="sortPriceOrder"
           value={sortPriceOrder}
@@ -398,7 +398,7 @@ function CarouselPage() {
         </select>
       </div>
 
-      <div className="products-container">
+      <div className="products-container pdt">
         {filteredProducts.map(({ id, title, rating, price, image }) => (
           <Product
             key={id}

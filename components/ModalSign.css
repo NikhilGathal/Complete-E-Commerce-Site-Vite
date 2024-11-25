@@ -15,6 +15,21 @@
     z-index: 10000;
     /* backdrop-filter: blur(14px); */
   }
+  .signup-role-container {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 10px; /* Adjust the gap as needed */
+  }
+  
+  .signup-role-container input[type="checkbox"] {
+    margin-right: 40px; /* Optional: Adds space between the checkbox and the label */
+  }
+  .check
+  {
+    width: 60%;
+  }
+  
   
   /* Hidden state */
   .hidden {

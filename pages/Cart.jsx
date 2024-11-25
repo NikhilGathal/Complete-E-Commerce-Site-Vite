@@ -65,14 +65,13 @@
 //                   onClick={() => {
 //                     const username = localStorage.getItem('username')
 //                     // console.log(username);
-                    
+
 //                     if (username) {
 
 //                       if(username === "Admin")
 //                         {
 //                           alert('Please Login As normal user')
 //                         }
-
 
 //                       dispatch(removeallCartItem())
 //                       localStorage.removeItem(`${username}cart`)
@@ -81,9 +80,8 @@
 //                         JSON.parse(localStorage.getItem(`${username}orders`)) ||[]
 //                       existingOrders.push(...cartItems)
 //                       localStorage.setItem( `${username}orders`,JSON.stringify(existingOrders))
-//                     } 
-                    
-                    
+//                     }
+
 //                     else {
 //                       alert('Please Login First')
 //                     }
@@ -118,15 +116,6 @@
 //   )
 // }
 
-
-
-
-
-
-
-
-
-
 import React, { useState, useEffect } from 'react'
 import CartItem from '../components/CartItem'
 import empty from '../assets/empty.png'
@@ -139,6 +128,7 @@ import {
 import { Link, useNavigate, useOutletContext } from 'react-router-dom'
 
 export default function Cart() {
+  const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {}
   const [setissign, dark, isdark, issign, userlogin] = useOutletContext()
   const error = useSelector(getCartError)
   const dispatch = useDispatch()
@@ -155,10 +145,16 @@ export default function Cart() {
     fetchCartItems()
   }, [])
 
-  const totalPrice = cartItems.reduce((sum, order) => sum + order.price * order.quantity, 0).toFixed(2);
+  const totalPrice = cartItems
+    .reduce((sum, order) => sum + order.price * order.quantity, 0)
+    .toFixed(2)
 
   if (isLoading) {
-    return <h1 className='Load' style={{ textAlign: 'center' }}>Loading Cart items...</h1>;
+    return (
+      <h1 className="Load" style={{ textAlign: 'center' }}>
+        Loading Cart items...
+      </h1>
+    )
   }
 
   return (
@@ -177,51 +173,90 @@ export default function Cart() {
                 <div className="total">Total</div>
                 <div className="remove">Remove</div>
               </div>
-              {cartItems.map(({ id, title, rating, price, image, quantity }) => (
-                <CartItem
-                  key={id}
-                  productId={id}
-                  title={title}
-                  price={price}
-                  quantity={quantity}
-                  imageUrl={image}
-                  rating={rating.rate}
-                />
-              ))}
+              {cartItems.map(
+                ({ id, title, rating, price, image, quantity }) => (
+                  <CartItem
+                    key={id}
+                    productId={id}
+                    title={title}
+                    price={price}
+                    quantity={quantity}
+                    imageUrl={image}
+                    rating={rating.rate}
+                  />
+                )
+              )}
               <div className="cart-header cart-item-container">
                 <button
                   onClick={() => {
-                    const username = localStorage.getItem('username');
-                    if (username) {
-                      if (username === "Admin") {
-                        alert('Please login as a normal user');
-                      }
+                    const username = localStorage.getItem('username')
+                    const existingAdmin =
+                      JSON.parse(localStorage.getItem('Admin')) || {}
 
-                      dispatch(removeallCartItem());
-                      localStorage.removeItem(`${username}cart`);
-                      navigate('/OrderConfirmation', {
-                        state: { 
-                          username, 
-                          cartItems, 
-                          totalPrice 
-                        }
-                      });
-                      const existingOrders = JSON.parse(localStorage.getItem(`${username}orders`)) || [];
-                      existingOrders.push(...cartItems);
-                      localStorage.setItem(`${username}orders`, JSON.stringify(existingOrders));
+                    if (
+                      existingAdmin &&
+                      Object.keys(existingAdmin).length > 0
+                    ) {
+                      // If Admin exists in localStorage and is not an empty object
+                      if (username === existingAdmin.username) {
+                        // If the logged-in user is the Admin
+                        alert('Please login as a normal user to place an order')
+                      } else {
+                        // If the logged-in user is not the Admin, proceed with the order
+                        dispatch(removeallCartItem())
+                        localStorage.removeItem(`${username}cart`)
+                        navigate('/OrderConfirmation', {
+                          state: {
+                            username,
+                            cartItems,
+                            totalPrice,
+                          },
+                        })
+                        const existingOrders =
+                          JSON.parse(
+                            localStorage.getItem(`${username}orders`)
+                          ) || []
+                        existingOrders.push(...cartItems)
+                        localStorage.setItem(
+                          `${username}orders`,
+                          JSON.stringify(existingOrders)
+                        )
+                      }
                     } else {
-                      alert('Please login first');
+                      // If Admin does not exist in localStorage
+                      alert('Admin is required to place an order')
                     }
+
+                    //   const username = localStorage.getItem('username');
+                    //   if (username) {
+                    //     if (username === existingAdmin.username) {
+                    //       alert('Please login as a normal user');
+                    //     }
+
+                    //     dispatch(removeallCartItem());
+                    //     localStorage.removeItem(`${username}cart`);
+                    //     navigate('/OrderConfirmation', {
+                    //       state: {
+                    //         username,
+                    //         cartItems,
+                    //         totalPrice
+                    //       }
+                    //     });
+                    //     const existingOrders = JSON.parse(localStorage.getItem(`${username}orders`)) || [];
+                    //     existingOrders.push(...cartItems);
+                    //     localStorage.setItem(`${username}orders`, JSON.stringify(existingOrders));
+                    //   } else {
+                    //     alert('Please login first');
+                    //   }
+                    // }
                   }}
                   className="place"
                 >
                   Place Order
                 </button>
                 <div></div>
-                 <div></div>
-                <div className="sum-total">
-                  ${totalPrice}
-                </div>
+                <div></div>
+                <div className="sum-total">${totalPrice}</div>
               </div>
             </div>
           </div>
@@ -236,6 +271,5 @@ export default function Cart() {
         </div>
       )}
     </>
-  );
+  )
 }
-

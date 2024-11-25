@@ -9,6 +9,9 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ModalLogin({ islog, setislog  ,setusername ,setuserlogin , setIsAdmin}) {
 
+    const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {}
+    // console.log(existingAdmin);
+    
     const [loginData, setLoginData] = useState({
         username: '',
         password: ''
@@ -60,11 +63,9 @@ export default function ModalLogin({ islog, setislog  ,setusername ,setuserlogin
         const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
 
         // Admin credentials
-        const adminUsername = 'Admin';
-        const adminPassword = 'password';
 
         // Check if login is for admin
-        if (loginData.username === adminUsername && loginData.password === adminPassword) {
+        if (loginData.username === existingAdmin.username && loginData.password === existingAdmin.password) {
             alert('Admin logged in successfully!');
             setusername(loginData.username);
             localStorage.setItem('username', loginData.username);

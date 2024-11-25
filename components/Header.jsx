@@ -3,7 +3,10 @@ import wishIcon from '../assets/heart-solid.svg'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import CartIcon from '../assets/cart-icon.svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchProductdata, updateAllProducts } from '../store/slices/productsSlice'
+import {
+  fetchProductdata,
+  updateAllProducts,
+} from '../store/slices/productsSlice'
 import { loadCartItemsFromLocal } from '../store/slices/cartSlice'
 import ModalSign from './ModalSign'
 import ModalLogin from './ModalLogin'
@@ -24,6 +27,8 @@ export default function Header({
   const [isAdmin, setIsAdmin] = useState(false)
   const navigate = useNavigate()
   // console.log(isAdmin);
+  const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {};
+const adminUsername = existingAdmin.username; // Get the username from existingAdmin
 
   const dispatch = useDispatch()
 
@@ -149,15 +154,15 @@ export default function Header({
   }, [menuOpen])
 
   const handleClick = () => {
-    if (username === 'Admin') {
+    if (username === adminUsername) {
       navigate('/Admin') // Navigate to the Admin page if username is Admin
     } else {
       navigate('/myorder') // Navigate to My Orders if username is not Admin
     }
   }
   // console.log(username);
-// const statedata = useSelector((state)=> state.products.list)
-// console.log(statedata);
+  // const statedata = useSelector((state)=> state.products.list)
+  // console.log(statedata);
 
   // const dark = false
   return (
@@ -244,15 +249,12 @@ export default function Header({
             setsignname={setsignname}
           />
 
-          {(username && username !== 'Admin') || username === 'Admin' ? (
+          {(username && username !== adminUsername) || username === adminUsername ? (
             <div className={`heading-container ${dark ? 'dark' : ''}`}>
-             
-             
-              {username === 'Admin' ? (
-               
-                  <h3 className="H heading">Profile</h3>
+              {username === adminUsername ? (
+                <h3 className="H heading">Profile</h3>
               ) : (
-                username !== 'Admin' && <h3 className="H heading">Profile</h3>
+                username !== adminUsername && <h3 className="H heading">Profile</h3>
               )}
 
               {/* Render suggestion box only if username is not 'Admin' and exists */}
@@ -273,49 +275,61 @@ export default function Header({
                 </div>
               )} */}
 
-{username && (
-  <div className="suggestion-box">
-    {username === 'Admin' ? (
-      <>
-        <Link to="/Admin">
-          <p>Orders</p>
-        </Link>
-        <Link to="/Add">
-          <p>Add Product</p>
-        </Link>
-      </>
-    ) : (
-      <>
-        <Link to="/myorder">
-          <p>My Orders</p>
-        </Link>
-        <Link to="/cart">
-          <p>Cart</p>
-        </Link>
-        <Link to="/wish">
-          <p>WishList</p>
-        </Link>
-        <Link to="/">
-          <p>Buy Again</p>
-        </Link>
-      </>
-    )}
-  </div>
-)}
-
+              {username && (
+                <div className="suggestion-box">
+                  {username === adminUsername
+                   ? (
+                    <>
+                      <Link to="/Admin">
+                        <p>Orders</p>
+                      </Link>
+                      <Link to="/Add">
+                        <p>Add Product</p>
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <Link to="/myorder">
+                        <p>My Orders</p>
+                      </Link>
+                      <Link to="/cart">
+                        <p>Cart</p>
+                      </Link>
+                      <Link to="/wish">
+                        <p>WishList</p>
+                      </Link>
+                      <Link to="/">
+                        <p>Buy Again</p>
+                      </Link>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
           ) : null}
 
-          <h3
-            className="H"
-            onClick={(e) => {
-              setislog(true)
-              toggleMenu(e)
-              // console.log('hi')
-            }}
-            style={{ display: username ? 'none' : 'block' }}
-          >
+          <h3 className="H login-container" style={{ display: username ? 'none' : 'block' }}>
             Login
+            <div className="suggestion-box-log">
+              <p
+                onClick={(e) => {
+                  setislog(true)
+                  toggleMenu(e)
+                  // console.log('hi')
+                }}
+              >
+                Admin
+              </p>
+              <p
+                onClick={(e) => {
+                  setislog(true)
+                  toggleMenu(e)
+                  // console.log('hi')
+                }}
+              >
+                User
+              </p>
+            </div>
           </h3>
           <ModalLogin
             islog={islog}

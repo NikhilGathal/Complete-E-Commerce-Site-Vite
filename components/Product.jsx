@@ -197,7 +197,8 @@ import { deleteProduct } from '../store/slices/productsSlice';
 
 export default function Product({ productId, title, rating, price, imageUrl }) {
   const username = localStorage.getItem('username');
-  const isAdmin = username === 'Admin';
+  const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {}
+  const isAdmin = username === existingAdmin.username;
   const dispatch = useDispatch();
   const navigate = useNavigate(); // For navigation to UpdateProduct page
 

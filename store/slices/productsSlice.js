@@ -3,6 +3,15 @@ import { productsList } from '../productsList.js';
 const findItemIndex = (state, action) =>
   state.findIndex((cartItem) => cartItem.productId === action.payload.productId)
 
+  // Action types 
+
+// product/fetchProducts – triggered by the fetchProducts reducer.
+// product/fetchProductsError – triggered by the fetchProductsError reducer.
+// product/updateAllProducts – triggered by the updateAllProducts reducer.
+// product/addProduct – triggered by the addProduct reducer.
+// product/deleteProduct – triggered by the deleteProduct reducer.
+// product/updateProduct – triggered by the updateProduct reducer.
+
 const slice = createSlice({
   name: 'product',
   initialState: {

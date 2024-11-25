@@ -1,11 +1,11 @@
 body {
-  font-family:  sans-serif;
+  font-family: sans-serif;
   margin: 0;
   --background-color: white;
   --text-color: black;
   --elements-color: white;
   --inpback: white;
-  --inphover:  rgb(217, 220, 226);
+  --inphover: rgb(217, 220, 226);
 }
 
 main,
@@ -19,7 +19,7 @@ header {
   --text-color: white;
   --elements-color: hsl(209, 23%, 22%);
   --inpback: black;
-  --inphover: #898989 ;
+  --inphover: #898989;
   min-height: 100vh;
 }
 
@@ -45,7 +45,7 @@ a {
 }
 
 .search-filter-container {
-  margin-top: 104px;
+  margin-top: 15px;
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
@@ -53,6 +53,9 @@ a {
   max-width: 1200px;
   margin-inline: auto;
   padding: 16px;
+}
+.extra {
+  margin-top: 95px;
 }
 
 i {
@@ -170,6 +173,16 @@ button:hover {
   gap: 30px;
   color: var(--text-color);
 }
+.ord {
+  
+  text-align: center;
+}
+.ord button 
+{
+  border-radius: 50px;
+  padding-inline: 30px;
+  padding-block: 13px;
+}
 .empty-cart img {
   margin-top: 150px;
   max-width: 280px;
@@ -196,16 +209,13 @@ button:hover {
   color: var(--text-color);
   font-size: 45px;
 }
-.opp 
-{
+.opp {
   margin-top: 100px;
   padding: 16px;
   color: var(--text-color);
-  
 }
 
-.op 
-{
+.op {
   border: 2px solid rgb(220, 210, 210);
   padding-inline: 16px;
   gap: 60px;
@@ -213,11 +223,13 @@ button:hover {
   margin: 16px;
   margin-inline: auto;
   max-width: 1200px;
-  height:50vh; /* Make body full height of viewport */
+  height: 50vh; /* Make body full height of viewport */
   display: flex; /* Enable Flexbox on body */
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-  background-color: var(--background-color); /* Optional: background color for better visibility */
+  background-color: var(
+    --background-color
+  ); /* Optional: background color for better visibility */
 }
 
 .orderplace {
@@ -225,22 +237,18 @@ button:hover {
   font-weight: bold;
 }
 
-.order-confirm
-{
+.order-confirm {
   color: var(--text-color);
   margin-top: 150px;
 }
-.order-confirm h1 
-{
+.order-confirm h1 {
   font-size: 45px;
 }
-.order-confirm p
-{
+.order-confirm p {
   text-align: center;
 }
 
 .button-wrapper {
- 
 }
 
 .item-button {
@@ -249,8 +257,6 @@ button:hover {
   /* gap: 60px; */
   justify-content: space-evenly;
 }
-
-
 
 .continue {
   transition: transform 0.5s ease-in-out; /* Transition only the transform property */
@@ -294,7 +300,7 @@ button:hover {
   /* transform: scale(1.02); */
 }
 .H {
-  transition: all 0.0s ease-in-out;
+  transition: all 0s ease-in-out;
 }
 .H:hover {
   /* transform: scale(1.05); */
@@ -377,7 +383,6 @@ header {
   max-width: 1200px;
   margin-inline: auto;
 }
-
 
 .header-contents {
   display: flex;
@@ -464,9 +469,8 @@ h3 {
 .cart-item-container img {
   width: 60px;
 }
-#i
-{
- margin-left: 7px;
+#i {
+  margin-left: 7px;
 }
 
 .cart-item-container > div {
@@ -609,17 +613,14 @@ ul li:last-child {
   background-color: var(--inphover);
 }
 
-.diwali-contain 
-{
+.diwali-contain {
   --text-color: black;
 }
-.diwali-contain.dark 
-{
+.diwali-contain.dark {
   --text-color: white;
 }
 
-.diwali-contain 
-{
+.diwali-contain {
   margin-top: 105px;
   max-width: 1200px;
   margin-inline: auto;
@@ -627,79 +628,92 @@ ul li:last-child {
   color: var(--text-color);
 }
 
-.diwali-contain img 
-{
+.diwali-contain img {
   display: block;
   width: 100%;
   height: auto;
 }
-.diwali-contain h3 
-{
+.diwali-contain h3 {
   margin: 0px;
 }
-.diwali-contain p
-{
+.diwali-contain p {
   margin-top: 0px;
 }
 
-
-.S 
-{
+.S {
   margin-top: 250px;
   color: var(--text-color);
 }
-.Load 
-{
+.Load {
   color: var(--text-color);
   margin-top: 120px;
 }
 
+.suggestion-box p:hover {
+  color: #a870f1;
+}
+.login-container {
+  position: relative;
+}
+.suggestion-box-log {
+  display: none;
+  position: absolute;
+  left: -9px;
+  top: 25px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  z-index: 10;
+}
 
-.suggestion-box p:hover 
-{
+.login-container:hover .suggestion-box-log,
+.suggestion-box-log:hover {
+  display: block;
+}
+
+.suggestion-box-log p {
+  margin: 0px 0;
+  font-weight: 200;
+  cursor: pointer;
+  font-size: 16px;
+}
+.suggestion-box-log p:hover {
   color: #a870f1;
 }
 
-.search-filter-container select
-{
+.search-filter-container select {
   font-size: 1rem;
   background-color: var(--elements-color);
   color: var(--text-color);
- padding: 10px;
- cursor: pointer;
+  padding: 10px;
+  cursor: pointer;
 }
-select 
-{
-  appearance: none; 
+select {
+  /* appearance: none;  */
 }
-select option:hover 
-{
+select option:hover {
   background-color: var(--inphover);
 }
 
-@media (max-width :1245px)
-{
-
-  .diwali-contain img 
-  {
+@media (max-width: 1245px) {
+  .diwali-contain img {
     display: block;
     max-width: 100%;
     height: auto;
   }
-  
 }
 
-@media(max-width : 1014px)
-{
+@media (max-width: 1014px) {
   .header-contents h1 {
     font-size: 22px;
   }
-  
+  .extra {
+    margin-top: 80px;
+  }
 }
 
-
-@media(max-width : 994px)
-{
+@media (max-width: 994px) {
   .header-contents h1 {
     font-size: 21px;
   }
@@ -708,15 +722,10 @@ select option:hover
   }
 }
 
-@media(max-width:975px)
-{
-  .search-filter-container {
-    margin-top: 80px;
-  }
+@media (max-width: 975px) {
 }
 
-@media(max-width : 975px)
-{
+@media (max-width: 975px) {
   .header-contents h1 {
     font-size: 22px;
   }
@@ -725,20 +734,15 @@ select option:hover
   .header-contents h1 {
     font-size: 20px;
   }
-
 }
 
-@media(max-width:872px)
-{
-  @media(max-width : 994px)
-{
-  .header-contents h1 {
-    font-size: 16px;
+@media (max-width: 872px) {
+  @media (max-width: 994px) {
+    .header-contents h1 {
+      font-size: 16px;
+    }
   }
- 
 }
-}
-
 
 @media (max-width: 858px) {
   .header-contents h1 {
@@ -747,34 +751,31 @@ select option:hover
   .cart-container {
     margin-top: 25px;
   }
-
 }
 
 @media (max-width: 805px) {
   .cart-container {
     margin-top: 20px;
   }
-  .search-filter-container {
+  .extra {
     margin-top: 65px;
   }
+
   .header-contents h1 {
     font-size: 14px;
   }
   .header-contents .ham h3 {
     font-size: 14px;
   }
-  .item-wish 
-  {
-    font-size: 26px;  
+  .item-wish {
+    font-size: 26px;
   }
-
 }
 
 @media (max-width: 739px) {
   .header-contents h1 {
     font-size: 13px;
   }
-
 }
 
 @media (max-width: 730px) {
@@ -787,29 +788,31 @@ select option:hover
 }
 
 @media (max-width: 697px) {
-
   .cart-container {
     margin-top: 26px;
   }
- 
+
   .search-filter-container {
+    margin-top: 15px;
+  }
+  .extra {
     margin-top: 80px;
   }
   .orderplace {
     font-size: 30px;
     font-weight: bold;
   }
-  
+
   .button-wrapper .continue {
-   font-size: 15px;
-   padding-inline: 15px;
-   padding-block: 10px;
+    font-size: 15px;
+    padding-inline: 15px;
+    padding-block: 10px;
   }
   .cart-container .item-quantity {
     gap: 7px;
   }
   .cart-container .sum-total {
-    margin-right:10px;
+    margin-right: 10px;
   }
   .cart-container {
     font-size: 12px;
@@ -870,29 +873,26 @@ select option:hover
   }
 }
 
-@media(max-width : 594px)
-{
+@media (max-width: 594px) {
   .cart-container .sum-total {
-    margin-right:20px;
+    margin-right: 20px;
   }
 }
 
 @media (max-width: 590px) {
-
   .cart-container .sum-total {
-    margin-right:5px;
+    margin-right: 5px;
   }
 
   .empty-cart img {
-  margin-top: 160px;
+    margin-top: 160px;
     max-width: 180px;
   }
-  .empty-cart button 
-  {
+  .empty-cart button {
     padding-inline: 25px;
     padding-block: 9px;
   }
- 
+
   .cart-header #p {
     margin-right: -2px;
   }
@@ -924,7 +924,7 @@ select option:hover
   }
 
   .header-contents h1 {
-    font-size:17px;
+    font-size: 17px;
   }
   .header-contents .mode {
     font-size: 1.5rem;
@@ -936,15 +936,21 @@ select option:hover
   }
 }
 
-
+@media (max-width: 568px) {
+  .search-filter-container input {
+    max-width: 80%;
+  }
+}
 
 @media (max-width: 563px) {
-  .item-wish 
-  {
-    font-size: 24px;  
+  .item-wish {
+    font-size: 24px;
   }
   .search-filter-container {
     flex-direction: column;
+  }
+  .extra {
+    flex-direction: row;
   }
   .cart-header div {
     margin-right: 0px;
@@ -975,18 +981,14 @@ select option:hover
   }
 }
 
-@media (max-width :537px)
-{
-  .header-contents h1 
-  {
+@media (max-width: 537px) {
+  .header-contents h1 {
     font-size: 16px;
   }
 }
 
-@media(max-width : 513px)
-{
-  .header-contents h1 
-  {
+@media (max-width: 513px) {
+  .header-contents h1 {
     font-size: 16px;
   }
 }
@@ -1004,7 +1006,6 @@ select option:hover
 }
 
 @media (max-width: 479px) {
-
   .header-contents h1 {
     font-size: 11px;
   }
@@ -1013,11 +1014,11 @@ select option:hover
     font-size: 25px;
     font-weight: bold;
   }
-  
+
   .button-wrapper .continue {
-   font-size: 13px;
-   padding-inline: 12px;
-   padding-block: 8px;
+    font-size: 13px;
+    padding-inline: 12px;
+    padding-block: 8px;
   }
   .cart-item-container {
     gap: 11px;
@@ -1025,22 +1026,18 @@ select option:hover
   .cart-container button {
     padding: 3px;
   }
-
 }
 
 @media (max-width: 437px) {
-
   .hamburger-icon {
     font-size: 14px;
     position: absolute;
     bottom: 15px;
     left: 17px;
     color: var(--background-color);
-}
+  }
 
-
-  .hamburger-menu
-  {
+  .hamburger-menu {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -1048,8 +1045,7 @@ select option:hover
     top: -40px;
     right: -41px;
   }
-  .header-contents h1 
-  {
+  .header-contents h1 {
     font-size: 9px;
   }
   .cart-container #p {
@@ -1085,13 +1081,11 @@ select option:hover
 }
 
 @media (max-width: 408px) {
-
   .cart-container .sum-total {
-    margin-right:4px;
+    margin-right: 4px;
   }
-  .item-wish 
-  {
-    font-size: 20px;  
+  .item-wish {
+    font-size: 20px;
   }
   .cart-container h3 {
     font-size: 8px;
@@ -1137,8 +1131,7 @@ select option:hover
     bottom: 14px;
     left: 14px;
   }
-  .header-contents h1 
-  {
+  .header-contents h1 {
     font-size: 8px;
   }
   .orderplace {
@@ -1148,25 +1141,22 @@ select option:hover
 }
 
 @media (max-width: 372px) {
-
   .orderplace {
     font-size: 18px;
     font-weight: bold;
   }
-  
+
   .button-wrapper .continue {
-   font-size: 10px;
-   padding-inline: 10px;
-   padding-block: 6px;
+    font-size: 10px;
+    padding-inline: 10px;
+    padding-block: 6px;
   }
-  .header-contents h1 
-  {
+  .header-contents h1 {
     font-size: 7px;
   }
 
-  .header-contents 
-  {
-    gap:14px;
+  .header-contents {
+    gap: 14px;
   }
 
   .cart-container h3 {
