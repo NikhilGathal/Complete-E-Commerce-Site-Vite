@@ -46,4 +46,14 @@
   .heading-container:hover .suggestion-box {
     display: block; /* Shows the box on hover */
   }
+
+  @media(max-width:697px)
+  {
+    .suggestion-box 
+    {
+      top: 22px;
+      left: -10px;
+      padding: 2px;
+    }
+  }
   

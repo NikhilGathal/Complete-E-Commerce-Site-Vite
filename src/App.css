@@ -789,6 +789,14 @@ select option:hover {
 }
 
 @media (max-width: 697px) {
+
+  .suggestion-box-log {
+    /* display: block; */
+    left: -12px;
+    top: 19px;
+    padding: 7px;
+    z-index: 10;
+  }
   .cart-container {
     margin-top: 26px;
   }
@@ -832,7 +840,7 @@ select option:hover {
     flex-direction: column;
     right: -160px;
     top: 5px;
-    padding: 11px;
+    padding: 1px;
     transition: right 0.4s ease-in-out;
     color: var(--text-color);
     border: 2px solid #ddd;
