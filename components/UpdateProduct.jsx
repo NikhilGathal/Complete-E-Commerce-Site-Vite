@@ -174,6 +174,16 @@ const UpdateProduct = () => {
       return; // Don't proceed if any field is empty
     }
 
+    if (newRating <= 0) {
+      alert('Rating must be greater than 0.');
+      return; // Don't proceed if rating is invalid
+    }
+
+    if (newPrice <= 0) {
+      alert('Price must be greater than 0.');
+      return; // Don't proceed if rating is invalid
+    }
+
     // Dispatch the update action with the new values and the existing product id
     if (product) {
       dispatch(updateProduct({

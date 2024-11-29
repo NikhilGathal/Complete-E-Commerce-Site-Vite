@@ -167,6 +167,16 @@ const AddNewProduct = () => {
       return; // Don't proceed if any field is empty
     }
 
+    if (newRating <= 0) {
+      alert('Rating must be greater than 0.');
+      return; // Don't proceed if rating is invalid
+    }
+
+    if (newPrice <= 0) {
+      alert('Price must be greater than 0.');
+      return; // Don't proceed if rating is invalid
+    }
+
     // Dispatch the new product data with the calculated productId
     dispatch(
       addProduct({
