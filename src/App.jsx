@@ -3,6 +3,9 @@ import Header from '../components/Header'
 import { Outlet } from 'react-router-dom'
 
 import './App.css'
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 
 export default function App() {
   const [issign, setissign] = useState(false)
@@ -16,6 +19,15 @@ export default function App() {
       document.body.classList.remove('dark');
     }
   
+
+    AOS.init({
+      offset: 100,
+      duration: 800,
+      easing: "ease-in-sine",
+      delay: 100,
+    });
+    AOS.refresh();
+
     return () => {
       document.body.classList.remove('dark');
     };

@@ -188,67 +188,50 @@ export default function Cart() {
               )}
               <div className="cart-header cart-item-container">
                 <button
-                  onClick={() => {
+                   onClick={() => {
                     const username = localStorage.getItem('username')
-                    const existingAdmin =
-                      JSON.parse(localStorage.getItem('Admin')) || {}
+                    const adminFromStorage = localStorage.getItem('Admin')
 
-                    if (
-                      existingAdmin &&
-                      Object.keys(existingAdmin).length > 0
-                    ) {
-                      // If Admin exists in localStorage and is not an empty object
-                      if (username === existingAdmin.username) {
-                        // If the logged-in user is the Admin
-                        alert('Please login as a normal user to place an order')
-                      } else {
-                        // If the logged-in user is not the Admin, proceed with the order
-                        dispatch(removeallCartItem())
-                        localStorage.removeItem(`${username}cart`)
-                        navigate('/OrderConfirmation', {
-                          state: {
-                            username,
-                            cartItems,
-                            totalPrice,
-                          },
-                        })
-                        const existingOrders =
-                          JSON.parse(
-                            localStorage.getItem(`${username}orders`)
-                          ) || []
-                        existingOrders.push(...cartItems)
-                        localStorage.setItem(
-                          `${username}orders`,
-                          JSON.stringify(existingOrders)
-                        )
-                      }
-                    } else {
-                      // If Admin does not exist in localStorage
-                      alert('Admin is required to place an order')
+                    // Condition 1: Check if Admin exists in localStorage
+                    if (!adminFromStorage) {
+                      alert('Admin is must to place order')
+                      return
                     }
 
-                    //   const username = localStorage.getItem('username');
-                    //   if (username) {
-                    //     if (username === existingAdmin.username) {
-                    //       alert('Please login as a normal user');
-                    //     }
+                    const existingAdmin = JSON.parse(adminFromStorage)
 
-                    //     dispatch(removeallCartItem());
-                    //     localStorage.removeItem(`${username}cart`);
-                    //     navigate('/OrderConfirmation', {
-                    //       state: {
-                    //         username,
-                    //         cartItems,
-                    //         totalPrice
-                    //       }
-                    //     });
-                    //     const existingOrders = JSON.parse(localStorage.getItem(`${username}orders`)) || [];
-                    //     existingOrders.push(...cartItems);
-                    //     localStorage.setItem(`${username}orders`, JSON.stringify(existingOrders));
-                    //   } else {
-                    //     alert('Please login first');
-                    //   }
-                    // }
+                    // Condition 2: Check if user is logged in
+                    if (!username) {
+                      alert('Please login first to place an order')
+                      return
+                    }
+
+                    // Condition 3: Check if logged-in user is the Admin
+                    if (username === existingAdmin.username) {
+                      alert('Please login as a normal user to place an order')
+                      return
+                    }
+
+                    // If all conditions are met, proceed with placing the order
+                    dispatch(removeallCartItem())
+                    localStorage.removeItem(`${username}cart`)
+                    navigate('/OrderConfirmation', {
+                      state: {
+                        username,
+                        cartItems,
+                        totalPrice,
+                      },
+                    })
+
+                    // Save the order for the user
+                    const existingOrders =
+                      JSON.parse(localStorage.getItem(`${username}orders`)) ||
+                      []
+                    existingOrders.push(...cartItems)
+                    localStorage.setItem(
+                      `${username}orders`,
+                      JSON.stringify(existingOrders)
+                    )
                   }}
                   className="place"
                 >

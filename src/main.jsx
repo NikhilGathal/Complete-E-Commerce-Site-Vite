@@ -17,6 +17,7 @@ import AdminDashBoard from '../components/AdminDashBoard'
 import UpdateProduct from '../components/UpdateProduct'
 import AddNewProduct from '../components/AddNewProduct'
 import OrderConfirmation from '../components/OrderConfirmation'
+import Root from '../pages/Root'
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />,
+        element: <Root />,
       },
       {
         path: '/cart',
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
       ,{
         path:"/OrderConfirmation",
         element: <OrderConfirmation/>
+      }
+      ,{
+        path:"/Home",
+        element:<Home/>
       }
     ],
   },

@@ -13,6 +13,8 @@ import ModalLogin from './ModalLogin'
 import { loadWishItem } from '../store/slices/wishListSlice'
 import Hamburger from './Hamburger'
 import './Hover.css'
+import lightmode from '../assets/light-mode-button.png'
+import darkmode from '../assets/dark-mode-button.png'
 // import SuggestionBox from './SuggestionBox'
 export default function Header({
   issign,
@@ -27,8 +29,8 @@ export default function Header({
   const [isAdmin, setIsAdmin] = useState(false)
   const navigate = useNavigate()
   // console.log(isAdmin);
-  const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {};
-const adminUsername = existingAdmin.username; // Get the username from existingAdmin
+  const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {}
+  const adminUsername = existingAdmin.username // Get the username from existingAdmin
 
   const dispatch = useDispatch()
 
@@ -189,14 +191,26 @@ const adminUsername = existingAdmin.username; // Get the username from existingA
             Shopee{' '}
           </h1>{' '}
         </Link>
-        <i
+        {/* <i
           onClick={() => {
             localStorage.setItem('isdarkmode', !dark)
             isdark(!dark)
           }}
           title={`${dark ? 'light mode' : 'dark mode'}`}
           className={`mode fa-solid fa-2xl fa-${dark ? 'sun ' : 'moon '}  `}
-        ></i>
+        ></i> */}
+
+        <img
+          onClick={() => {
+            localStorage.setItem('isdarkmode', !dark)
+            isdark(!dark)
+          }}
+          title={`${dark ? 'Light mode' : 'Dark mode'}`}
+          src={dark ? darkmode : lightmode}
+          alt={dark ? 'Light Mode' : 'Dark Mode'}
+          className="mode"
+        />
+
         <h1> {username ? `Welcome ${username}` : ''} </h1>
         <div className="icon-contain">
           <Link className="cart-icon" to="/cart">
@@ -249,12 +263,15 @@ const adminUsername = existingAdmin.username; // Get the username from existingA
             setsignname={setsignname}
           />
 
-          {(username && username !== adminUsername) || username === adminUsername ? (
+          {(username && username !== adminUsername) ||
+          username === adminUsername ? (
             <div className={`heading-container ${dark ? 'dark' : ''}`}>
               {username === adminUsername ? (
                 <h3 className="H heading">Profile</h3>
               ) : (
-                username !== adminUsername && <h3 className="H heading">Profile</h3>
+                username !== adminUsername && (
+                  <h3 className="H heading">Profile</h3>
+                )
               )}
 
               {/* Render suggestion box only if username is not 'Admin' and exists */}
@@ -277,8 +294,7 @@ const adminUsername = existingAdmin.username; // Get the username from existingA
 
               {username && (
                 <div className="suggestion-box">
-                  {username === adminUsername
-                   ? (
+                  {username === adminUsername ? (
                     <>
                       <Link to="/Admin">
                         <p>Orders</p>
@@ -308,7 +324,10 @@ const adminUsername = existingAdmin.username; // Get the username from existingA
             </div>
           ) : null}
 
-          <h3 className="H login-container" style={{ display: username ? 'none' : 'block' }}>
+          <h3
+            className="H login-container"
+            style={{ display: username ? 'none' : 'block' }}
+          >
             Login
             <div className="suggestion-box-log">
               <p

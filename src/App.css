@@ -117,10 +117,11 @@ button {
   background-color: var(--elements-color);
   color: var(--text-color);
   transition: all 0.4s ease-in-out;
+  border-radius: 0.575rem;
 }
 
 button:hover {
-  color: white;
+  color: var(--text-color);
   background-color: #898989;
 }
 .place {
@@ -695,6 +696,14 @@ select {
 }
 select option:hover {
   background-color: var(--inphover);
+}
+
+
+.mode
+{
+  width: 48px;  /* Adjust the width as needed */
+  height: 23px; /* Adjust the height as needed */
+  cursor: pointer; /* Optional: change the cursor to pointer for interactivity */
 }
 
 @media (max-width: 1245px) {
