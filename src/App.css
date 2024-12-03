@@ -305,6 +305,7 @@ button:hover {
 }
 .H:hover {
   /* transform: scale(1.05); */
+  color: #a870f1;
   text-decoration: underline;
 }
 
@@ -764,6 +765,20 @@ select option:hover {
 }
 
 @media (max-width: 805px) {
+
+  .cart-items-count {
+    width: 13px;
+    height: 13px;}
+
+    .icon-contain .heart 
+    {
+      width: 25px;
+    }
+    .c 
+    {
+      width: 25px;
+    }
+
   .cart-container {
     margin-top: 20px;
   }
@@ -793,11 +808,13 @@ select option:hover {
     font-size: 13px;
   }
   .header-contents .ham h3 {
-    font-size: 13px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 697px) {
+
+  
 
   .suggestion-box-log {
     /* display: block; */
@@ -869,6 +886,7 @@ select option:hover {
   .ham .H {
     transition: all 0.3s ease-in-out;
   }
+  
   .hamburger-menu-container {
     display: block;
   }
@@ -1021,12 +1039,18 @@ select option:hover {
   .cart-container {
     font-size: 10px;
   }
-}
-
-@media (max-width: 479px) {
+  .mode
+  {
+    width: 30px;
+    height: 15px;
+  }
   .header-contents h1 {
     font-size: 11px;
   }
+}
+
+@media (max-width: 479px) {
+ 
 
   .orderplace {
     font-size: 25px;
@@ -1169,7 +1193,7 @@ select option:hover {
     left: 14px;
   }
   .header-contents h1 {
-    font-size: 8px;
+    font-size: 7px;
   }
   .orderplace {
     font-size: 21px;
@@ -1189,7 +1213,7 @@ select option:hover {
     padding-block: 6px;
   }
   .header-contents h1 {
-    font-size: 7px;
+    font-size: 6px;
   }
 
   .header-contents {
