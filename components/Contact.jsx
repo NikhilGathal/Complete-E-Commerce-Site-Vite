@@ -29,6 +29,25 @@ const ContactUs = () => {
     e.preventDefault()
     // Handle form submission logic here
     // Reset form
+
+    const feedbackArray = JSON.parse(localStorage.getItem('feedbacks')) || []
+
+  // Create a new feedback object
+  const newFeedback = {
+    name: formData.name,
+    email: formData.email,
+    message: formData.message,
+  }
+
+  // Add the new feedback to the array
+  feedbackArray.push(newFeedback)
+
+  // Save the updated feedback array back to localStorage
+  localStorage.setItem('feedbacks', JSON.stringify(feedbackArray))
+
+
+
+
     setFormData({ name: '', email: '', message: '' })
 
     // After form submission, navigate to /contact/form
