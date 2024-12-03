@@ -195,7 +195,7 @@ const UpdateProduct = () => {
         image: newImage,
         rating: { rate: newRating }
       }))
-      navigate('/') // Redirect after update
+      navigate('/Home') // Redirect after update
     }
   }
 
@@ -205,7 +205,7 @@ const UpdateProduct = () => {
   }
 
   return (
-    <div className={ `mode  ${ dark ? 'dark' : ''} `}>
+    <div className={ `mode1  ${ dark ? 'dark' : ''} `}>
       <h2 className="update-head">Update Product</h2>
       <div className="update-product-container">
         <div className="update-product-container-content">

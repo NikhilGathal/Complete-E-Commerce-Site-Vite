@@ -188,13 +188,13 @@ textarea {
   color: var(--text-color);
 }
 
-.mode {
+.mode1 {
   --background-color: rgb(245, 240, 240);
   --text-color: black;
   --elements-color: white;
 }
 
-.mode.dark {
+.mode1.dark {
   --background-color: #2c4760;
   --text-color: white;
   --elements-color: hsl(209, 23%, 22%);
@@ -259,6 +259,11 @@ input:focus, textarea:focus {
 textarea {
   resize: vertical;
   min-height: 100px;
+}
+.addnew select 
+{
+  font-size: 16px;
+  /* font-weight: bold; */
 }
 
 .save {

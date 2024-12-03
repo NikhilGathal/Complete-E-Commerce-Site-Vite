@@ -193,7 +193,7 @@ const AddNewProduct = () => {
   }
 
   return (
-    <div className={`mode  ${dark ? 'dark' : ''} `}>
+    <div className={`mode1  ${dark ? 'dark' : ''} `}>
       <h2 className="update-head">Add New Product</h2>
       <div className="update-product-container">
         <div className="update-product-container-content">
@@ -215,7 +215,7 @@ const AddNewProduct = () => {
             />
           </div>
 
-          <div>
+          <div className='addnew'>
             <label>Category:</label>
             <select
               value={newCategory}

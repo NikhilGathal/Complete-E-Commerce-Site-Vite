@@ -64,7 +64,7 @@ const Hero = () => {
                   <div className="order-now-container">
                    <Link to="/Home">
 
-                   <button className="order-now-button">Order Now</button>
+                   <button className="order-now-button">Shop Now</button>
                    </Link>
                   </div>
                 </div>
