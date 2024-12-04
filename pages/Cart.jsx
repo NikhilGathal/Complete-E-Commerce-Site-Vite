@@ -194,7 +194,7 @@ export default function Cart() {
 
                     // Condition 1: Check if Admin exists in localStorage
                     if (!adminFromStorage) {
-                      alert('Admin is must to place order')
+                      alert("Sign up as an admin first before placing an order. After that, log in as a normal user to place an order.")
                       return
                     }
 
