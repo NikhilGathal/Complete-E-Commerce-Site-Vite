@@ -61,6 +61,7 @@
   padding-right: 1rem;
   padding-left: 1rem;
   color: var(--text-color);
+
 }
 
 @media (min-width: 1200px) {
@@ -95,7 +96,7 @@
 }
 
 .cat-place-items-center {
-  margin-top: 30px;
+  margin-top: 50px;
   place-items: center;
 }
 

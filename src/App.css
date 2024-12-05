@@ -480,6 +480,9 @@ h3 {
   align-items: center;
   gap: 12px;
 }
+.cart-container .sum-total {
+  margin-right: 0px;
+}
 .cart-header .cart-item {
   margin-left: 15px;
 }
