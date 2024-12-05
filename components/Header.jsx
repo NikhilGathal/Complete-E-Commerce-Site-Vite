@@ -177,7 +177,7 @@ export default function Header({
       <div className="header-contents">
         <Link to="/">
           {' '}
-          <h1
+          <h1 title='home'
             onClick={() => {
               //  setquery('')
               // dispatch(fetchdata())
