@@ -5,7 +5,8 @@
     --text-color: black;
     --cardback : rgb(217, 220, 226);
     padding-inline: 16px;
-    /* margin-top: 80px; */
+    /* margin-bottom: 125px; */
+  
 }
 .sub.dark 
 {
@@ -16,8 +17,8 @@
 
 .subscribe-section {
 
-
-    margin-bottom: 5rem; /* mb-20 */
+  /* min-height: 345px; */
+   min-height: 280px;
     background-color: var(--cardback); /* bg-slate-700 */
     color: var(--text-color);
     padding: 2.5rem 1rem;
