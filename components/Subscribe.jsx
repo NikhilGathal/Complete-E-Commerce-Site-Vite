@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import './Subscribe.css'; // Import your custom CSS file
 import { useOutletContext } from 'react-router-dom';
@@ -9,32 +10,43 @@ const Subscribe = () => {
   const [isSubmitted, setIsSubmitted] = useState(false); // For showing submission feedback (optional)
   const [showHeading, setShowHeading] = useState(true); // State to manage the visibility of the heading
   const [errorMessage, setErrorMessage] = useState(''); // State to manage error message
+  const [emailValidationError, setEmailValidationError] = useState(''); // State for email validation error
+
+  // Email validation regex pattern (simple version)
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const handleSubmit = () => {
-
-      // Hide the heading temporarily
-     
-
-    if (email.trim() === '') return; // Avoid submitting empty email
+   
+    // Validate email format
+    if (!emailRegex.test(email)) {
+      setShowHeading(false);
+      setEmailValidationError('Please enter a valid email address.');
+      setTimeout(() => {
+        setEmailValidationError('');
+        setShowHeading(true);
+      }, 3000);
+      setEmail('');
+      return;
+    } else {
+      setEmailValidationError(''); // Clear validation error if email is valid
+    }
 
     // Retrieve existing emails from localStorage
     const existingEmails = JSON.parse(localStorage.getItem('emails')) || [];
 
     // Check if the email already exists in the array
     if (existingEmails.includes(email)) {
-
       setShowHeading(false);
       // If email already exists, show an error message
       setErrorMessage('This email is already subscribed.');
 
       // Set a timeout to clear the error message after 3 seconds
       setTimeout(() => {
-        setErrorMessage('') 
-         setShowHeading(true)
-      }  , 3000);
+        setErrorMessage('');
+        setShowHeading(true);
+      }, 3000);
 
       setEmail('');
-
       return; // Do not proceed further if the email exists
     }
 
@@ -47,8 +59,7 @@ const Subscribe = () => {
     // Clear the input field
     setEmail('');
 
-  
-
+    setShowHeading(false);
     // Optionally, set submission status
     setIsSubmitted(true);
 
@@ -66,13 +77,13 @@ const Subscribe = () => {
           <div className="subscribe-content">
             {/* Conditionally render heading based on showHeading state */}
             {showHeading && <h1 className="subscribe-heading">Get Notified About New Products</h1>}
-            {errorMessage && <h1 className="subscribe-heading"> {errorMessage}</h1>} 
-
-{isSubmitted && <h1 className="subscribe-heading">Thank you for subscribing!</h1>} {/* Optional feedback */}
+            {errorMessage && <h1 className="subscribe-heading">{errorMessage}</h1>} 
+            {isSubmitted && <h1 className="subscribe-heading">Thank you for subscribing!</h1>} {/* Optional feedback */}
+            {emailValidationError && <h1 className="subscribe-heading">{emailValidationError}</h1>} {/* Show validation error */}
 
             <input
               data-aos="fade-up"
-              type="text"
+              type="email"
               placeholder="Enter your email"
               className="subscribe-input"
               value={email} // Controlled input
@@ -86,9 +97,6 @@ const Subscribe = () => {
             >
               Submit
             </button>
-
-            {/* Display the error message without the heading, similar to success message */}
-         
           </div>
         </div>
       </div>
@@ -97,5 +105,6 @@ const Subscribe = () => {
 };
 
 export default Subscribe;
+
 
 
