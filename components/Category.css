@@ -93,6 +93,13 @@
   .cat-gridc {
     grid-template-columns: repeat(4, 1fr); /* 4 columns on large screens */
   }
+
+  .cat-flex button {
+    font-size: 14.5px !important;
+    padding-inline:21px !important ;
+    padding-block:11.5px !important ;
+  }
+
 }
 
 .cat-place-items-center {

@@ -25,6 +25,7 @@ export default function App() {
       duration: 800,
       easing: "ease-in-sine",
       delay: 100,
+      debug :true,
     });
     AOS.refresh();
 

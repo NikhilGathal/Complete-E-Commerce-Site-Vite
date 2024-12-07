@@ -204,6 +204,12 @@
     /* padding: 1rem; */
     text-align: center;
   }
+
+  .product-card .details-section button {
+    font-size: 13.5px !important;
+    padding-inline:21px !important ;
+    padding-block:11.5px !important ;
+  }
 }
 
 

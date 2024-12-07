@@ -50,9 +50,10 @@ const Hero = () => {
   return (
     <div className={`hero-container ${dark ? 'dark' : ''}`}>
       {/* background pattern */}
-      <div className="background-pattern"></div>
+   
       {/* hero section */}
       <div className="container">
+      <div className="background-pattern"></div>
         <Slider {...settings}>
           {ImageList.map((data) => (
             <div key={data.id}>
@@ -62,10 +63,9 @@ const Hero = () => {
                   <h1 className="title">{data.title}</h1>
                   <p className="description">{data.description}</p>
                   <div className="order-now-container">
-                   <Link to="/Home">
-
-                   <button className="order-now-button">Shop Now</button>
-                   </Link>
+                    <Link to="/Home">
+                      <button className="order-now-button">Shop Now</button>
+                    </Link>
                   </div>
                 </div>
                 {/* image section */}
@@ -75,7 +75,9 @@ const Hero = () => {
               </div>
             </div>
           ))}
+         
         </Slider>
+     
       </div>
     </div>
   )
