@@ -135,14 +135,15 @@ export default function Home() {
   return (
     <>
       <main className={` ${dark ? 'dark' : ''}`}>
+        
+      <Carousel />
         <ImageContainer />
-
         <div className="search-filter-container">
           <SearchBar query={query} setquery={setquery} />
           <SelectMenu setquery1={setquery1} setquery={setquery} />
         </div>
 
-        <Carousel />
+       
 
         {/* Render loading message */}
         {/* {isLoading && <h1 className='home-error'>Loading...</h1>} */}
