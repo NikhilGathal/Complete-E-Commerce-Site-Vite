@@ -2,7 +2,7 @@
 
 .cat-cat {
   padding-inline: 16px;
-  margin-top: 60px;
+  margin-top: 100px;
   --background-color: white;
   --text-color: black;
 }
@@ -98,6 +98,19 @@
     font-size: 14.5px !important;
     padding-inline:21px !important ;
     padding-block:11.5px !important ;
+  }
+
+  .cat-text-3xl
+  {
+    margin-bottom: 40px;
+  }
+  .cat-container .cat-place-items-center
+  {
+    margin-top: 65px;
+  }
+  .cat-container .cat-flex button
+  {
+    margin-top: 45px;
   }
 
 }

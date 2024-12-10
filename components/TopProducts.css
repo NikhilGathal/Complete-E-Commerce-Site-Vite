@@ -2,7 +2,7 @@
 .tp {
 
   padding-inline: 16px;
-  margin-top: 100px;
+  margin-top: 95px;
   --background-color: white;
   --text-color: black;
   --cardback: #374151;
@@ -65,6 +65,7 @@
 
 /* Grid layout */
 .grid {
+
   display: grid;
   grid-template-columns: repeat(1, 1fr); /* 1 column */
   gap: 80px; /* gap-20 translates to 5rem = 80px */
@@ -209,6 +210,15 @@
     font-size: 13.5px !important;
     padding-inline:21px !important ;
     padding-block:11.5px !important ;
+  }
+  .text-xs 
+  {
+    margin-top: 45px;
+  }
+
+  .grid 
+  {
+    margin-top: 110px;
   }
 }
 
