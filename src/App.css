@@ -175,11 +175,9 @@ button:hover {
   color: var(--text-color);
 }
 .ord {
-  
   text-align: center;
 }
-.ord button 
-{
+.ord button {
   border-radius: 50px;
   padding-inline: 30px;
   padding-block: 13px;
@@ -400,6 +398,7 @@ header {
   align-items: center;
   /* justify-content: center; */
   gap: 20px;
+  margin-bottom: 11px;
 }
 .icon-contain .heart {
   width: 28px;
@@ -667,7 +666,7 @@ ul li:last-child {
   top: 23px;
   background-color: var(--background-color);
   /* border: 1px solid #ccc; */
-  box-shadow:0px 0px 5px 3px rgba(0, 0, 0, 0.2); /* Adds shadow for a popup effect */
+  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.2); /* Adds shadow for a popup effect */
   padding: 12px;
   z-index: 10;
 }
@@ -702,10 +701,8 @@ select option:hover {
   background-color: var(--inphover);
 }
 
-
-.mode
-{
-  width: 48px;  /* Adjust the width as needed */
+.mode {
+  width: 48px; /* Adjust the width as needed */
   height: 23px; /* Adjust the height as needed */
   cursor: pointer; /* Optional: change the cursor to pointer for interactivity */
 }
@@ -768,19 +765,17 @@ select option:hover {
 }
 
 @media (max-width: 805px) {
-
   .cart-items-count {
     width: 13px;
-    height: 13px;}
+    height: 13px;
+  }
 
-    .icon-contain .heart 
-    {
-      width: 25px;
-    }
-    .c 
-    {
-      width: 25px;
-    }
+  .icon-contain .heart {
+    width: 25px;
+  }
+  .c {
+    width: 25px;
+  }
 
   .cart-container {
     margin-top: 20px;
@@ -816,9 +811,6 @@ select option:hover {
 }
 
 @media (max-width: 697px) {
-
-  
-
   .suggestion-box-log {
     /* display: block; */
     left: -12px;
@@ -889,7 +881,7 @@ select option:hover {
   .ham .H {
     transition: all 0.3s ease-in-out;
   }
-  
+
   .hamburger-menu-container {
     display: block;
   }
@@ -907,8 +899,18 @@ select option:hover {
   .hamburger-menu-container {
     margin-left: auto;
   }
+}
+
+@media(min-width  :697px)
+{
   .header-contents {
     padding-top: 5px;
+  }
+}
+@media(min-width:1013px)
+{
+  .header-contents {
+    padding-top: 0px;
   }
 }
 
@@ -1042,19 +1044,19 @@ select option:hover {
   .cart-container {
     font-size: 10px;
   }
-  .mode
-  {
+  .mode {
     width: 30px;
     height: 15px;
   }
   .header-contents h1 {
-    font-size: 11px;
+    font-size: 14px;
   }
 }
 
 @media (max-width: 479px) {
- 
-
+  .header-contents {
+    gap: 15px;
+  }
   .orderplace {
     font-size: 25px;
     font-weight: bold;
@@ -1074,8 +1076,7 @@ select option:hover {
 }
 
 @media (max-width: 437px) {
-  .close-icon 
-  {
+  .close-icon {
     font-size: 16px;
   }
   .header-contents .ham h3 {
@@ -1085,10 +1086,9 @@ select option:hover {
   }
 
   .ham {
-  
     right: -160px;
     top: 5px;
-    padding:3px;
+    padding: 3px;
     font-size: 12px;
     /* display: none; */
   }
@@ -1141,6 +1141,20 @@ select option:hover {
   }
   .cart-container button {
     font-size: 10px;
+  }
+  .header-contents {
+    gap: 14px;
+  }
+  .icon-contain .c {
+    width: 18px;
+  }
+  .cart-items-count {
+    font-size: 9px;
+    width: 11px;
+    height: 11px;
+  }
+  .header-contents h1 {
+    font-size: 13.7px;
   }
 }
 
@@ -1196,7 +1210,7 @@ select option:hover {
     left: 14px;
   }
   .header-contents h1 {
-    font-size: 7px;
+    font-size: 12px;
   }
   .orderplace {
     font-size: 21px;
@@ -1205,6 +1219,9 @@ select option:hover {
 }
 
 @media (max-width: 372px) {
+  .header-contents h1 {
+    font-size: 10.8px;
+  }
   .orderplace {
     font-size: 18px;
     font-weight: bold;
@@ -1215,13 +1232,11 @@ select option:hover {
     padding-inline: 10px;
     padding-block: 6px;
   }
-  .header-contents h1 {
-    font-size: 6px;
-  }
 
-  .header-contents {
+
+  /* .header-contents {
     gap: 14px;
-  }
+  } */
 
   .cart-container h3 {
     font-size: 7px;
