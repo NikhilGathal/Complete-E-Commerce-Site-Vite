@@ -277,6 +277,7 @@ button:hover {
 .products-container {
   max-width: 1200px;
   margin-top: 44px;
+
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 24px;
   margin-inline: auto;
@@ -1021,6 +1022,13 @@ select option:hover {
   }
 }
 
+@media(max-width :557px)
+{
+   .products-container
+   {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 0.5fr));
+   }
+}
 
 
 @media (max-width: 503px) {
@@ -1062,6 +1070,14 @@ select option:hover {
   .cart-container button {
     padding: 3px;
   }
+}
+
+@media(max-width :461px)
+{
+   .products-container
+   {
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+   }
 }
 
 @media (max-width: 437px) {
