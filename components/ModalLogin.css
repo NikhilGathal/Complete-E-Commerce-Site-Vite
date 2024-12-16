@@ -60,7 +60,7 @@
   .modal-buttons {
     display: flex;
     justify-content: flex-end;
-    gap: 16px;
+    gap: 25px;
   }
   
   /* Cancel button */
@@ -74,6 +74,7 @@
     border-radius: 8px;
     color: white;
     transition: background-color 0.2s ease;
+    margin-right: 25px;
   }
   
   .cancel-button:hover {
