@@ -5,7 +5,7 @@ import {
   increaseCartItemQuantity,
   removeCartItem,
 } from '../store/slices/cartSlice'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 export default function CartItem({
   productId,
@@ -15,24 +15,30 @@ export default function CartItem({
   imageUrl,
   quantity,
 }) {
-  const dispatch = useDispatch();
-const handleRemove = ()=>
-{
-  const username = localStorage.getItem('username');
-  const cartKey = username ? `${username}cart` : 'cartItems';
-  let storedCart = JSON.parse(localStorage.getItem(cartKey)) || [];
-  const updatedCart = storedCart.filter(item => item.productId !== productId);
-  localStorage.setItem(cartKey, JSON.stringify(updatedCart));
-  dispatch(removeCartItem({productId}))
-}
+  const dispatch = useDispatch()
+  const handleRemove = () => {
+    const username = localStorage.getItem('username')
+    const cartKey = username ? `${username}cart` : 'cartItems'
+    let storedCart = JSON.parse(localStorage.getItem(cartKey)) || []
+    const updatedCart = storedCart.filter(
+      (item) => item.productId !== productId
+    )
+    localStorage.setItem(cartKey, JSON.stringify(updatedCart))
+    dispatch(removeCartItem({ productId }))
+  }
   return (
     <div className="cart-item-container">
-
       <div className="cart-item">
-      <Link to={`/${productId}`}>   <img src={imageUrl} alt={title} /> </Link>
+        <Link to={`/${productId}`}>
+          {' '}
+          <img src={imageUrl} alt={title} />{' '}
+        </Link>
         <div>
-          <Link to={`/${productId}`}>  <h3>{title}</h3>  </Link>    
-           <p>{rating} ★ ★ ★ ★</p>
+          <Link to={`/${productId}`}>
+            {' '}
+            <h3>{title}</h3>{' '}
+          </Link>
+          <p>{rating} ★ ★ ★ ★</p>
         </div>
       </div>
 
@@ -95,10 +101,7 @@ const handleRemove = ()=>
       </div>
       <div className="item-total">${quantity * price}</div>
       <div>
-        <button
-          className="remove"
-          onClick={handleRemove}
-        >
+        <button className="remove" onClick={handleRemove}>
           Remove
         </button>
       </div>

@@ -1,33 +1,37 @@
-import React from "react";
-import Slider from "react-slick";
-import "./Testimonial.css";
-import { useOutletContext } from "react-router-dom";
+import React from 'react'
+import Slider from 'react-slick'
+import pro1 from '../assets/pro1.jpg'
+import pro2 from '../assets/pro2.jpg'
+import pro3 from '../assets/pro3.jpg'
+import pro4 from '../assets/pro4.jpg'
+import './Testimonial.css'
+import { useOutletContext } from 'react-router-dom'
 const TestimonialData = [
-    {
-      id: 1,
-      name: "Victor",
-      text: "The product quality is amazing! It exceeded my expectations and I would definitely recommend it to others.",
-      img: "https://picsum.photos/101/101",
-    },
-    {
-      id: 2,
-      name: "Satya Nadella",
-      text: "Great experience! The service is top-notch, and the website is very user-friendly. Highly recommended.",
-      img: "https://picsum.photos/102/102",
-    },
-    {
-      id: 3,
-      name: "Virat Kohli",
-      text: "Excellent customer service and fast delivery! I’m really happy with my purchase.",
-      img: "https://picsum.photos/104/104",
-    },
-    {
-      id: 5,
-      name: "Sachin Tendulkar",
-      text: "Amazing products at great prices. The whole shopping experience was seamless. Will shop again!",
-      img: "https://picsum.photos/103/103",
-    },
-  ];
+  {
+    id: 1,
+    name: 'Victor',
+    text: 'The product quality is amazing! It exceeded my expectations and I would definitely recommend it to others.',
+    img: pro1,
+  },
+  {
+    id: 2,
+    name: 'Satya Nadella',
+    text: 'Great experience! The service is top-notch, and the website is very user-friendly. Highly recommended.',
+    img: pro2,
+  },
+  {
+    id: 3,
+    name: 'Virat Kohli',
+    text: 'Excellent customer service and fast delivery! I’m really happy with my purchase.',
+    img: pro3,
+  },
+  {
+    id: 5,
+    name: 'Sachin Tendulkar',
+    text: 'Amazing products at great prices. The whole shopping experience was seamless. Will shop again!',
+    img: pro4,
+  },
+]
 const Testimonials = () => {
   const [, dark] = useOutletContext()
 
@@ -39,7 +43,7 @@ const Testimonials = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    cssEase: "linear",
+    cssEase: 'linear',
     pauseOnHover: true,
     pauseOnFocus: true,
     responsive: [
@@ -66,10 +70,10 @@ const Testimonials = () => {
         },
       },
     ],
-  };
+  }
 
   return (
-    <div  className={`testimonial-container ${dark ? 'dark' : ''}`}>
+    <div className={`testimonial-container ${dark ? 'dark' : ''}`}>
       <div className="testimonial-header">
         <p className="testimonial-subtitle">What our customers are saying</p>
         <h1 className="testimonial-title">Testimonials</h1>
@@ -97,7 +101,7 @@ const Testimonials = () => {
         </Slider>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Testimonials;
+export default Testimonials

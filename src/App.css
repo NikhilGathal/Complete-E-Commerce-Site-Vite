@@ -426,7 +426,7 @@ form button {
 }
 
 .price {
-  font-size: 24px;
+  /* font-size: 24px; */
   margin: 0;
 }
 
@@ -755,13 +755,9 @@ select option:hover {
   }
 }
 
-
-
-
-
 @media (max-width: 858px) {
   .header-contents h1 {
-    margin-top:15px;
+    margin-top: 15px;
     font-size: 14px;
   }
   .cart-container {
@@ -799,8 +795,6 @@ select option:hover {
     font-size: 26px;
   }
 }
-
-
 
 @media (max-width: 730px) {
   .header-contents .ham h3 {
@@ -899,14 +893,12 @@ select option:hover {
   }
 }
 
-@media(min-width  :697px)
-{
+@media (min-width: 697px) {
   .header-contents {
     padding-top: 5px;
   }
 }
-@media(min-width:1013px)
-{
+@media (min-width: 1013px) {
   .header-contents {
     padding-top: 0px;
   }
@@ -962,7 +954,6 @@ select option:hover {
     max-width: 23px;
   }
 
-
   .header-contents .mode {
     font-size: 1.5rem;
   }
@@ -977,8 +968,7 @@ select option:hover {
   .search-filter-container input {
     max-width: 80%;
   }
-  .header-contents h1 
-  {
+  .header-contents h1 {
     margin-top: 17px;
   }
 }
@@ -1022,18 +1012,15 @@ select option:hover {
   }
 }
 
-@media(max-width :557px)
-{
-   .products-container
-   {
+@media (max-width: 557px) {
+  .products-container {
     grid-template-columns: repeat(auto-fill, minmax(160px, 0.5fr));
-   }
+  }
 }
-
 
 @media (max-width: 503px) {
   .cart-container .sum-total {
-    margin-right: 10px;
+    margin-right: 8px;
   }
   .cart-container img {
     width: 55px;
@@ -1072,12 +1059,10 @@ select option:hover {
   }
 }
 
-@media(max-width :461px)
-{
-   .products-container
-   {
+@media (max-width: 461px) {
+  .products-container {
     grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-   }
+  }
 }
 
 @media (max-width: 437px) {
@@ -1136,7 +1121,7 @@ select option:hover {
     gap: 5px;
   }
   .cart-container button {
-    padding: 1px;
+    padding: 3px;
   }
 
   .cart-container img {
@@ -1163,7 +1148,7 @@ select option:hover {
 
 @media (max-width: 408px) {
   .cart-container .sum-total {
-    margin-right: 4px;
+    margin-right: 2px;
   }
   .item-wish {
     font-size: 20px;
@@ -1184,7 +1169,9 @@ select option:hover {
   }
   .cart-container button {
     font-size: 8px;
+    padding: 3px;
   }
+
   .search-container {
     max-width: 80%;
   }
@@ -1247,6 +1234,7 @@ select option:hover {
   }
   .cart-container button {
     font-size: 7px;
+    padding: 3px;
   }
   .cart-container .sum-total {
     margin-right: 3px;

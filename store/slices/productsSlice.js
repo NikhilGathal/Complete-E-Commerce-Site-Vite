@@ -3,7 +3,7 @@ import { productsList } from '../productsList.js';
 const findItemIndex = (state, action) =>
   state.findIndex((cartItem) => cartItem.productId === action.payload.productId)
 
-  // Action types 
+// Action types 
 
 // product/fetchProducts – triggered by the fetchProducts reducer.
 // product/fetchProductsError – triggered by the fetchProductsError reducer.
@@ -68,7 +68,7 @@ export const getAllProducts = (state) => state.products.list
 export const getProductLoadingState = (state) => state.products.loading
 export const getProductError = (state) => state.products.error
 
-export const { updateAllProducts, fetchProducts, fetchProductsError, deleteProduct, updateProduct,addProduct } = slice.actions
+export const { updateAllProducts, fetchProducts, fetchProductsError, deleteProduct, updateProduct, addProduct } = slice.actions
 
 // export const fetchProductdata = () => (dispatch) => {
 //   dispatch(fetchProducts())
@@ -100,10 +100,66 @@ export const fetchProductdata = () => (dispatch) => {
         localStorage.setItem('productsList', JSON.stringify(data));
       })
       .catch(() => {
-        dispatch(fetchProductsError());
+        // dispatch(fetchProductsError());
+        dispatch(updateAllProducts(productsList));
+        localStorage.setItem('productsList', JSON.stringify(productsList));
       });
   }
 };
 
+// export const fetchProductdata = () => async (dispatch) => {
+//   try {
+//     // Check if the user is online
+//     if (!navigator.onLine) {
+//       console.warn('No internet connection detected');
+//       // You can dispatch a fallback action or use localStorage data
+//       const storedProducts = JSON.parse(localStorage.getItem('productsList') || '[]');
+//       if (storedProducts.length > 0) {
+//         dispatch(updateAllProducts(storedProducts));
+//       } else {
+//         // If no data in localStorage, fallback to default products
+//         const defaultProducts = [
+//           { id: 1, title: 'Default Product 1', price: 100, image: 'https://via.placeholder.com/150' },
+//           { id: 2, title: 'Default Product 2', price: 200, image: 'https://via.placeholder.com/150' },
+//           { id: 3, title: 'Default Product 3', price: 300, image: 'https://via.placeholder.com/150' },
+//         ];
+//         dispatch(updateAllProducts(defaultProducts));
+//       }
+//       return; // Return early if no internet connection
+//     }
+
+//     // Check if data exists in localStorage
+//     const localData = JSON.parse(localStorage.getItem('productsList'));
+//     if (localData && localData.length > 0) {
+//       dispatch(updateAllProducts(localData)); // Use localStorage data
+//       return;
+//     }
+
+//     // Fetch data from API and store it in localStorage
+//     dispatch(fetchProducts());
+
+//     try {
+//       const res = await fetch(`https://fakestoreapi.com/products`);
+
+//       if (!res.ok) {
+//         throw new Error('Failed to fetch products');
+//       }
+
+//       const data = await res.json();
+//       // Update Redux state and localStorage with the fetched data
+//       dispatch(updateAllProducts(data));
+//       localStorage.setItem('productsList', JSON.stringify(data));
+//     } catch (apiError) {
+//       console.error('API fetch failed:', apiError);
+//       // Handle the error by dispatching fallback data or showing an error message
+//       dispatch(updateAllProducts(productsList));
+//     }
+//   } catch (error) {
+//     // Catch any other errors
+//     console.error('Error fetching product data:', error);
+//     // Fallback to default products
+//     dispatch(updateAllProducts(productsList));
+//   }
+// };
 
 export default slice.reducer

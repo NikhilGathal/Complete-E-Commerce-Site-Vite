@@ -31,72 +31,7 @@ export default function ModalSign({ issign, setissign, setsignname }) {
     }))
   }
 
-  // Handle Sign Up (Save to localStorage)
-
-
-  // const handleSignIn = () => {
-  //   const errorMessages = [];
   
-  //   // Validate fields and add error messages to the array
-  //   if (!userData.username.trim()) errorMessages.push('Username is required.');
-  //   if (!userData.password.trim()) errorMessages.push('Password is required.');
-  //   if (!userData.phone.trim()) errorMessages.push('Phone number is required.');
-  //   if (!userData.email.trim()) errorMessages.push('Email is required.');
-  //   if (!userData.address.trim()) errorMessages.push('Address is required.');
-  
-  //   // If there are any error messages, show them in an alert box
-  //   if (errorMessages.length > 0) {
-  //     alert(errorMessages.join('\n'));
-  //     return; // Stop further execution if there are errors
-  //   }
-  
-  //   // Check if user is signing up as admin
-  //   if (userData.isAdmin) {
-  //     const existingAdmin = localStorage.getItem('Admin');
-  //     if (existingAdmin) {
-  //       alert('Admin account already exists!');
-  //       return;
-  //     }
-  
-  //     // Save admin details under "Admin" key in localStorage
-  //     localStorage.setItem('Admin', JSON.stringify(userData));
-  //     alert('Admin sign-up successful!');
-  //     setsignname(true);
-  //     setissign(false);
-  //     resetForm();
-  //     return;
-  //   }
-  
-  //   // Get existing users from localStorage or initialize an empty array
-  //   const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
-  
-  //   // Check if the username or email already exists
-  //   const userExists = existingUsers.some(
-  //     (user) => user.username === userData.username || user.email === userData.email
-  //   );
-  
-  //   if (userExists) {
-  //     alert('User already exists. Please choose a different username or email.');
-  //     return;
-  //   }
-  
-  //   // Add the new user to the array
-  //   existingUsers.push(userData);
-  
-  //   // Save the updated user array to localStorage
-  //   localStorage.setItem('users', JSON.stringify(existingUsers));
-  //   localStorage.setItem('signedUp', 'true');
-  //   alert('Sign Up successful! Please proceed to login.');
-  //   setsignname(true);
-  //   setissign(false);
-  
-  //   // Reset form data
-  //   resetForm();
-  // }
-
-
-
-
   const handleSignIn = () => {
   const errorMessages = [];
 
