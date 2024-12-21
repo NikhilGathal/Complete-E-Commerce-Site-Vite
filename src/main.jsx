@@ -18,6 +18,7 @@ import UpdateProduct from '../components/UpdateProduct'
 import AddNewProduct from '../components/AddNewProduct'
 import OrderConfirmation from '../components/OrderConfirmation'
 import Root from '../pages/Root'
+import EditUser from '../components/EditUser'
 
 const router = createBrowserRouter([
   {
@@ -72,21 +73,23 @@ const router = createBrowserRouter([
         path: '/Admin',
         element: <AdminDashBoard />,
       },
-      { path: '/update-product/:id', 
-        element: <UpdateProduct /> 
-      },
+      { path: '/update-product/:id', element: <UpdateProduct /> },
       {
         path: '/Add',
-        element: <AddNewProduct/>
-      }
-      ,{
-        path:"/OrderConfirmation",
-        element: <OrderConfirmation/>
-      }
-      ,{
-        path:"/Home",
-        element:<Home/>
-      }
+        element: <AddNewProduct />,
+      },
+      {
+        path: '/OrderConfirmation',
+        element: <OrderConfirmation />,
+      },
+      {
+        path: '/Home',
+        element: <Home />,
+      },
+      {
+        path: '/EditUser',
+        element: <EditUser />,
+      },
     ],
   },
 ])

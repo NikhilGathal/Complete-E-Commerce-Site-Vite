@@ -72,7 +72,8 @@ export default function Cart() {
               )}
               <div className="cart-header cart-item-container">
                 <button
-                   onClick={() => {
+                   onClick={() => 
+                    {
                     const username = localStorage.getItem('username')
                     const adminFromStorage = localStorage.getItem('Admin')
 
@@ -116,7 +117,8 @@ export default function Cart() {
                       `${username}orders`,
                       JSON.stringify(existingOrders)
                     )
-                  }}
+                  }
+                }
                   className="place"
                 >
                   Place Order

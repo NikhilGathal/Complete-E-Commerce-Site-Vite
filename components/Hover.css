@@ -27,7 +27,9 @@
     left: -22px;
     background-color: var(--background-color); /* Background color for the suggestion box */
     color: var(--text-color); /* Text color */
-    padding: 8px;
+    padding: 6px;
+    font-size: 15px;
+    font-weight: 545;
     border-radius: 4px;
     box-shadow:0px 0px 5px 3px rgba(0, 0, 0, 0.2); /* Adds shadow for a popup effect */
     display: none;
@@ -51,9 +53,26 @@
   {
     .suggestion-box 
     {
-      top: 22px;
-      left: -10px;
-      padding: 2px;
+      top: 22px !important;
+      left: -13px !important;
+      padding: 2px !important;
+      font-size: 9px !important  ;
+    }
+  }
+
+  @media(max-width:1024px)
+  {
+    .suggestion-box 
+    { top: 47px;   
+        padding: 5px;
+      font-size: 11px;
+    }
+  }
+
+  @media (min-width: 698px) and (max-width: 805px)
+  {
+    .suggestion-box 
+    { top: 37px;   
     }
   }
   

@@ -22,7 +22,12 @@ export default function Header({
   dark,
   isdark,
   setuserlogin,
+  uname1
+
 }) {
+
+  console.log(uname1);
+  
   const [signname, setsignname] = useState(false)
   const [islog, setislog] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -166,6 +171,47 @@ export default function Header({
   // const statedata = useSelector((state)=> state.products.list)
   // console.log(statedata);
 
+
+  function handleDeleteAccount() {
+    // Get the current username (you can store it in localStorage or use it from the session)
+    const currentUsername = localStorage.getItem("username");
+
+    if (currentUsername) {
+        // Delete the specific keys in localStorage
+        localStorage.removeItem(`${currentUsername}wish`);
+        localStorage.removeItem(`${currentUsername}cart`);
+        localStorage.removeItem(`${currentUsername}orders`);
+
+        // Get the users array from localStorage
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+
+        // Remove the current user from the array
+        const updatedUsers = users.filter(user => user.username !== currentUsername);
+
+        // Save the updated users array back to localStorage
+        localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+
+
+
+
+        localStorage.removeItem('username')
+        const storedCart =
+          JSON.parse(localStorage.getItem('cartItems')) || []
+        const storedwish =
+          JSON.parse(localStorage.getItem('wishItems')) || []
+        dispatch(loadCartItemsFromLocal(storedCart))
+        dispatch(loadWishItem(storedwish))
+        setuserlogin(false)
+        setusername('')
+        setsignname(false)
+        localStorage.setItem('signedUp', 'false')
+        navigate('/')
+
+       
+    }
+}
+
   // const dark = false
   return (
     <header
@@ -211,7 +257,7 @@ export default function Header({
           className="mode"
         />
 
-        <h1> {username ? `Welcome ${username}` : ''} </h1>
+        <h1> {username ? `Welcome ${uname1}` : ''} </h1>
         <div className="icon-contain">
           <Link className="cart-icon" to="/cart">
             <img
@@ -308,11 +354,11 @@ export default function Header({
                       <Link to="/myorder">
                         <p>My Orders</p>
                       </Link>
-                      <Link to="/cart">
-                        <p>Cart</p>
+                      <Link to="/EditUser">
+                        <p>Edit Profile</p>
                       </Link>
-                      <Link to="/wish">
-                        <p>WishList</p>
+                      <Link to="/">
+                        <p  onClick={handleDeleteAccount}>Delete Account</p>
                       </Link>
                       <Link to="/">
                         <p>Buy Again</p>
