@@ -47,7 +47,7 @@ const OrderConfirmation = () => {
       const productDetailsString = products
         .map(
           (item) =>
-            `Product: ${item.product_name}\nQty: ${item.quantity}\nPrice: ₨. ${item.product_price}\nTotal Amount: ₨. ${item.total_price}\n\n`
+            `Product: ${item.product_name}\nQty: ${item.quantity}\nPrice: $. ${item.product_price}\nTotal Amount: $. ${item.total_price}\n\n`
         )
         .join("");
 
