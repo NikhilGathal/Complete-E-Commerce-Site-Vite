@@ -22,10 +22,8 @@ export default function Header({
   dark,
   isdark,
   setuserlogin,
-  uname1
-
+  uname1,
 }) {
-
   console.log(uname1);
   
   const [signname, setsignname] = useState(false)
@@ -67,7 +65,7 @@ export default function Header({
     if (signedUp === 'true') {
       setsignname(true)
     }
-  }, [])
+  }, [uname1])
 
   useEffect(() => {
     // dispatch(
@@ -171,46 +169,39 @@ export default function Header({
   // const statedata = useSelector((state)=> state.products.list)
   // console.log(statedata);
 
-
   function handleDeleteAccount() {
     // Get the current username (you can store it in localStorage or use it from the session)
-    const currentUsername = localStorage.getItem("username");
+    const currentUsername = localStorage.getItem('username')
 
     if (currentUsername) {
-        // Delete the specific keys in localStorage
-        localStorage.removeItem(`${currentUsername}wish`);
-        localStorage.removeItem(`${currentUsername}cart`);
-        localStorage.removeItem(`${currentUsername}orders`);
+      // Delete the specific keys in localStorage
+      localStorage.removeItem(`${currentUsername}wish`)
+      localStorage.removeItem(`${currentUsername}cart`)
+      localStorage.removeItem(`${currentUsername}orders`)
 
-        // Get the users array from localStorage
-        const users = JSON.parse(localStorage.getItem("users")) || [];
+      // Get the users array from localStorage
+      const users = JSON.parse(localStorage.getItem('users')) || []
 
-        // Remove the current user from the array
-        const updatedUsers = users.filter(user => user.username !== currentUsername);
+      // Remove the current user from the array
+      const updatedUsers = users.filter(
+        (user) => user.username !== currentUsername
+      )
 
-        // Save the updated users array back to localStorage
-        localStorage.setItem("users", JSON.stringify(updatedUsers));
+      // Save the updated users array back to localStorage
+      localStorage.setItem('users', JSON.stringify(updatedUsers))
 
-
-
-
-
-        localStorage.removeItem('username')
-        const storedCart =
-          JSON.parse(localStorage.getItem('cartItems')) || []
-        const storedwish =
-          JSON.parse(localStorage.getItem('wishItems')) || []
-        dispatch(loadCartItemsFromLocal(storedCart))
-        dispatch(loadWishItem(storedwish))
-        setuserlogin(false)
-        setusername('')
-        setsignname(false)
-        localStorage.setItem('signedUp', 'false')
-        navigate('/')
-
-       
+      localStorage.removeItem('username')
+      const storedCart = JSON.parse(localStorage.getItem('cartItems')) || []
+      const storedwish = JSON.parse(localStorage.getItem('wishItems')) || []
+      dispatch(loadCartItemsFromLocal(storedCart))
+      dispatch(loadWishItem(storedwish))
+      setuserlogin(false)
+      setusername('')
+      setsignname(false)
+      localStorage.setItem('signedUp', 'false')
+      navigate('/')
     }
-}
+  }
 
   // const dark = false
   return (
@@ -223,7 +214,8 @@ export default function Header({
       <div className="header-contents">
         <Link to="/">
           {' '}
-          <h1 title='home'
+          <h1
+            title="home"
             onClick={() => {
               //  setquery('')
               // dispatch(fetchdata())
@@ -256,8 +248,7 @@ export default function Header({
           alt={dark ? 'Light Mode' : 'Dark Mode'}
           className="mode"
         />
-
-        <h1> {username ? `Welcome ${uname1}` : ''} </h1>
+<h1> {username ? `Welcome ${username}` : ''} </h1>
         <div className="icon-contain">
           <Link className="cart-icon" to="/cart">
             <img
@@ -358,7 +349,7 @@ export default function Header({
                         <p>Edit Profile</p>
                       </Link>
                       <Link to="/">
-                        <p  onClick={handleDeleteAccount}>Delete Account</p>
+                        <p onClick={handleDeleteAccount}>Delete Account</p>
                       </Link>
                       <Link to="/">
                         <p>Buy Again</p>

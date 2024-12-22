@@ -5,7 +5,7 @@ import './EditUser.css'
 const EditUser = () => {
   const navigate = useNavigate()
 //   const [, dark] = useOutletContext()
-  const [, dark, , , , , setUsername] = useOutletContext();
+  const [, dark, , , ,uname1 , setUsername] = useOutletContext();
   //   const [, , , , , username, setUsername] = useOutletContext()
 
   // Fetch username from localStorage
@@ -74,31 +74,38 @@ const EditUser = () => {
 
     // Update the user in localStorage
     const updatedUser = { ...userData }
-
-    // If username is updated, update the related data
     if (username !== userData.username) {
-      const oldUsername = username
-
-      // Update the keys like `oldUsernameOrders` to `newUsernameOrders`
-      const orders =
-        JSON.parse(localStorage.getItem(`${oldUsername}orders`)) || []
-      const wish = JSON.parse(localStorage.getItem(`${oldUsername}wish`)) || []
-      const cart = JSON.parse(localStorage.getItem(`${oldUsername}cart`)) || []
-
-      // Remove old data
-      localStorage.removeItem(`${oldUsername}orders`)
-      localStorage.removeItem(`${oldUsername}wish`)
-      localStorage.removeItem(`${oldUsername}cart`)
-
-      // Save new data with updated username
-      localStorage.setItem(`${userData.username}orders`, JSON.stringify(orders))
-      localStorage.setItem(`${userData.username}wish`, JSON.stringify(wish))
-      localStorage.setItem(`${userData.username}cart`, JSON.stringify(cart))
-
+      const oldUsername = username;
+    
+      // Check and update each key only if it exists in localStorage
+      const ordersKey = `${oldUsername}orders`;
+      const wishKey = `${oldUsername}wish`;
+      const cartKey = `${oldUsername}cart`;
+    
+      // Handle orders
+      const orders = JSON.parse(localStorage.getItem(ordersKey));
+      if (orders) {
+        localStorage.removeItem(ordersKey);
+        localStorage.setItem(`${userData.username}orders`, JSON.stringify(orders));
+      }
+    
+      // Handle wishlist
+      const wish = JSON.parse(localStorage.getItem(wishKey));
+      if (wish) {
+        localStorage.removeItem(wishKey);
+        localStorage.setItem(`${userData.username}wish`, JSON.stringify(wish));
+      }
+    
+      // Handle cart
+      const cart = JSON.parse(localStorage.getItem(cartKey));
+      if (cart) {
+        localStorage.removeItem(cartKey);
+        localStorage.setItem(`${userData.username}cart`, JSON.stringify(cart));
+      }
+    
       // Update the username in localStorage
-      localStorage.setItem('username', userData.username)
+      localStorage.setItem('username', userData.username);
     }
-
     // Update the user list in localStorage
     const updatedUsers = users.map((storedUser) =>
       storedUser.username === username ? updatedUser : storedUser
@@ -107,9 +114,23 @@ const EditUser = () => {
     // Save updated users list to localStorage
     localStorage.setItem('users', JSON.stringify(updatedUsers))
     localStorage.setItem('username', userData.username); // Update the logged-in username in localStorage
-    if (username !== userData.username) {
-        setUsername(userData.username); // Update the username in the global state
-      }
+   
+   
+    // if (username !== userData.username) {
+    //   console.log('Updating username:', userData.username);
+    //     setUsername(userData.username); // Update the username in the global state
+    //   }
+
+    console.log('Current uname1:', uname1);
+console.log('Updating username:', userData.username);
+
+if (uname1 !== userData.username) {
+  console.log('State will be updated');
+  setUsername(userData.username);
+} else {
+  console.log('State is not updated because values are the same');
+}
+
 
    
     alert('Profile updated successfully!')
