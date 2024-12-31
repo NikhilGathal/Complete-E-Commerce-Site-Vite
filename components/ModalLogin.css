@@ -104,7 +104,7 @@
   border-radius: 8px;
   color: white;
   transition: background-color 0.2s ease;
-  margin-right: 25px;
+  margin-right: 20px;
 }
 
 .login-button:hover {
@@ -130,14 +130,12 @@
     max-width: none;
     padding: 16px; 
   }
-
   .modal1-buttons {
     flex-direction: column; 
     gap: 12px;
     align-items: stretch; 
     max-width: 100%;
   }
-
   .login1-button, .cancel1-button, .forgot-button {
     margin-left: 20px; 
     padding: 12px; 
