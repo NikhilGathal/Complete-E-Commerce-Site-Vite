@@ -48,14 +48,14 @@
 
 @media  (max-width: 697px) {
   .suggestion-box {
-    top: 22px !important;
-    left: -7px !important;
+    top: 23px !important;
+    left: -10px !important;
     padding: 2px !important;
     font-size: 9px !important ;
   }
   .suggestion-box p 
   {
-    font-size: 7px !important ;
+    font-size: 8px !important ;
   }
 }
 
