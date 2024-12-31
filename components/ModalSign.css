@@ -92,6 +92,7 @@
   font-weight: 600;
   border-radius: 8px;
   transition: background-color 0.2s ease;
+  color: white;
 }
 
 .cancel-button:hover {
