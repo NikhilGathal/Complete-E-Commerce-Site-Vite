@@ -680,7 +680,7 @@ ul li:last-child {
 }
 .suggestion-box-log p {
   margin: 0px 0;
-  font-weight: 200;
+  font-weight: 550;
   cursor: pointer;
   font-size: 16px;
   color: var(--text-color);

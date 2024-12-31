@@ -1,14 +1,12 @@
-/* Hero.css */
 
-/* Main container */
 .hero-container {
   --background-color: white;
   --text-color: black;
   --elements-colorhero: rgba(66, 99, 235, 0.4);
   position: relative;
-  /* overflow: hidden; */
+
   min-height: 550px;
-  background-color: var(--background-color); /* Equivalent to bg-gray-100 */
+  background-color: var(--background-color); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,12 +21,11 @@
   --elements-colorhero: hsl(209, 23%, 22%);
 }
 
-/* Background pattern */
 .background-pattern {
   position: absolute;
   height: 700px;
   width: 700px;
-  background-color: var(--elements-colorhero); /* Equivalent to bg-primary/40 */
+  background-color: var(--elements-colorhero); 
   top: -370px;
   right: 0;
   border-radius: 1.5rem;
@@ -36,19 +33,19 @@
   z-index: 0;
 }
 
-/* Container for hero content */
+
 .container {
   max-height: 450px;
   padding-bottom: 2rem;
 }
 
-/* Grid container for text and image */
+
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr; /* Default: 1 column */
+  grid-template-columns: 1fr; 
 }
 
-/* Text container */
+
 .text-container {
   display: flex;
   flex-direction: column;
@@ -61,7 +58,7 @@
 .title {
   font-size: 2.5rem;
   font-weight: bold;
-  /* margin:0; */
+
 }
 
 .description {
@@ -69,7 +66,7 @@
   margin-bottom: 0px;
 }
 
-/* Order button */
+
 
 .order-now-button {
   font-size: 13.5px;
@@ -88,7 +85,7 @@
   background-color: #898989;
 }
 
-/* Image container */
+
 .image-container {
   display: flex;
   justify-content: center;
@@ -128,7 +125,7 @@
 }
 @media (min-width: 640px) {
   .grid-container {
-    grid-template-columns: 1fr 1fr; /* 2 columns on small screens and up */
+    grid-template-columns: 1fr 1fr; 
   }
   .title {
     margin: 0;
@@ -159,7 +156,7 @@
     margin: 0;
   }
   .grid-container {
-    grid-template-columns: 1fr 1fr; /* 2 columns on medium screens and up */
+    grid-template-columns: 1fr 1fr; 
   }
 }
 @media (min-width: 1024px) {
@@ -177,9 +174,6 @@
     width: 450px;
     height: 450px;
     transform: scale(1.05);
-  }
-  .text-container {
-    /* margin-left: 100px; */
   }
 
   .order-now-button {
@@ -200,4 +194,4 @@
   }
 }
 
-/* Dark Mode styles */
+
