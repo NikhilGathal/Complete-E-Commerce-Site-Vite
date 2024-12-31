@@ -660,10 +660,17 @@ ul li:last-child {
 .login-container {
   position: relative;
 }
+
+
+.login-container:hover .suggestion-box-log,
+.suggestion-box-log:hover {
+  display: block;
+}
+
 .suggestion-box-log {
-  /* display: none; */
+  display: none;
   position: absolute;
-  left: -15px;
+  left: -9px;
   top: 23px;
   background-color: var(--background-color);
   /* border: 1px solid #ccc; */
@@ -671,12 +678,6 @@ ul li:last-child {
   padding: 12px;
   z-index: 10;
 }
-
-.login-container:hover .suggestion-box-log,
-.suggestion-box-log:hover {
-  display: block;
-}
-
 .suggestion-box-log p {
   margin: 0px 0;
   font-weight: 200;
@@ -766,6 +767,15 @@ select option:hover {
 }
 
 @media (max-width: 805px) {
+  .suggestion-box-log {
+    left: -10px;
+    top: 20px;
+    padding: 12px;
+  }
+  .suggestion-box-log p {
+    font-size: 12px;
+   
+  }
   .cart-items-count {
     width: 13px;
     height: 13px;
@@ -805,9 +815,10 @@ select option:hover {
 @media (max-width: 697px) {
   .suggestion-box-log {
     /* display: block; */
-    left: -12px;
+    left: -15px;
     top: 19px;
     padding: 7px;
+    padding-inline: 14px;
     z-index: 10;
   }
   .cart-container {
@@ -1066,6 +1077,19 @@ select option:hover {
 }
 
 @media (max-width: 437px) {
+
+  .suggestion-box-log {
+    display: none;
+    position: absolute;
+    left: -13px;
+    top: 14px;
+    padding-inline: 13px;
+ 
+  }
+  .suggestion-box-log p {
+    margin: 0px 0px;
+    font-size: 10px;
+  }
   .close-icon {
     font-size: 16px;
   }
