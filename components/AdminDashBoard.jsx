@@ -1,138 +1,263 @@
-import React, { useEffect, useState } from 'react';
-import './OrderList.css'; 
-import { useOutletContext } from 'react-router-dom';
+// import React, { useEffect, useState } from "react";
+// import "./OrderList.css";
+// import { useOutletContext } from "react-router-dom";
+
+// function AdminDashBoard() {
+//   const [setissign, dark, isdark, issign, userlogin] = useOutletContext();
+//   const [orders, setOrders] = useState([]);
+//   const [userDetails, setUserDetails] = useState({});
+//   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+//   const [isLoading, setIsLoading] = useState(true);
+
+//   useEffect(() => {
+//     const handleResize = () => {
+//       setIsMobile(window.innerWidth <= 600);
+//     };
+//     window.addEventListener("resize", handleResize);
+
+//     return () => window.removeEventListener("resize", handleResize);
+//   }, []);
+
+//   useEffect(() => {
+//     const allOrders = [];
+//     const users = JSON.parse(localStorage.getItem("users")) || [];
+//     const userMap = users.reduce((map, user) => {
+//       map[user.username] = user;
+//       return map;
+//     }, {});
+
+//     setUserDetails(userMap);
+
+//     for (let i = 0; i < localStorage.length; i++) {
+//       const key = localStorage.key(i);
+//       if (key && key.endsWith("orders")) {
+//         const userOrders = JSON.parse(localStorage.getItem(key));
+//         if (Array.isArray(userOrders) && userOrders.length > 0) {
+//           userOrders.forEach((orderGroup) => {
+//             allOrders.push({
+//               username: key.replace("orders", ""),
+//               order: orderGroup,
+//             });
+//           });
+//         }
+//       }
+//     }
+
+//     setIsLoading(false);
+//     setOrders(allOrders);
+//   }, []);
+
+//   return (
+//     <>
+//       <div className={`order-grid ${dark ? "dark" : ""}`}>
+//         {orders.length > 0 && (
+//           <div className="grid-header">
+//             <div className="header-item">Username</div>
+//             <div className="header-item">User Details</div>
+//             <div className="header-item">Order Details</div>
+//             <div className="header-item">Total Price</div>
+//           </div>
+//         )}
+//         <div className="grid-body">
+//           {orders.map((orderGroup, index) => {
+//             const user = userDetails[orderGroup.username] || {};
+//             const totalOrderPrice = orderGroup.order.reduce(
+//               (total, product) => total + product.price * product.quantity,
+//               0
+//             );
+
+//             return (
+//               <div key={index} className="grid-row">
+//                 <div className="grid-item username-column">
+//                   {orderGroup.username}
+//                 </div>
+//                 <div className="grid-item user-details-column">
+//                   {user.email ? (
+//                     <div>
+//                       <p>Email: {user.email}</p>
+//                       <p>Phone: {user.phone}</p>
+//                       <p>Address: {user.address}</p>
+//                     </div>
+//                   ) : (
+//                     <p>No user details available</p>
+//                   )}
+//                 </div>
+//                 <div className="grid-item order-details-column">
+//                   {orderGroup.order.map((product, idx) => (
+//                     <div key={idx} className="product-details">
+//                       <p>Product ID: {product.id}</p>
+//                       <p>Title: {product.title}</p>
+//                       <p>Quantity: {product.quantity}</p>
+//                       <p>Price: ${parseFloat(product.price).toFixed(2)}</p>
+//                     </div>
+//                   ))}
+//                 </div>
+//                 <div className="grid-item price-column">
+//                   ${totalOrderPrice.toFixed(2)}
+//                 </div>
+//               </div>
+//             );
+//           })}
+//         </div>
+//       </div>
+//       {orders.length === 0 && !isLoading && (
+//         <h1 className="admin">No Orders Yet</h1>
+//       )}
+//     </>
+//   );
+// }
+
+// export default AdminDashBoard;
+
+
+
+
+
+
+
+import React, { useEffect, useState } from "react";
+import "./OrderList.css";
+import { useOutletContext } from "react-router-dom";
 
 function AdminDashBoard() {
-  // console.log('Adminnnn');
-  
   const [setissign, dark, isdark, issign, userlogin] = useOutletContext();
-  
   const [orders, setOrders] = useState([]);
   const [userDetails, setUserDetails] = useState({});
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 600);
+      // setIsMobile(window.innerWidth <= 600);
     };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
-    // Cleanup the event listener on component unmount
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
     const allOrders = [];
-
-    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const users = JSON.parse(localStorage.getItem("users")) || [];
     const userMap = users.reduce((map, user) => {
       map[user.username] = user;
       return map;
     }, {});
-    // console.log(userMap);
-    
+
     setUserDetails(userMap);
 
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      if (key && key.endsWith('orders')) {
+      if (key && key.endsWith("orders")) {
         const userOrders = JSON.parse(localStorage.getItem(key));
         if (Array.isArray(userOrders) && userOrders.length > 0) {
-          userOrders.forEach((order) => {
+          userOrders.forEach((orderGroup) => {
             allOrders.push({
-              username: key.replace('orders', ''),
-              ...order
+              username: key.replace("orders", ""),
+              order: orderGroup,
             });
           });
         }
       }
     }
-// console.log(allOrders);
-setIsLoading(false)
+
+    setIsLoading(false);
     setOrders(allOrders);
   }, []);
 
-  // const groupedOrders = orders.reduce((acc, order) => {
-  //   const { username, price } = order;
-  //   if (!acc[username]) {
-  //     acc[username] = { orders: [], totalPrice: 0 };
-  //   }
-  //   acc[username].orders.push(order);
-  //   acc[username].totalPrice += price;
-  //   return acc;
-  // }, {});
-// console.log(groupedOrders);
-const groupedOrders = orders.reduce((acc, order) => {
-  const { username, price } = order;
-  if (!acc[username]) {
-    acc[username] = { orders: [], totalPrice: 0 };
-  }
-  acc[username].orders.push(order);
-  // Make sure price is a number
-  acc[username].totalPrice += parseFloat(price) || 0;  // fallback to 0 if it's not a valid number
-  return acc;
-}, {});
-
-  const hasOrders = Object.keys(groupedOrders).length > 0;
- 
   return (
-  <>
-      <div className={`order-grid ${dark ? 'dark' : ''}`}>
-      {hasOrders && (
-        <div className="grid-header">
-          <div className="u header-item">Username</div>
-          <div className="us header-item">User Details</div>
-          <div className="o header-item">Orders</div>
-          <div className="t header-item">Total Price</div>
+    <>
+
+   <div className={`order-grid ${dark ? "dark" : ""}`}>
+        {orders.length > 0 && (
+          <div className="grid-header">
+            <div className="header-item amp">Username</div>
+            <div className="header-item amp">User Details</div>
+            <div className="header-item amp">Order Details</div>
+            <div className="header-item amp">Total Price</div>
+          </div>
+        )}
+
+
+        <div className="grid-body">
+          {orders.map((orderGroup, index) => {
+            const user = userDetails[orderGroup.username] || {};
+            const totalOrderPrice = orderGroup.order.reduce(
+              (total, product) => total + product.price * product.quantity,
+              0
+            );
+
+            // const gridColumnStyle = isMobile ? { gridColumn: index + 2 } : {};
+
+            return (
+              <div key={index} className="grid-row">
+                <div
+                  // style={gridColumnStyle}
+                  className="amp grid-item username-column"
+                >
+                  {orderGroup.username}
+                </div>
+                <div
+                  // style={gridColumnStyle}
+                  className="grid-item user-details-column"
+                >
+                  {user.email ? (
+                    <div>
+                      <p className="amp">Email: {user.email}</p>
+                      <p className="amp">Phone: {user.phone}</p>
+                      <p className="amp">Address: {user.address}</p>
+                    </div>
+                  ) : (
+                    <p>No user details available</p>
+                  )}
+                </div>
+                <div
+                  // style={gridColumnStyle}
+                  className="grid-item order-details-column"
+                >
+                  {orderGroup.order.map((product, idx) => (
+                    <div key={idx} className="product-details">
+                      <p className="amp">Product ID: {product.id}</p>
+                      <p className="amp">Title: {product.title}</p>
+                      <p className="amp">Quantity: {product.quantity}</p>
+                      <p className="amp">Price: ${parseFloat(product.price).toFixed(2)}</p>
+                    </div>
+                  ))}
+                </div>
+                <div
+                  // style={gridColumnStyle}
+                  className="amp grid-item price-column"
+                >
+                  ${totalOrderPrice.toFixed(2)}
+                </div>
+              </div>
+            );
+          })}
         </div>
-      )}
-      <div className="grid-body">
-        {Object.keys(groupedOrders).map((username, index) => {
-          const { orders, totalPrice } = groupedOrders[username];
-          const user = userDetails[username];
-
-          if (orders.length === 0) {
-            return null;
-          }
-
-          const gridColumnStyle = isMobile ? { gridColumn: index + 2 } : {};
-
-          return (
-            <div key={username} className="grid-row">
-              <div style={gridColumnStyle} className="grid-item username-column">{username}</div>
-              <div style={gridColumnStyle} className="grid-item user-details-column">
-                {user ? (
-                  <div>
-                    <p>Email: {user.email}</p>
-                    <p>Phone: {user.phone}</p>
-                    <p>Address: {user.address}</p>
-                  </div>
-                ) : (
-                  <p>No user details available</p>
-                )}
-              </div>
-              <div style={gridColumnStyle} className="grid-item orders-column">
-                {orders.map((order, index) => (
-                  <div className="ord" key={index}>
-                    <span>ProductID: {order.id}</span>
-                    <span>Price: ${order.price}</span>
-                  </div>
-                ))}
-              </div>
-              <div style={gridColumnStyle} className="grid-item total-price-column">
-                ${totalPrice.toFixed(2)}
-              </div>
-            </div>
-          );
-        })}
       </div>
-    </div>
-    {!hasOrders && !isLoading && <h1 className='admin'>No Orders Yet</h1>}
-  </>
+ 
+      {orders.length === 0 && !isLoading && (
+        <h1 className="admin">No Orders Yet</h1>
+      )}
+    </>
   );
 }
 
- export default AdminDashBoard;
+export default AdminDashBoard;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

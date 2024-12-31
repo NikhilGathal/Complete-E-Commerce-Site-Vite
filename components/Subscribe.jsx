@@ -30,16 +30,13 @@ const Subscribe = () => {
     } else {
       setEmailValidationError(''); // Clear validation error if email is valid
     }
-
     // Retrieve existing emails from localStorage
     const existingEmails = JSON.parse(localStorage.getItem('emails')) || [];
-
     // Check if the email already exists in the array
     if (existingEmails.includes(email)) {
       setShowHeading(false);
       // If email already exists, show an error message
       setErrorMessage('This email is already subscribed.');
-
       // Set a timeout to clear the error message after 3 seconds
       setTimeout(() => {
         setErrorMessage('');
@@ -49,20 +46,15 @@ const Subscribe = () => {
       setEmail('');
       return; // Do not proceed further if the email exists
     }
-
     // Add the new email to the array
     existingEmails.push(email);
-
     // Save the updated emails array to localStorage
     localStorage.setItem('emails', JSON.stringify(existingEmails));
-
     // Clear the input field
     setEmail('');
-
     setShowHeading(false);
     // Optionally, set submission status
     setIsSubmitted(true);
-
     // Clear feedback after 2 seconds and restore the heading after 3 seconds
     setTimeout(() => {
       setIsSubmitted(false); // Hide submission message

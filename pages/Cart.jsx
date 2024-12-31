@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react'
 import CartItem from '../components/CartItem'
 import empty from '../assets/empty.png'
@@ -18,6 +16,7 @@ export default function Cart() {
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(true)
   const cartItems = useSelector(getAllCartItems)
+  console.log(cartItems)
 
   const navigate = useNavigate()
 
@@ -72,14 +71,15 @@ export default function Cart() {
               )}
               <div className="cart-header cart-item-container">
                 <button
-                   onClick={() => 
-                    {
+                  onClick={() => {
                     const username = localStorage.getItem('username')
                     const adminFromStorage = localStorage.getItem('Admin')
 
                     // Condition 1: Check if Admin exists in localStorage
                     if (!adminFromStorage) {
-                      alert("Sign up and login as an admin first before placing an order. After that, log in as a normal user to place an order.")
+                      alert(
+                        'Sign up as admin first before placing an order. After that, log in as a normal user to place an order.'
+                      )
                       return
                     }
 
@@ -112,13 +112,14 @@ export default function Cart() {
                     const existingOrders =
                       JSON.parse(localStorage.getItem(`${username}orders`)) ||
                       []
-                    existingOrders.push(...cartItems)
+                    // Push the current cart items as a new array (representing the order)
+                    existingOrders.push([...cartItems])
+                    // Update localStorage
                     localStorage.setItem(
                       `${username}orders`,
                       JSON.stringify(existingOrders)
                     )
-                  }
-                }
+                  }}
                   className="place"
                 >
                   Place Order

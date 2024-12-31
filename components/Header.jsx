@@ -24,7 +24,7 @@ export default function Header({
   setuserlogin,
   uname1,
 }) {
-  console.log(uname1);
+  // console.log(uname1);
   
   const [signname, setsignname] = useState(false)
   const [islog, setislog] = useState(false)
@@ -290,7 +290,7 @@ export default function Header({
               setissign(true)
               toggleMenu(e)
             }}
-            style={{ display: signname || username ? 'none' : 'block' }}
+            style={{ display:  username ? 'none' : 'block' }}
           >
             Signup
           </h3>
@@ -298,6 +298,8 @@ export default function Header({
             issign={issign}
             setissign={setissign}
             setsignname={setsignname}
+            setislog={setislog}
+            toggleMenu={toggleMenu}
           />
 
           {(username && username !== adminUsername) ||
@@ -387,12 +389,20 @@ export default function Header({
               </p>
             </div>
           </h3>
+
+
+
+
+
+
+          
           <ModalLogin
             islog={islog}
             setislog={setislog}
             setusername={setusername}
             setuserlogin={setuserlogin}
             setIsAdmin={setIsAdmin}
+            setissign={setissign}
           />
           <h3
             className="H"

@@ -1,7 +1,3 @@
-
-
-
-
 import React from 'react';
 import emailjs from 'emailjs-com';
 import { Link, useLocation } from 'react-router-dom';

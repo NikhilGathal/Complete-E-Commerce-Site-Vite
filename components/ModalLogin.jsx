@@ -1,12 +1,10 @@
-
-
 import React, { useState } from 'react'
 import { createPortal } from 'react-dom'
 import './ModalLogin.css'
 import { removeallCartItem } from '../store/slices/cartSlice'
 import { useDispatch } from 'react-redux'
 import { removeallWishItem } from '../store/slices/wishListSlice'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function ModalLogin({
   islog,
@@ -14,6 +12,7 @@ export default function ModalLogin({
   setusername,
   setuserlogin,
   setIsAdmin,
+  setissign,
 }) {
   const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {}
 
@@ -98,7 +97,6 @@ export default function ModalLogin({
       alert('Please enter a valid username to reset the password.')
       return // Prevent further execution if the username is empty
     }
-
     // Check if the username matches an existing user or admin
     const existingUsers = JSON.parse(localStorage.getItem('users')) || []
     if (loginData.username === existingAdmin.username) {
@@ -153,6 +151,7 @@ export default function ModalLogin({
       setNewPassword({ password: '', confirmPassword: '' })
     }
   }
+
   const m = () => {
     setislog(false)
     setIsForgotPassword(false)
@@ -202,24 +201,41 @@ export default function ModalLogin({
                 value={loginData.password}
                 onChange={handleChange}
               />
+              <div className="already">
+                {' '}
+                <p>If you dont have Account ?</p>
+                <Link>
+                  <h1
+                    onClick={(e) => {
+                      console.log('clicked')
+                      setissign(true)
+                      setislog(false)
+                    }}
+                    className=".H"
+                  >
+                    Sign In
+                  </h1>
+                </Link>
+              </div>
             </>
           )}
         </div>
-        <div className="modal-buttons">
+
+        <div className="modal1-buttons">
           {isForgotPassword ? (
-            <button onClick={handleSaveNewPassword} className="login-button">
+            <button onClick={handleSaveNewPassword} className="forgot-button">
               Save
             </button>
           ) : (
             <>
-              <button onClick={handleLogin} className="login-button">
+              <button onClick={handleLogin} className="login1-button">
                 LogIn
               </button>
-              <button onClick={() => setislog(false)} className="cancel-button">
+              <button onClick={() => setislog(false)} className="cancel1-button">
                 Cancel
               </button>
 
-              <button onClick={handleForgotPassword} className="login-button">
+              <button onClick={handleForgotPassword} className="forgot-button">
                 Forgot Password
               </button>
             </>
