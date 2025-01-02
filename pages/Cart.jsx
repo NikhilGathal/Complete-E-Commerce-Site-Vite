@@ -72,6 +72,7 @@ export default function Cart() {
               <div className="cart-header cart-item-container">
                 <button
                   onClick={() => {
+                    const order_Id = 'OD' + Date.now()
                     const username = localStorage.getItem('username')
                     const adminFromStorage = localStorage.getItem('Admin')
 
@@ -105,6 +106,7 @@ export default function Cart() {
                         username,
                         cartItems,
                         totalPrice,
+                        order_Id
                       },
                     })
 
@@ -113,7 +115,7 @@ export default function Cart() {
                       JSON.parse(localStorage.getItem(`${username}orders`)) ||
                       []
                     // Push the current cart items as a new array (representing the order)
-                    existingOrders.push([...cartItems])
+                    existingOrders.push([order_Id,...cartItems])
                     // Update localStorage
                     localStorage.setItem(
                       `${username}orders`,
