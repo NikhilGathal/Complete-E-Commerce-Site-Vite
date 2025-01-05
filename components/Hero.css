@@ -164,7 +164,7 @@
     transform: scale(1.2);
   }
   .container {
-    max-width: 100%;
+    max-width: 100% !important;
   }
   .title {
     font-size: 70px;
@@ -193,5 +193,4 @@
     top: -457px;
   }
 }
-
 

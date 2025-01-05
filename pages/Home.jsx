@@ -3,10 +3,8 @@ import SearchBar from '../components/SearchBar'
 import SelectMenu from '../components/SelectMenu'
 import { useDispatch, useSelector } from 'react-redux'
 import Product from '../components/Product'
-import ModalSign from '../components/ModalSign'
 import {
-  fetchProductdata,
-  fetchProducts,
+
   fetchProductsError,
   getAllProducts,
   getProductError,
@@ -18,25 +16,14 @@ import ProductShimmer from '../components/ProductShimmer'
 import Footer from '../components/Footer'
 import Carousel from '../components/Carousel'
 import ImageContainer from '../components/ImageContainer'
-import Subscribe from '../components/Subscribe'
-import Banner from '../components/Banner'
-import Category from '../components/Category'
-import TopProducts from '../components/TopProducts'
-// import Hero from '../components/Hero'
-// import Testimonial from '../components/Testimonials'
-import Hero1 from '../components/Hero'
-import Testimonials1 from '../components/Testimonial'
 
-// import Testimonials from '../components/Testimonials'
-// import Hero from '../components/Hero'
-// import Testimonials from '../components/Testimonials'
 
 export default function Home() {
   const [query, setquery] = useState('')
   const [query1, setquery1] = useState('')
   const productsList = useSelector(getAllProducts)
   // console.log(productsList);
-
+  const [filteredProducts, setFilteredProducts] = useState([]);
   // console.log(productsList[0]);
 
   const [setissign, dark, isdark, issign, userlogin] = useOutletContext()
@@ -45,36 +32,36 @@ export default function Home() {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (query1) {
-      fetch(`https://fakestoreapi.com/products/category/${query1}`)
-        .then((res) => res.json())
-        .then((data) => dispatch(updateAllProducts(data)))
-    }
+  // useEffect(() => {
+  //   if (query1) {
+  //     fetch(`https://fakestoreapi.com/products/category/${query1}`)
+  //       .then((res) => res.json())
+  //       .then((data) => dispatch(updateAllProducts(data)))
+  //   }
 
-    const delayDebounceFn = setTimeout(() => {
-      if (query.length > 2) {
-        // Only fetch if query is longer than 2 characters
-        fetch(`https://fakestoreapi.com/products/category/${query}`)
-          .then((res) => res.json())
-          .then((data) => {
-            // console.log(data);
-            if (data.length === 0) {
-              dispatch(fetchProductsError('No products found')) // Dispatch error if no products found
-            } else {
-              dispatch(updateAllProducts(data))
-              setquery('')
-              // Update products if data exists
-            }
-          })
-          .catch(() => {
-            dispatch(fetchProductsError('Error fetching products')) // Dispatch error if fetch fails
-          })
-      }
-    }, 300) // 300ms debounce
+  //   const delayDebounceFn = setTimeout(() => {
+  //     if (query.length > 2) {
+  //       // Only fetch if query is longer than 2 characters
+  //       fetch(`https://fakestoreapi.com/products/category/${query}`)
+  //         .then((res) => res.json())
+  //         .then((data) => {
+  //           // console.log(data);
+  //           if (data.length === 0) {
+  //             dispatch(fetchProductsError('No products found')) // Dispatch error if no products found
+  //           } else {
+  //             dispatch(updateAllProducts(data))
+  //             setquery('')
+  //             // Update products if data exists
+  //           }
+  //         })
+  //         .catch(() => {
+  //           dispatch(fetchProductsError('Error fetching products')) // Dispatch error if fetch fails
+  //         })
+  //     }
+  //   }, 300) // 300ms debounce
 
-    return () => clearTimeout(delayDebounceFn) // Cleanup the timeout on query change
-  }, [query, dispatch, query1])
+  //   return () => clearTimeout(delayDebounceFn) // Cleanup the timeout on query change
+  // }, [query, dispatch, query1])
 
   //   // If there's a selected category from SelectMenu (`query1`), fetch products for that category.
   //   if (query1) {
@@ -129,6 +116,40 @@ export default function Home() {
   //   }
   // }, [])
 
+  // useEffect(() => {
+  //   if (query.length > 2) {
+  //     // Filter the products based on the search query
+  //     const filtered = productsList.filter((product) =>
+  //       product.title.toLowerCase().includes(query.toLowerCase())
+  //     );
+  //     setFilteredProducts(filtered);
+  //   } else {
+  //     // If query is cleared or too short, display all products
+  //     setFilteredProducts(productsList);
+  //   }
+  // }, [query, productsList]);
+
+
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (query.length > 2) {
+        // Filter the products based on the search query
+        const filtered = productsList.filter((product) =>
+          product.title.toLowerCase().includes(query.toLowerCase())
+        );
+        setFilteredProducts(filtered);
+      } else {
+        // If query is cleared or too short, display all products
+        setFilteredProducts(productsList);
+      }
+    }, 300); // 300ms debounce delay
+  
+    // Cleanup the timeout on query change
+    return () => clearTimeout(delayDebounceFn);
+  }, [query, productsList]);
+  
+
   const isLoading = useSelector(getProductLoadingState)
   // const isLoading = 1
   const error = useSelector(getProductError)
@@ -156,7 +177,7 @@ export default function Home() {
         {/* Render the product list only if there are products */}
         {!isLoading && !error && productsList.length > 0 && (
           <div className="products-container">
-            {productsList.map(({ id, title, rating, price, image }) => (
+            {filteredProducts.map(({ id, title, rating, price, image }) => (
               <Product
                 key={id}
                 productId={id}
