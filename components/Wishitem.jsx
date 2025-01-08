@@ -5,10 +5,6 @@ import { Link } from 'react-router-dom';
 
 export default function Wishitem({ productId, title, rating, price, imageUrl, quantity }) {
   const dispatch = useDispatch()
-
-
-
-
   const handleRemove = () => {
     const username = localStorage.getItem('username');
     const key = username ? `${username}wish` : 'wishItems';

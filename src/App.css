@@ -305,7 +305,7 @@ button:hover {
 .H:hover {
   /* transform: scale(1.05); */
   color: #a870f1;
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 .title-container {
@@ -661,7 +661,6 @@ ul li:last-child {
   position: relative;
 }
 
-
 .login-container:hover .suggestion-box-log,
 .suggestion-box-log:hover {
   display: block;
@@ -774,7 +773,6 @@ select option:hover {
   }
   .suggestion-box-log p {
     font-size: 12px;
-   
   }
   .cart-items-count {
     width: 13px;
@@ -807,7 +805,6 @@ select option:hover {
 }
 
 @media (max-width: 730px) {
-
   .header-contents .ham h3 {
     font-size: 12px;
   }
@@ -818,7 +815,6 @@ select option:hover {
   }
   .suggestion-box-log p {
     font-size: 12px;
-   
   }
 }
 
@@ -827,8 +823,8 @@ select option:hover {
     /* display: block; */
     left: -15px;
     top: 19px;
-    padding: 7px;
-    padding-inline: 14.5px;
+    padding: 5px;
+    padding-inline: 14px;
     z-index: 10;
   }
   .cart-container {
@@ -1087,14 +1083,12 @@ select option:hover {
 }
 
 @media (max-width: 437px) {
-
   .suggestion-box-log {
     display: none;
     position: absolute;
     left: -13px;
     top: 14px;
-    padding-inline: 13px;
- 
+    padding-inline: 11px;
   }
   .suggestion-box-log p {
     margin: 0px 0px;

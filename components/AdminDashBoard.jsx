@@ -6,12 +6,11 @@
 //   const [setissign, dark, isdark, issign, userlogin] = useOutletContext();
 //   const [orders, setOrders] = useState([]);
 //   const [userDetails, setUserDetails] = useState({});
-//   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
 //   const [isLoading, setIsLoading] = useState(true);
 
 //   useEffect(() => {
 //     const handleResize = () => {
-//       setIsMobile(window.innerWidth <= 600);
+//       // Placeholder for resize logic if needed
 //     };
 //     window.addEventListener("resize", handleResize);
 
@@ -28,146 +27,33 @@
 
 //     setUserDetails(userMap);
 
-//     for (let i = 0; i < localStorage.length; i++) {
-//       const key = localStorage.key(i);
-//       if (key && key.endsWith("orders")) {
-//         const userOrders = JSON.parse(localStorage.getItem(key));
-//         if (Array.isArray(userOrders) && userOrders.length > 0) {
-//           userOrders.forEach((orderGroup) => {
-//             allOrders.push({
-//               username: key.replace("orders", ""),
-//               order: orderGroup,
-//             });
-//           });
-//         }
-//       }
-//     }
+//     // Fetch all orders from the "Orders" key in localStorage
+//     const storedOrders = JSON.parse(localStorage.getItem("Orders")) || [];
+//     // console.log(storedOrders[0][2]);  // Log the raw date from the storage
+
+//     // Use flatMap to flatten the array of arrays
+//     const flattenedOrders = storedOrders.flatMap((orderGroup) => {
+//       const username = orderGroup[1]; // Username is at index 1
+//       const orderId = orderGroup[0]; // Order ID is at index 0
+//       const orderDate = orderGroup[2]; // Order Date is at index 2 (no formatting)
+//       const orderDetails = orderGroup[3]; // Order Details are at index 3
+
+//       return {
+//         username,
+//         orderId,
+//         orderDate,  // Directly assigning the raw date
+//         orderDetails,
+//       };
+//     });
 
 //     setIsLoading(false);
-//     setOrders(allOrders);
+//     setOrders(flattenedOrders);
 //   }, []);
 
 //   return (
 //     <>
+//       <h1 className="ordhead">Order Details</h1>
 //       <div className={`order-grid ${dark ? "dark" : ""}`}>
-//         {orders.length > 0 && (
-//           <div className="grid-header">
-//             <div className="header-item">Username</div>
-//             <div className="header-item">User Details</div>
-//             <div className="header-item">Order Details</div>
-//             <div className="header-item">Total Price</div>
-//           </div>
-//         )}
-//         <div className="grid-body">
-//           {orders.map((orderGroup, index) => {
-//             const user = userDetails[orderGroup.username] || {};
-//             const totalOrderPrice = orderGroup.order.reduce(
-//               (total, product) => total + product.price * product.quantity,
-//               0
-//             );
-
-//             return (
-//               <div key={index} className="grid-row">
-//                 <div className="grid-item username-column">
-//                   {orderGroup.username}
-//                 </div>
-//                 <div className="grid-item user-details-column">
-//                   {user.email ? (
-//                     <div>
-//                       <p>Email: {user.email}</p>
-//                       <p>Phone: {user.phone}</p>
-//                       <p>Address: {user.address}</p>
-//                     </div>
-//                   ) : (
-//                     <p>No user details available</p>
-//                   )}
-//                 </div>
-//                 <div className="grid-item order-details-column">
-//                   {orderGroup.order.map((product, idx) => (
-//                     <div key={idx} className="product-details">
-//                       <p>Product ID: {product.id}</p>
-//                       <p>Title: {product.title}</p>
-//                       <p>Quantity: {product.quantity}</p>
-//                       <p>Price: ${parseFloat(product.price).toFixed(2)}</p>
-//                     </div>
-//                   ))}
-//                 </div>
-//                 <div className="grid-item price-column">
-//                   ${totalOrderPrice.toFixed(2)}
-//                 </div>
-//               </div>
-//             );
-//           })}
-//         </div>
-//       </div>
-//       {orders.length === 0 && !isLoading && (
-//         <h1 className="admin">No Orders Yet</h1>
-//       )}
-//     </>
-//   );
-// }
-
-// export default AdminDashBoard;
-
-
-
-
-
-
-
-// import React, { useEffect, useState } from "react";
-// import "./OrderList.css";
-// import { useOutletContext } from "react-router-dom";
-
-// function AdminDashBoard() {
-//   const [setissign, dark, isdark, issign, userlogin] = useOutletContext();
-//   const [orders, setOrders] = useState([]);
-//   const [userDetails, setUserDetails] = useState({});
-
-//   const [isLoading, setIsLoading] = useState(true);
-
-//   useEffect(() => {
-//     const handleResize = () => {
-//       // setIsMobile(window.innerWidth <= 600);
-//     };
-//     window.addEventListener("resize", handleResize);
-
-//     return () => window.removeEventListener("resize", handleResize);
-//   }, []);
-
-//   useEffect(() => {
-//     const allOrders = [];
-//     const users = JSON.parse(localStorage.getItem("users")) || [];
-//     const userMap = users.reduce((map, user) => {
-//       map[user.username] = user;
-//       return map;
-//     }, {});
-
-//     setUserDetails(userMap);
-
-//     for (let i = 0; i < localStorage.length; i++) {
-//       const key = localStorage.key(i);
-//       if (key && key.endsWith("orders")) {
-//         const userOrders = JSON.parse(localStorage.getItem(key));
-//         if (Array.isArray(userOrders) && userOrders.length > 0) {
-//           userOrders.forEach((orderGroup) => {
-//             allOrders.push({
-//               username: key.replace("orders", ""),
-//               order: orderGroup,
-//             });
-//           });
-//         }
-//       }
-//     }
-
-//     setIsLoading(false);
-//     setOrders(allOrders);
-//   }, []);
-
-//   return (
-//     <>
-
-//    <div className={`order-grid ${dark ? "dark" : ""}`}>
 //         {orders.length > 0 && (
 //           <div className="grid-header">
 //             <div className="header-item amp">Username</div>
@@ -177,29 +63,23 @@
 //           </div>
 //         )}
 
-
 //         <div className="grid-body">
 //           {orders.map((orderGroup, index) => {
 //             const user = userDetails[orderGroup.username] || {};
-//             const totalOrderPrice = orderGroup.order.reduce(
+//             const totalOrderPrice = orderGroup.orderDetails.items.reduce(
 //               (total, product) => total + product.price * product.quantity,
 //               0
 //             );
 
-//             // const gridColumnStyle = isMobile ? { gridColumn: index + 2 } : {};
-
+//             // Displaying raw date without formatting
 //             return (
 //               <div key={index} className="grid-row">
-//                 <div
-//                   // style={gridColumnStyle}
-//                   className="amp grid-item username-column"
-//                 >
-//                   {orderGroup.username} <p>OrderId: {order_Id}</p>
+//                 <div className="amp grid-item username-column">
+//                   {orderGroup.username}
+//                   <p>Order ID: {orderGroup.orderId}</p>
+//                   <p>Order Date: {orderGroup.orderDate}</p> {/* Displaying raw date */}
 //                 </div>
-//                 <div
-//                   // style={gridColumnStyle}
-//                   className="grid-item user-details-column"
-//                 >
+//                 <div className="grid-item user-details-column">
 //                   {user.email ? (
 //                     <div>
 //                       <p className="amp">Email: {user.email}</p>
@@ -210,31 +90,25 @@
 //                     <p>No user details available</p>
 //                   )}
 //                 </div>
-//                 <div
-//                   // style={gridColumnStyle}
-//                   className="grid-item order-details-column"
-//                 >
-//                   {orderGroup.order.map((product, idx) => (
+//                 <div className="grid-item order-details-column">
+//                   {orderGroup.orderDetails.items?.map((product, idx) => (
 //                     <div key={idx} className="product-details">
-//                       <p className="amp">Product ID: {product.id}</p>
-//                       <p className="amp">Title: {product.title}</p>
-//                       <p className="amp">Quantity: {product.quantity}</p>
-//                       <p className="amp">Price: ${parseFloat(product.price).toFixed(2)}</p>
+//                       <span className="amp">Product: {product.title}</span>
+//                       <span className="amp">Product ID: {product.id}</span>
+//                       <span className="amp">Quantity: {product.quantity}</span>
+//                       <span className="amp">Price: ${parseFloat(product.price).toFixed(2)}</span>
 //                     </div>
-//                   ))}
+//                   )) || <p>No items available</p>}
 //                 </div>
-//                 <div
-//                   // style={gridColumnStyle}
-//                   className="amp grid-item price-column"
-//                 >
-//                   ${totalOrderPrice.toFixed(2)}
+//                 <div className="amp grid-item price-column">
+//                   ${parseFloat(orderGroup.orderDetails?.totalPrice || 0).toFixed(2)}
 //                 </div>
 //               </div>
 //             );
 //           })}
 //         </div>
 //       </div>
- 
+
 //       {orders.length === 0 && !isLoading && (
 //         <h1 className="admin">No Orders Yet</h1>
 //       )}
@@ -245,6 +119,7 @@
 // export default AdminDashBoard;
 
 
+
 import React, { useEffect, useState } from "react";
 import "./OrderList.css";
 import { useOutletContext } from "react-router-dom";
@@ -253,7 +128,10 @@ function AdminDashBoard() {
   const [setissign, dark, isdark, issign, userlogin] = useOutletContext();
   const [orders, setOrders] = useState([]);
   const [userDetails, setUserDetails] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true); // Loading state
+console.log(isLoading);
+
+  
 
   useEffect(() => {
     const handleResize = () => {
@@ -273,133 +151,96 @@ function AdminDashBoard() {
     }, {});
 
     setUserDetails(userMap);
-
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key && key.endsWith("orders")) {
-        const userOrders = JSON.parse(localStorage.getItem(key));
-        if (Array.isArray(userOrders) && userOrders.length > 0) {
-          userOrders.forEach((orderGroup) => {
-            allOrders.push({
-              username: key.replace("orders", ""),
-              orderId: orderGroup[0],
-              order: orderGroup.slice(1), // Extracting products
-            });
-          });
-        }
-      }
-    }
-
-    setIsLoading(false);
-    setOrders(allOrders);
+    const storedOrders = JSON.parse(localStorage.getItem("Orders")) || [];
+    const flattenedOrders = storedOrders.flatMap((orderGroup) => {
+      const username = orderGroup[1];
+      const orderId = orderGroup[0];
+      const orderDate = orderGroup[2];
+      const orderDetails = orderGroup[3];
+      return {
+        username,
+        orderId,
+        orderDate,
+        orderDetails,
+      };
+    });
+    const filteredOrders = flattenedOrders.filter((order) =>
+      userMap.hasOwnProperty(order.username)
+    );
+    setOrders(filteredOrders);
+    setTimeout(() => {
+      setIsLoading(false); // Set loading to false once orders are fetched
+    }, 1000);
   }, []);
 
   return (
-    <>
-      <div className={`order-grid ${dark ? "dark" : ""}`}>
-        {orders.length > 0 && (
-          <div className="grid-header">
-            <div className="header-item amp">Username</div>
-            <div className="header-item amp">User Details</div>
-            <div className="header-item amp">Order Details</div>
-            <div className="header-item amp">Total Price</div>
-          </div>
-        )}
-
-        <div className="grid-body">
-          {orders.map((orderGroup, index) => {
-            const user = userDetails[orderGroup.username] || {};
-            const totalOrderPrice = orderGroup.order.reduce(
-              (total, product) => total + product.price * product.quantity,
-              0
-            );
-
-            return (
-              <div key={index} className="grid-row">
-                <div className="amp grid-item username-column">
-                  {orderGroup.username}
-                  <p>Order ID: {orderGroup.orderId}</p>
-                </div>
-                <div className="grid-item user-details-column">
-                  {user.email ? (
-                    <div>
-                      <p className="amp">Email: {user.email}</p>
-                      <p className="amp">Phone: {user.phone}</p>
-                      <p className="amp">Address: {user.address}</p>
-                    </div>
-                  ) : (
-                    <p>No user details available</p>
-                  )}
-                </div>
-                <div className="grid-item order-details-column">
-                  {orderGroup.order.map((product, idx) => (
-                    <div key={idx} className="product-details">
-                      <span className="amp">Product: {product.title}</span>
-                      <span className="amp">Product ID: {product.id}</span>
-                      <span className="amp">Quantity: {product.quantity}</span>
-                      <span className="amp">Price: ${parseFloat(product.price).toFixed(2)}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="amp grid-item price-column">
-                  ${totalOrderPrice.toFixed(2)}
-                </div>
-              </div>
-            );
-          })}
+    <div className={`order-container ${dark ? "dark" : ""}`}>
+      {isLoading ? (
+       <div className="admin a"> <h1 >Loading Order Details...</h1></div> // Display loading message
+      ) : orders.length === 0 ? (
+        <div className="admin a">
+          <h1>No Orders Yet</h1>
         </div>
-      </div>
+      ) : (
+        <>
+          <h1 className="ordhead">Order Details</h1>
+          <div className={`order-grid ${dark ? "dark" : ""}`}>
+            <div className="grid-header">
+              <div className="header-item amp">Username</div>
+              <div className="header-item amp">User Details</div>
+              <div className="header-item amp">Order Details</div>
+              <div className="header-item amp">Total Price</div>
+            </div>
+            <div className="grid-body">
+              {orders.map((orderGroup, index) => {
+                const user = userDetails[orderGroup.username] || {};
+                const totalOrderPrice = orderGroup.orderDetails.items.reduce(
+                  (total, product) => total + product.price * product.quantity,
+                  0
+                );
 
-      {orders.length === 0 && !isLoading && (
-        <h1 className="admin">No Orders Yet</h1>
+                return (
+                  <div key={index} className="grid-row">
+                    <div className="amp grid-item username-column">
+                      {orderGroup.username}
+                      <p>Order ID: {orderGroup.orderId}</p>
+                      <p>Order Date: {orderGroup.orderDate}</p>
+                    </div>
+                    <div className="grid-item user-details-column">
+                      {user.email ? (
+                        <div>
+                          <p className="amp">Email: {user.email}</p>
+                          <p className="amp">Phone: {user.phone}</p>
+                          <p className="amp">Address: {user.address}</p>
+                        </div>
+                      ) : (
+                        <p>No user details available</p>
+                      )}
+                    </div>
+                    <div className="grid-item order-details-column">
+                      {orderGroup.orderDetails.items?.map((product, idx) => (
+                        <div key={idx} className="product-details">
+                          <span className="amp">Product: {product.title}</span>
+                          <span className="amp">Product ID: {product.id}</span>
+                          <span className="amp">Quantity: {product.quantity}</span>
+                          <span className="amp">
+                            Price: ${parseFloat(product.price).toFixed(2)}
+                          </span>
+                        </div>
+                      )) || <p>No items available</p>}
+                    </div>
+                    <div className="amp grid-item price-column">
+                      ${parseFloat(totalOrderPrice).toFixed(2)}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </>
       )}
-    </>
+    </div>
   );
 }
 
 export default AdminDashBoard;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

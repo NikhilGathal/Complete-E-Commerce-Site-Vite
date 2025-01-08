@@ -341,6 +341,15 @@ export default function Header({
                       <Link to="/Add">
                         <p>Add Product</p>
                       </Link>
+                      <Link to="/EditUser">
+                        <p>Edit Profile</p>
+                      </Link>
+                      <Link to="/Emailslist">
+                        <p>Subscription</p>
+                      </Link>
+                      <Link to="/FeedbacksList">
+                        <p>Feedbacks</p>
+                      </Link>
                     </>
                   ) : (
                     <>
@@ -353,7 +362,7 @@ export default function Header({
                       <Link to="/">
                         <p onClick={handleDeleteAccount}>Delete Account</p>
                       </Link>
-                      <Link to="/">
+                      <Link to="/Home">
                         <p>Buy Again</p>
                       </Link>
                     </>

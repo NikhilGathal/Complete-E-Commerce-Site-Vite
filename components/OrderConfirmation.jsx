@@ -28,8 +28,17 @@ const OrderConfirmation = () => {
 
     if (userDetails) {
       const { email, phone, address } = userDetails;
-      const orderDate = new Date();
-      const order_date = orderDate.toLocaleDateString();
+      const date = new Date();
+      const formattedDate = date.toLocaleString('en-IN', { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric', 
+        hour: 'numeric', 
+        minute: 'numeric', 
+        second: 'numeric',
+        hour12: true
+      });
       // const order_id = `OD${Date.now()}`;
 
       const products = cartItems.map((item) => ({
@@ -56,7 +65,7 @@ const OrderConfirmation = () => {
         useremail: email,
         user_phone: phone,
         user_address: address,
-        order_date,
+        formattedDate,
         order_Id,
         productDetails: productDetailsString,
         totalOrderPrice: parseFloat(totalPrice || 0).toFixed(2),
@@ -117,7 +126,7 @@ const OrderConfirmation = () => {
       <p>We have sent the order details to your email.</p>
     </div>
     <div className='ord'>
-    <Link to="/">
+    <Link to="/Home">
             <button>Return to Shop</button>
           </Link>
     </div>

@@ -92,7 +92,7 @@ export const fetchProductdata = () => (dispatch) => {
   } else {
     // Fetch data from API and store it in localStorage
     dispatch(fetchProducts());
-    fetch(`https://fakestoreapi.com/productss`)
+    fetch(`https://fakestoreapi.com/products`)
       .then((res) => res.json())
       .then((data) => {
         // Update Redux state and localStorage with the fetched data

@@ -16,7 +16,7 @@ export default function Cart() {
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(true)
   const cartItems = useSelector(getAllCartItems)
-  console.log(cartItems)
+  // console.log(cartItems)
 
   const navigate = useNavigate()
 
@@ -34,9 +34,9 @@ export default function Cart() {
 
   if (isLoading) {
     return (
-      <h1 className="Load" style={{ textAlign: 'center' }}>
-        Loading Cart items...
-      </h1>
+      <div className="admin">
+      <h1>Loading Cart Items...</h1>
+    </div>
     )
   }
 
@@ -70,7 +70,7 @@ export default function Cart() {
                 )
               )}
               <div className="cart-header cart-item-container">
-                <button
+                {/* <button
                   onClick={() => {
                     const order_Id = 'OD' + Date.now()
                     const username = localStorage.getItem('username')
@@ -125,7 +125,94 @@ export default function Cart() {
                   className="place"
                 >
                   Place Order
+                </button> */}
+
+                <button
+                  onClick={() => {
+                    const order_Id = 'OD' + Date.now()
+                    const username = localStorage.getItem('username')
+                    const adminFromStorage = localStorage.getItem('Admin')
+
+                    // Condition 1: Check if Admin exists in localStorage
+                    if (!adminFromStorage) {
+                      alert(
+                        'Sign up as admin first before placing an order. After that, log in as a normal user to place an order.'
+                      )
+                      return
+                    }
+
+                    const existingAdmin = JSON.parse(adminFromStorage)
+
+                    // Condition 2: Check if user is logged in
+                    if (!username) {
+                      alert('Please login first to place an order')
+                      return
+                    }
+
+                    // Condition 3: Check if logged-in user is the Admin
+                    if (username === existingAdmin.username) {
+                      alert('Please login as a normal user to place an order')
+                      return
+                    }
+
+                    // If all conditions are met, proceed with placing the order
+                    dispatch(removeallCartItem())
+                    localStorage.removeItem(`${username}cart`)
+                    navigate('/OrderConfirmation', {
+                      state: {
+                        username,
+                        cartItems,
+                        totalPrice,
+                        order_Id,
+                      },
+                    })
+
+                    // Save the order for the user (preserving the current functionality)
+                    const existingUserOrders =
+                      JSON.parse(localStorage.getItem(`${username}orders`)) ||
+                      []
+                    existingUserOrders.push([order_Id, ...cartItems])
+                    localStorage.setItem(
+                      `${username}orders`,
+                      JSON.stringify(existingUserOrders)
+                    )
+
+                    // Add new functionality: Save orders to centralized "Orders" key
+                    const existingOrders =
+                      JSON.parse(localStorage.getItem('Orders')) || []
+
+                    // Get current date and time in IST format
+                    const date = new Date();
+                    const formattedDate = date.toLocaleString('en-IN', { 
+                      weekday: 'long', 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric', 
+                      hour: 'numeric', 
+                      minute: 'numeric', 
+                      second: 'numeric',
+                      hour12: true
+                    });
+                    
+                    existingOrders.push([
+                      order_Id, // Order ID
+                      username, // Username
+                      formattedDate, // Store the formatted date
+                      { items: cartItems, totalPrice }, // Order details
+                    ]);
+                    
+
+                    // Update localStorage
+                    localStorage.setItem(
+                      'Orders',
+                      JSON.stringify(existingOrders)
+                    )
+                  }}
+                  className="place"
+                >
+                  Place Order
                 </button>
+
                 <div></div>
                 <div></div>
                 <div className="sum-total">${totalPrice}</div>
@@ -137,7 +224,7 @@ export default function Cart() {
         <div className="empty-cart">
           <img src={empty} />
           <h1>Your Cart is Empty</h1>
-          <Link to="/">
+          <Link to="/Home">
             <button>Return to Shop</button>
           </Link>
         </div>
