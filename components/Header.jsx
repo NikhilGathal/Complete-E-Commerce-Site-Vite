@@ -23,9 +23,9 @@ export default function Header({
   isdark,
   setuserlogin,
   uname1,
+  userlogin,
 }) {
-  // console.log(uname1);
-  
+  console.log( 'header ' +  userlogin);
   const [signname, setsignname] = useState(false)
   const [islog, setislog] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -203,6 +203,27 @@ export default function Header({
     }
   }
 
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    let yOffset;
+  
+    if (section) {
+      if (section.id === "subscribe") {  // Use a string for ID comparison
+        yOffset = -200;
+      } else {
+        yOffset = -100;
+      }
+      // Adjust offset based on header height
+      const y = section.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
+
+    useEffect(() => {
+      localStorage.setItem("userlogin", JSON.stringify(userlogin));
+    }, [userlogin]);
+  
+
   // const dark = false
   return (
     <header
@@ -219,6 +240,7 @@ export default function Header({
             onClick={() => {
               //  setquery('')
               // dispatch(fetchdata())
+              window.scrollTo({ top: 0, behavior: 'smooth' })
               dispatch(fetchProductdata())
               // dispatch(updateAllProducts(statedata))
               //  console.log('clicked');
@@ -248,7 +270,7 @@ export default function Header({
           alt={dark ? 'Light Mode' : 'Dark Mode'}
           className="mode"
         />
-<h1> {username ? `Welcome ${username}` : ''} </h1>
+        <h3 id="wel"> {username ? `Welcome ${username}` : ''} </h3>
         <div className="icon-contain">
           <Link className="cart-icon" to="/cart">
             <img
@@ -283,6 +305,24 @@ export default function Header({
           <span onClick={toggleMenu} className="close-icon">
             &times;
           </span>
+          <div className="H sections-container">
+            <h3 className=" sett">Sections</h3>
+            <div className="suggestion-box-home">
+              {/* <p onClick={() => scrollToSection("hero")} className='H'>Top</p> */}
+              <p onClick={() => scrollToSection('category')} className="H">
+                Category
+              </p>
+              <p onClick={() => scrollToSection('top-products')} className="H">
+                TopProducts
+              </p>
+              <p onClick={() => scrollToSection('subscribe')} className="H">
+                Subscription
+              </p>
+              <p onClick={() => scrollToSection('testimonials')} className="H">
+                Testimonials
+              </p>
+            </div>
+          </div>
 
           <h3
             className="H"
@@ -290,7 +330,7 @@ export default function Header({
               setissign(true)
               toggleMenu(e)
             }}
-            style={{ display:  username ? 'none' : 'block' }}
+            style={{ display: username ? 'none' : 'block' }}
           >
             Signup
           </h3>
@@ -304,9 +344,9 @@ export default function Header({
 
           {(username && username !== adminUsername) ||
           username === adminUsername ? (
-            <div className={`heading-container ${dark ? 'dark' : ''}`}>
+            <div className={`H heading-container ${dark ? 'dark' : ''}`}>
               {username === adminUsername ? (
-                <h3 className="H heading">Profile</h3>
+                <h3 className="heading">Profile</h3>
               ) : (
                 username !== adminUsername && (
                   <h3 className="H heading">Profile</h3>
@@ -372,39 +412,32 @@ export default function Header({
             </div>
           ) : null}
 
-          <h3
-            className="H login-container"
-            style={{ display: username ? 'none' : 'block' }}
-          >
-            Login
-            <div className="suggestion-box-log">
-              <p
-                onClick={(e) => {
-                  setislog(true)
-                  toggleMenu(e)
-                  // console.log('hi')
-                }}
-              >
-                Admin
-              </p>
-              <p
-                onClick={(e) => {
-                  setislog(true)
-                  toggleMenu(e)
-                  // console.log('hi')
-                }}
-              >
-                User
-              </p>
+          {!userlogin && (
+            <div className="H login-container">
+              <h3>
+                Login
+                <div className="suggestion-box-log">
+                  <p
+                    onClick={(e) => {
+                      setislog(true)
+                      toggleMenu(e)
+                    }}
+                  >
+                    Admin
+                  </p>
+                  <p
+                    onClick={(e) => {
+                      setislog(true)
+                      toggleMenu(e)
+                    }}
+                  >
+                    User
+                  </p>
+                </div>
+              </h3>
             </div>
-          </h3>
+          )}
 
-
-
-
-
-
-          
           <ModalLogin
             islog={islog}
             setislog={setislog}
@@ -412,6 +445,7 @@ export default function Header({
             setuserlogin={setuserlogin}
             setIsAdmin={setIsAdmin}
             setissign={setissign}
+            userlogin={userlogin}
           />
           <h3
             className="H"
@@ -423,7 +457,9 @@ export default function Header({
                 JSON.parse(localStorage.getItem('wishItems')) || []
               dispatch(loadCartItemsFromLocal(storedCart))
               dispatch(loadWishItem(storedwish))
+              // localStorage.setItem("userlogin", JSON.stringify(false));
               setuserlogin(false)
+             
               setusername('')
               setsignname(false)
               localStorage.setItem('signedUp', 'false')

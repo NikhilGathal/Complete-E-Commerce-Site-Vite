@@ -57,7 +57,7 @@ margin-inline: auto;
 .text-3xl {
   color: var(--text-color);
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .font-bold {
@@ -198,13 +198,31 @@ margin-inline: auto;
     text-align: center;
   }
 }
-@media (min-width :1024px)
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 60px; 
+  }
+
+  .product-card .details-section {
+    min-width: 150px;
+    min-height: 80px;
+    padding: 2.5rem;
+    text-align: center;
+  }
+}
+@media (min-width :1246px)
 {
   .product-card .details-section {
     min-width: 255px;
     min-height: 134px;
-    /* padding: 1rem; */
+    padding: 1rem;
     text-align: center;
+  }
+  .grid 
+  {
+    gap : 5px
   }
 
   .product-card .details-section button {

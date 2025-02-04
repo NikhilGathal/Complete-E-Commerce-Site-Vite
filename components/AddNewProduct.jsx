@@ -67,6 +67,8 @@ const AddNewProduct = () => {
             <label>Title:</label>
             <input
               type="text"
+              placeholder='Enter Title'
+              className='newpdt-inp'
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
             />
@@ -76,6 +78,8 @@ const AddNewProduct = () => {
             <label>Price:</label>
             <input
               type="number"
+               placeholder='Enter Price'
+              className='newpdt-inp'
               value={newPrice}
               onChange={(e) => setNewPrice(e.target.value)}
             />
@@ -86,7 +90,7 @@ const AddNewProduct = () => {
             <select
               value={newCategory}
               onChange={(e) => setNewCategory(e.target.value)}>
-              <option value="">Select Category</option>
+              <option className='newpdt-inp' value="">Select Category</option>
               <option value="jewelery">Jewelery</option>
               <option value="men's clothing">Men's Clothing</option>
               <option value="electronics">Electronics</option>
@@ -97,6 +101,7 @@ const AddNewProduct = () => {
           <div>
             <label>Description:</label>
             <textarea
+            className='newpdt-inp'
               value={newDescription}
               onChange={(e) => setNewDescription(e.target.value)}
               placeholder="Enter product description"
@@ -106,6 +111,7 @@ const AddNewProduct = () => {
           <div>
             <label>Image URL:</label>
             <input
+            className='newpdt-inp'
               type="text"
               value={newImage}
               onChange={(e) => setNewImage(e.target.value)}
@@ -116,6 +122,7 @@ const AddNewProduct = () => {
           <div>
             <label>Rating:</label>
             <input
+            className='newpdt-inp'
               type="number"
               value={newRating}
               onChange={(e) => setNewRating(Number(e.target.value))}

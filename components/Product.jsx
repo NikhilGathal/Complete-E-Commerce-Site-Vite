@@ -80,8 +80,8 @@ export default function Product({ productId, title, rating, price, imageUrl }) {
       <div className="cta-container">
         {isAdmin ? (
           <>
-            <button onClick={handleDelete}>Remove Item</button>
-            <button onClick={handleUpdateProduct}>Update Item</button>
+            <button onClick={handleDelete}>Remove Product</button>
+            <button onClick={handleUpdateProduct}>Edit Product</button>
           </>
         ) : (
           <>

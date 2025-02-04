@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import './ModalLogin.css'
 import { removeallCartItem } from '../store/slices/cartSlice'
@@ -13,6 +13,7 @@ export default function ModalLogin({
   setuserlogin,
   setIsAdmin,
   setissign,
+  userlogin
 }) {
   const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {}
 
@@ -56,10 +57,13 @@ export default function ModalLogin({
       loginData.password === existingAdmin.password
     ) {
       alert('Admin logged in successfully!')
-      setusername(loginData.username)
       localStorage.setItem('username', loginData.username)
+      // localStorage.setItem("userlogin", JSON.stringify(true));
+      setusername(loginData.username)
+      
       setIsAdmin(true) // Indicate user is an admin
       setuserlogin(true)
+     
       setislog(false)
       navigate('/')
       setLoginData({ username: '', password: '' })
@@ -156,6 +160,10 @@ export default function ModalLogin({
     setislog(false)
     setIsForgotPassword(false)
   }
+
+  useEffect(() => {
+    localStorage.setItem("userlogin", JSON.stringify(userlogin));
+  }, [userlogin]);
 
   return createPortal(
     <div onClick={m} className={`modal-overlay-log ${islog ? '' : 'hidden'}`}>
