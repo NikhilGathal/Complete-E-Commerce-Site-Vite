@@ -90,7 +90,7 @@ const AddNewProduct = () => {
             <select
               value={newCategory}
               onChange={(e) => setNewCategory(e.target.value)}>
-              <option className='newpdt-inp' value="">Select Category</option>
+              <option className='newpdt-inp' hidden value="">Select Category</option>
               <option value="jewelery">Jewelery</option>
               <option value="men's clothing">Men's Clothing</option>
               <option value="electronics">Electronics</option>
