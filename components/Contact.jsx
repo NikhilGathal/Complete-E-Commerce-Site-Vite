@@ -52,6 +52,9 @@ const ContactUs = () => {
 
     // After form submission, navigate to /contact/form
     navigate('feedback') // Programmatically navigate to /contact/form
+    setTimeout(() => {
+      navigate("/contact");
+    }, 3000);
   }
 
   const isFormRoute = location.pathname === '/contact/feedback'
