@@ -4,4 +4,3 @@
 
 •	Executed robust admin functionalities, enabling the addition, editing, and removal of products, as well as comprehensive insights into user purchases (product details, quantities, and prices). Integrated automated email notifications for user transactions and ensured an optimized and user-friendly experience.
 
-# Complete-E-Commerce-Site-Vite
