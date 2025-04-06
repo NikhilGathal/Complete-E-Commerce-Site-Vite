@@ -1,9 +1,6 @@
-# React + Vite
+# E-Commerce Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+•	Developed a full-stack e-commerce platform using React Redux and Spring Boot, offering a seamless shopping experience. Key features include user authentication (signup, login, and password recovery), product search, and management of the cart and wishlist, with options to add, remove, or adjust quantities. Users can place orders, receive email confirmations, and access their purchase history. Profile updates allow changes to personal details, including username, password and other details.
 
-Currently, two official plugins are available:
+•	Executed robust admin functionalities, enabling the addition, editing, and removal of products, as well as comprehensive insights into user purchases (product details, quantities, and prices). Integrated automated email notifications for user transactions and ensured an optimized and user-friendly experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# Complete-E-Commerce-Site-Vite
