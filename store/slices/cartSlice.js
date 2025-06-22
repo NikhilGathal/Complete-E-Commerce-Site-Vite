@@ -26,16 +26,15 @@ const slice = createSlice({
       state.loading = false
       state.list = action.payload
     },
-    removeallCartItem(state)
-    {
+    removeallCartItem(state) {
       state.list = []
     },
     clearCart: (state) => {
       state.list = []; // Clear the cart items
-  },
+    },
     addCartItem(state, action) {
       // console.log(action);
-      
+
       const existingItemIndex = findItemIndex(state.list, action)
       if (existingItemIndex !== -1) state.list[existingItemIndex].quantity += 1
       else state.list.push({ ...action.payload, quantity: 1 })
@@ -47,13 +46,13 @@ const slice = createSlice({
     increaseCartItemQuantity(state, action) {
       const existingItemIndex = findItemIndex(state.list, action)
       // console.log(state.list);
-      
+
       state.list[existingItemIndex].quantity += 1
     },
     decreaseCartItemQuantity(state, action) {
       const existingItemIndex = findItemIndex(state.list, action)
-      if (existingItemIndex !== -1) 
-      state.list[existingItemIndex].quantity -= 1
+      if (existingItemIndex !== -1)
+        state.list[existingItemIndex].quantity -= 1
       if (state.list[existingItemIndex].quantity === 0)
         state.list.splice(existingItemIndex, 1)
     },
@@ -71,7 +70,7 @@ const slice = createSlice({
 //       return { ...cartProduct, quantity }
 //     })
 
-    
+
 // }
 
 // export const getAllCartItems = createSelector(getCartItems, (cartItems) => {
@@ -102,42 +101,7 @@ export const getAllCartItems = createSelector(
   }
 );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // createSelector([state => state.todos], todos => todos)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export const getCartLoadingState = (state) => state.products.loading
 export const getCartError = (state) => state.products.error
 
@@ -146,23 +110,17 @@ export const getCartError = (state) => state.products.error
 
 // Thunk Action Create
 // export const fetchCartItemsdata = ()=> (dispatch)=> 
-  {
-    // dispatch(fetchCartItems())
-    // fetch(`https://fakestoreapi.com/carts/5 `)
-    // .then((res) => res.json())
-    // .then((data) => {
-    //     dispatch(loadCartItems(data))
-    // })
-    // .catch(() => {
-    //     dispatch(fetchCartItemsError())
-    // })
-  } 
-
-
-
-
-
-
+{
+  // dispatch(fetchCartItems())
+  // fetch(`https://fakestoreapi.com/carts/5 `)
+  // .then((res) => res.json())
+  // .then((data) => {
+  //     dispatch(loadCartItems(data))
+  // })
+  // .catch(() => {
+  //     dispatch(fetchCartItemsError())
+  // })
+}
 // export const fetchCartItemsdata = () => (dispatch) => {
 //   let storedCart = JSON.parse(localStorage.getItem('cartItems')) || []; 
 //   const arry = []; 
@@ -190,42 +148,7 @@ export const getCartError = (state) => state.products.error
 //     });
 // };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export const {loadCartItemsFromLocal,
+export const { loadCartItemsFromLocal,
   fetchCartItemsError,
   fetchCartItems,
   loadCartItems,

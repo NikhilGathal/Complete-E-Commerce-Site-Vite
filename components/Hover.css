@@ -11,6 +11,11 @@
   --elements-color: hsl(209, 23%, 22%);
 }
 
+#wel:hover 
+{
+  cursor: default;
+}
+
 .heading {
   cursor: pointer; /* Adds a pointer to indicate interactivity */
 }
