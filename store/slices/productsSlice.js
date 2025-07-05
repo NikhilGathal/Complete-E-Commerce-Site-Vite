@@ -81,7 +81,8 @@ export const { updateAllProducts, fetchProducts, fetchProductsError, deleteProdu
 //       dispatch(fetchProductsError())
 //     })
 // }
-
+// just for convention we have to call action creator that why below call back function is present
+// inside of dispatch as convention we have to call that function for that we are returning a function from  callback function
 export const fetchProductdata = () => (dispatch) => {
   // Check if data exists in localStorage
   const localData = JSON.parse(localStorage.getItem('productsList'));
@@ -101,6 +102,8 @@ export const fetchProductdata = () => (dispatch) => {
       })
       .catch(() => {
         // dispatch(fetchProductsError());
+        console.log(" Failed to fetch data from API using local data ");
+        
         dispatch(updateAllProducts(productsList));
         localStorage.setItem('productsList', JSON.stringify(productsList));
       });
