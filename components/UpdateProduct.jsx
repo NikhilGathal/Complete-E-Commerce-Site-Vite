@@ -23,6 +23,7 @@ const UpdateProduct = () => {
   const [newDescription, setNewDescription] = useState('')
   const [newImage, setNewImage] = useState('')
   const [newRating, setNewRating] = useState(1)
+  const [newCount, setNewCount] = useState(1)
 
   useEffect(() => {
     // If product is found, set the form fields with its data
@@ -32,11 +33,16 @@ const UpdateProduct = () => {
       setNewCategory(product.category)
       setNewDescription(product.description)
       setNewImage(product.image)
-      setNewRating(product.rating ? product.rating.rate : 1)  // Safeguard if rating doesn't exist
+      setNewRating(product.rating ? product.rating.rate : 1) 
+      setNewCount(product.rating ? product.rating.count : 1) // Safeguard if rating doesn't exist
     }
   }, [product])
 
   const handleSave = () => {
+    if (newCount <= 0) {
+  alert('Count must be greater than 0.');
+  return;
+}
     // Simple validation to check if any field is empty
     if (!newTitle || !newPrice || !newCategory || !newDescription || !newImage) {
       alert('Please fill all the fields before saving.');
@@ -62,7 +68,9 @@ const UpdateProduct = () => {
         category: newCategory,
         description: newDescription,
         image: newImage,
-        rating: { rate: newRating }
+        rating: { rate: newRating ,
+          count :newCount
+        }
       }))
       navigate('/Home') // Redirect after update
     }
@@ -79,8 +87,9 @@ const UpdateProduct = () => {
       <div className="update-product-container">
         <div className="update-product-container-content">
           <div>
-            <label>Title:</label>
+            <label className='bb'>Title:</label>
             <input
+             className='newpdt-inp'
               type="text"
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
@@ -89,8 +98,9 @@ const UpdateProduct = () => {
           </div>
 
           <div>
-            <label>Price:</label>
+            <label className='bb'>Price:</label>
             <input
+             className='newpdt-inp'
               type="number"
               value={newPrice}
               onChange={(e) => setNewPrice(e.target.value)}
@@ -99,8 +109,9 @@ const UpdateProduct = () => {
           </div>
 
           <div>
-            <label>Category:</label>
+            <label className='bb'>Category:</label>
             <input
+             className='newpdt-inp'
               type="text"
               value={newCategory}
               onChange={(e) => setNewCategory(e.target.value)}
@@ -109,8 +120,9 @@ const UpdateProduct = () => {
           </div>
 
           <div>
-            <label>Description:</label>
+            <label className='bb'>Description:</label>
             <textarea
+             className='newpdt-inp'
               value={newDescription}
               onChange={(e) => setNewDescription(e.target.value)}
               placeholder="Enter product description"
@@ -118,8 +130,9 @@ const UpdateProduct = () => {
           </div>
 
           <div>
-            <label>Image URL:</label>
+            <label className='bb'>Image URL:</label>
             <input
+             className='newpdt-inp'
               type="text"
               value={newImage}
               onChange={(e) => setNewImage(e.target.value)}
@@ -128,8 +141,9 @@ const UpdateProduct = () => {
           </div>
 
           <div>
-            <label>Rating:</label>
+            <label className='bb'>Rating:</label>
             <input
+             className='newpdt-inp'
               type="number"
               value={newRating}
               onChange={(e) => setNewRating(Number(e.target.value))}
@@ -137,6 +151,17 @@ const UpdateProduct = () => {
               max="5"
             />
           </div>
+
+             { <div>
+  <label className='bb'>Count:</label>
+  <input
+    className='newpdt-inp'
+    type="number"
+    value={newCount}
+    onChange={(e) => setNewCount(Number(e.target.value))}
+    min="1"
+  />
+</div> }
 
           <button className="save" onClick={handleSave}>
             Save

@@ -115,8 +115,13 @@ const OrderConfirmation = () => {
   };
 
   React.useEffect(() => {
+  const hasSentEmail = localStorage.getItem(`emailSentForOrder_${order_Id}`);
+
+  if (!hasSentEmail && username && cartItems) {
     sendOrderEmail();
-  }, []);
+    localStorage.setItem(`emailSentForOrder_${order_Id}`, "true"); // ✅ Set flag
+  }
+}, []);
 
   return (
   <>

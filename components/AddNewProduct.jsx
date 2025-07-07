@@ -19,14 +19,25 @@ const AddNewProduct = () => {
   const [newDescription, setNewDescription] = useState('')
   const [newImage, setNewImage] = useState('')
   const [newRating, setNewRating] = useState(1)
+  const [newCount, setNewCount] = useState(1)
 
   // Calculate productId based on the current state
+  // const calculateProductId = () => {
+  //   // Generate the next ID by getting the length of the existing products list
+  //   return products.length + 1
+  // }
+
   const calculateProductId = () => {
-    // Generate the next ID by getting the length of the existing products list
-    return products.length + 1
-  }
+  if (products.length === 0) return 1
+  const lastProduct = products[products.length - 1]
+  return lastProduct?.id ? lastProduct.id + 1 : 1
+}
 
   const handleSave = () => {
+    if (newCount <= 0) {
+  alert('Count must be greater than 0.');
+  return;
+}
     // Validate the fields to ensure no field is empty
     if (!newTitle || !newPrice || !newCategory || !newDescription || !newImage) {
       alert('Please fill all the fields before adding.');
@@ -52,9 +63,12 @@ const AddNewProduct = () => {
         category: newCategory,
         description: newDescription,
         image: newImage,
-        rating: { rate: newRating },
+        rating: { rate: newRating,
+          count : newCount
+         },
       })
     )
+  alert('Product Added Successfully')
     navigate('/') // Redirect to the product list or any desired page
   }
 
@@ -64,7 +78,7 @@ const AddNewProduct = () => {
       <div className="update-product-container">
         <div className="update-product-container-content">
           <div>
-            <label>Title:</label>
+            <label className='bb'>Title:</label>
             <input
               type="text"
               placeholder='Enter Title'
@@ -75,7 +89,7 @@ const AddNewProduct = () => {
           </div>
 
           <div>
-            <label>Price:</label>
+            <label className='bb'>Price:</label>
             <input
               type="number"
                placeholder='Enter Price'
@@ -86,8 +100,8 @@ const AddNewProduct = () => {
           </div>
 
           <div className='addnew'>
-            <label>Category:</label>
-            <select
+            <label className='bb'>Category:</label>
+            <select className='newpdt-inp'
               value={newCategory}
               onChange={(e) => setNewCategory(e.target.value)}>
               <option className='newpdt-inp' hidden value="">Select Category</option>
@@ -99,7 +113,7 @@ const AddNewProduct = () => {
           </div>
 
           <div>
-            <label>Description:</label>
+            <label className='bb'>Description:</label>
             <textarea
             className='newpdt-inp'
               value={newDescription}
@@ -109,7 +123,7 @@ const AddNewProduct = () => {
           </div>
 
           <div>
-            <label>Image URL:</label>
+            <label className='bb'>Image URL:</label>
             <input
             className='newpdt-inp'
               type="text"
@@ -120,7 +134,7 @@ const AddNewProduct = () => {
           </div>
 
           <div>
-            <label>Rating:</label>
+            <label className='bb'>Rating:</label>
             <input
             className='newpdt-inp'
               type="number"
@@ -130,6 +144,18 @@ const AddNewProduct = () => {
               max="5"
             />
           </div>
+
+
+                    { <div>
+  <label className='bb'>Count:</label>
+  <input
+    className='newpdt-inp'
+    type="number"
+    value={newCount}
+    onChange={(e) => setNewCount(Number(e.target.value))}
+    min="1"
+  />
+</div> }
 
           <button className="save" onClick={handleSave}>
             Add

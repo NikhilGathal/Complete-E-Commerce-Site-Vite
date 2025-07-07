@@ -15,6 +15,26 @@ export default function CartItem({
   imageUrl,
   quantity,
 }) {
+  
+
+  const updateProductCount = (productId, delta) => {
+  const products = JSON.parse(localStorage.getItem('productsList')) || [];
+  const index = products.findIndex(p => p.id === productId);
+  if (index !== -1) {
+    products[index].rating.count += delta;
+    if (products[index].rating.count < 0) products[index].rating.count = 0;
+    localStorage.setItem('productsList', JSON.stringify(products));
+   
+  }
+};
+  const username = localStorage.getItem('username');
+const cartKey = username ? `${username}cart` : 'cartItems';
+
+const storedCart = JSON.parse(localStorage.getItem(cartKey)) || [];
+const itemToRemove = storedCart.find(item => item.productId === productId);
+const removedQuantity = itemToRemove ? itemToRemove.quantity : 0;
+
+
   const dispatch = useDispatch()
   const handleRemove = () => {
     const username = localStorage.getItem('username')
@@ -25,7 +45,12 @@ export default function CartItem({
     )
     localStorage.setItem(cartKey, JSON.stringify(updatedCart))
     dispatch(removeCartItem({ productId }))
+  if (localStorage.getItem('username')) {
+  updateProductCount(productId, removedQuantity)
+}
+
   }
+
   return (
     <div className="cart-item-container">
       <div className="cart-item">
@@ -67,6 +92,9 @@ export default function CartItem({
             }
             // Dispatch the action to decrease the quantity in Redux
             dispatch(decreaseCartItemQuantity({ productId }))
+            if (localStorage.getItem('username')) {
+  updateProductCount(productId, +1) // reduce stock
+}
           }}
         >
           -
@@ -94,6 +122,9 @@ export default function CartItem({
             )
             // Dispatch the action to increase the quantity in Redux
             dispatch(increaseCartItemQuantity({ productId }))
+            if (localStorage.getItem('username')) {
+  updateProductCount(productId, -1) // reduce stock
+}
           }}
         >
           +

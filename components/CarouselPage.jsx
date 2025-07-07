@@ -115,7 +115,7 @@ function CarouselPage() {
             key={id}
             productId={id}
             title={title}
-            rating={rating.rate}
+            rating={rating}
             price={price}
             imageUrl={image}
           />

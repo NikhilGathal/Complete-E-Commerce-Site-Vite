@@ -21,6 +21,7 @@ import Root from '../pages/Root'
 import EditUser from '../components/EditUser'
 import EmailsList from '../components/EmailsList'
 import FeedbacksList from '../components/FeedbacksList'
+import OutOfStockProducts from '../components/OutOfStockProducts'
 
 const router = createBrowserRouter([
   {
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
       {
         path: '/FeedbacksList',
         element: <FeedbacksList/>,
+      },
+       {
+        path: '/OutOfStockProducts',
+        element: <OutOfStockProducts/>,
       },
     ],
   },

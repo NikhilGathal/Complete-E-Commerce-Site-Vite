@@ -26,7 +26,7 @@ export default function Header({
   userlogin,
 }) {
   const location = useLocation()
-  console.log('header ' + userlogin)
+  // console.log('header ' + userlogin)
   const [signname, setsignname] = useState(false)
   const [islog, setislog] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -426,8 +426,11 @@ export default function Header({
                       <Link to="/EditUser">
                         <p>Edit Profile</p>
                       </Link>
-                      <Link to="/Emailslist">
-                        <p>Subscription</p>
+                       <Link to="/Emailslist">
+                      <p>Subscription</p>
+                    </Link>
+                      <Link to="/OutOfStockProducts">
+                        <p>Out of Stock</p>
                       </Link>
                       <Link to="/FeedbacksList">
                         <p>Feedbacks</p>

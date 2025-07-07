@@ -9,6 +9,12 @@ import { useState } from 'react';
 import { deleteProduct } from '../store/slices/productsSlice';
 
 export default function Product({ productId, title, rating, price, imageUrl }) {
+  // console.log(rating.rate);
+  // console.log(rating.count);
+  const storedProducts = JSON.parse(localStorage.getItem("productsList")) || [];
+  const [productCount, setProductCount] = useState(storedProducts[productId-1].rating.count);
+  
+  
   const username = localStorage.getItem('username');
   const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {}
   const isAdmin = username === existingAdmin.username;
@@ -19,6 +25,18 @@ export default function Product({ productId, title, rating, price, imageUrl }) {
   const handleDelete = () => {
     dispatch(deleteProduct(productId)); // Dispatch delete action
   };
+
+const updateProductCount = (productId, delta) => {
+  const products = JSON.parse(localStorage.getItem('productsList')) || [];
+  const index = products.findIndex(p => p.id === productId);
+  if (index !== -1) {
+    products[index].rating.count += delta;
+    if (products[index].rating.count < 0) products[index].rating.count = 0;
+
+    localStorage.setItem('productsList', JSON.stringify(products));
+    setProductCount(products[index].rating.count); // ✅ update state too
+  }
+};
 
   // Handle add to cart
   const handleAddToCart = () => {
@@ -37,6 +55,9 @@ export default function Product({ productId, title, rating, price, imageUrl }) {
 
     // Dispatch to add cart in Redux
     dispatch(addCartItem({ productId }));
+   if (localStorage.getItem('username')) {
+  updateProductCount(productId, -1) // reduce stock
+}
   };
 
   // Handle add to wishlist
@@ -74,18 +95,27 @@ export default function Product({ productId, title, rating, price, imageUrl }) {
         </Link>
       </div>
       <div className="price-rating-container">
-        <p className="rating">{+rating} ★ ★ ★ ★</p>
+        <p className="rating">{+rating.rate} ★ ★ ★ ★</p>
+     {isAdmin && (
+  <p className="price">Stock : {productCount}</p>
+)}
         <p className="price">${price}</p>
       </div>
-      <div className="cta-container">
+       <div className="cta-container">
         {isAdmin ? (
           <>
-            <button onClick={handleDelete}>Remove Product</button>
-            <button onClick={handleUpdateProduct}>Edit Product</button>
+            <button onClick={handleDelete}>Remove </button>
+            <button onClick={handleUpdateProduct}>Edit </button>
           </>
         ) : (
           <>
-            <button onClick={handleAddToCart}>Add to Cart</button>
+            {productCount > 0  > 0 ? (
+              <button onClick={handleAddToCart}>Add to Cart</button>
+            ) : (
+              <button disabled style={{ backgroundColor: '#ccc', cursor: 'not-allowed' }}>
+                Out of Stock
+              </button>
+            )}
             <button onClick={handleAddToWishList}>Add to WishList</button>
           </>
         )}

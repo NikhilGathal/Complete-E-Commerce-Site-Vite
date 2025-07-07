@@ -1,14 +1,16 @@
-
-
 import React, { useEffect, useState } from 'react'
-import { useOutletContext, useParams } from 'react-router-dom'
+import { useNavigate, useOutletContext, useParams } from 'react-router-dom'
 import './ItemDetail.css'
 import { useDispatch } from 'react-redux'
 import { addCartItem } from '../store/slices/cartSlice'
 import { addWishItem } from '../store/slices/wishListSlice'
 import Footer from './Footer'
+import { deleteProduct } from '../store/slices/productsSlice'
 
 const ItemDetail = () => {
+  const username = localStorage.getItem('username')
+  const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {}
+  const isAdmin = username === existingAdmin.username
   const dispatch = useDispatch()
   let { productId } = useParams() // Get the itemId from the URL
   productId = +productId // Convert productId to a number
@@ -16,6 +18,43 @@ const ItemDetail = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [, dark] = useOutletContext()
+  const navigate = useNavigate()
+  const pdtlist = JSON.parse(localStorage.getItem('productsList'))
+
+  // console.log(pdtlist)
+
+  // console.log(pdtlist[productId-1])
+
+  const [productCount, setProductCount] = useState(pdtlist[productId-1].rating?.count);
+  const updateProductCount = (productId, delta) => {
+    const products = JSON.parse(localStorage.getItem('productsList')) || []
+    const index = products.findIndex((p) => p.id === productId)
+    if (index !== -1) {
+      products[index].rating.count += delta // delta = -1 for add to cart, +1 for remove
+      if (products[index].rating.count < 0) products[index].rating.count = 0
+      localStorage.setItem('productsList', JSON.stringify(products))
+      setProductCount(products[index].rating.count)
+    }
+  }
+
+  const handleDelete = () => {
+    dispatch(deleteProduct(productId))
+    navigate('/Home') // Dispatch delete action
+  }
+
+  const handleUpdateProduct = () => {
+    if (!item) return
+
+    navigate(`/update-product/${productId}`, {
+      state: {
+        productId,
+        title: item.title,
+        rating: item.rating,
+        price: item.price,
+        imageUrl: item.image,
+      },
+    })
+  }
 
   useEffect(() => {
     // Fetch item details from localStorage
@@ -26,7 +65,7 @@ const ItemDetail = () => {
         const product = productsList.find((p) => p.id === productId) // Find the product by ID
 
         if (!product) {
-          throw new Error('Product not found')
+          throw new Error('Product Out of Stock')
         }
         setItem(product) // Set the product as the state
         setLoading(false) // Set loading to false
@@ -50,7 +89,7 @@ const ItemDetail = () => {
     return (
       <>
         {' '}
-        <div className="error-msg">Error: {error}</div> <Footer dark={dark} />{' '}
+        <div className="error-msg"> {error}</div> <Footer dark={dark} />{' '}
       </>
     )
 
@@ -73,54 +112,73 @@ const ItemDetail = () => {
             </span>
           </div>
           <div className="item-button">
-            <button
-              onClick={() => {
-                const username = localStorage.getItem('username')
-                const cartKey = username ? `${username}cart` : 'cartItems'
-                let storedCart = JSON.parse(localStorage.getItem(cartKey)) || []
+            {isAdmin ? (
+              <>
+                <button onClick={handleDelete}>Remove Product</button>
+                <button onClick={handleUpdateProduct}>Edit Product</button>
+              </>
+            ) : (
+              <>
+                {productCount> 0 ? (
+                  <button
+                    onClick={() => {
+                      const username = localStorage.getItem('username')
+                      const cartKey = username ? `${username}cart` : 'cartItems'
+                      let storedCart =
+                        JSON.parse(localStorage.getItem(cartKey)) || []
 
-                // Check if the product already exists in the cart
-                const existingProductIndex = storedCart.findIndex(
-                  (cartItem) => cartItem.productId === productId
-                )
-                if (existingProductIndex !== -1) {
-                  // If it exists, increment the quantity
-                  storedCart[existingProductIndex].quantity += 1
-                } else {
-                  // If it doesn't exist, add a new object with productId and quantity
-                  storedCart.push({ productId, quantity: 1 })
-                }
-                // Save the updated cart back to localStorage
-                localStorage.setItem(cartKey, JSON.stringify(storedCart))
-                // Dispatch the action to add to cart in Redux
-                dispatch(addCartItem({ productId }))
-              }}
-            >
-              Add to cart
-            </button>
-            <button
-              onClick={() => {
-                const username = localStorage.getItem('username')
-                const wishKey = username ? `${username}wish` : 'wishItems'
-                let storedWish = JSON.parse(localStorage.getItem(wishKey)) || []
-                const existingProductIndex = storedWish.findIndex(
-                  (wishItem) => wishItem.productId === productId
-                )
-                if (existingProductIndex !== -1) {
-                  console.log('Product already in wishlist.')
-                } else {
-                  storedWish.push({ productId, quantity: 1 })
-                }
+                      const existingProductIndex = storedCart.findIndex(
+                        (cartItem) => cartItem.productId === productId
+                      )
 
-                // Save the updated wishlist back to localStorage
-                localStorage.setItem(wishKey, JSON.stringify(storedWish))
+                      if (existingProductIndex !== -1) {
+                        storedCart[existingProductIndex].quantity += 1
+                      } else {
+                        storedCart.push({ productId, quantity: 1 })
+                      }
 
-                // Dispatch the action to add to wishlist in Redux
-                dispatch(addWishItem({ productId }))
-              }}
-            >
-              Add to wishlist
-            </button>
+                      localStorage.setItem(cartKey, JSON.stringify(storedCart))
+                      dispatch(addCartItem({ productId }))
+                      if (localStorage.getItem('username')) {
+                        updateProductCount(productId, -1) // reduce stock
+                      }
+                    }}
+                  >
+                    Add to Cart
+                  </button>
+                ) : (
+                  <button
+                    disabled
+                    style={{ backgroundColor: '#ccc', cursor: 'not-allowed' }}
+                  >
+                    Out of Stock
+                  </button>
+                )}
+
+                <button
+                  onClick={() => {
+                    const username = localStorage.getItem('username')
+                    const wishKey = username ? `${username}wish` : 'wishItems'
+                    let storedWish =
+                      JSON.parse(localStorage.getItem(wishKey)) || []
+
+                    const existingProductIndex = storedWish.findIndex(
+                      (wishItem) => wishItem.productId === productId
+                    )
+
+                    if (existingProductIndex !== -1) {
+                      console.log('Product already in wishlist.')
+                    } else {
+                      storedWish.push({ productId, quantity: 1 })
+                      localStorage.setItem(wishKey, JSON.stringify(storedWish))
+                      dispatch(addWishItem({ productId }))
+                    }
+                  }}
+                >
+                  Add to Wishlist
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>

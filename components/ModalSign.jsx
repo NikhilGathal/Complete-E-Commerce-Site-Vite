@@ -92,6 +92,14 @@ export default function ModalSign({ issign, setissign, setsignname,  setislog ,t
     // Save the updated user array to localStorage
     localStorage.setItem('users', JSON.stringify(existingUsers))
     localStorage.setItem('signedUp', 'true')
+
+const existingEmails = JSON.parse(localStorage.getItem('emails')) || []
+if (!existingEmails.includes(userData.email)) {
+  existingEmails.push(userData.email)
+  localStorage.setItem('emails', JSON.stringify(existingEmails))
+}
+
+
     alert('Sign Up successful! Please proceed to login.')
     setsignname(true)
     setissign(false)
