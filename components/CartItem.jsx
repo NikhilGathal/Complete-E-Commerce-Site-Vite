@@ -148,7 +148,7 @@ const removedQuantity = itemToRemove ? itemToRemove.quantity : 0;
           }}
          disabled={productCount === 0}
   style={productCount === 0 ? { backgroundColor: '#ccc', cursor: 'not-allowed' } : {}}
-  title={productCount === 0 ? 'Product is out of stock' : ''}
+ title={productStock === 0 ? 'You reached max available stock' : ''}
         >
           +
         </button>
