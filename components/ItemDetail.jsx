@@ -20,12 +20,26 @@ const ItemDetail = () => {
   const [, dark] = useOutletContext()
   const navigate = useNavigate()
   const pdtlist = JSON.parse(localStorage.getItem('productsList'))
+  // const [productCount, setProductCount] = useState(pdtlist[productId-1].rating?.count);
 
-  // console.log(pdtlist)
 
-  // console.log(pdtlist[productId-1])
+  const [productCount, setProductCount] = useState(0);
 
-  const [productCount, setProductCount] = useState(pdtlist[productId-1].rating?.count);
+useEffect(() => {
+  const pdtlist = JSON.parse(localStorage.getItem('productsList')) || [];
+  const product = pdtlist.find((p) => p.id === productId);
+  if (product) {
+    setProductCount(product.rating?.count || 0);
+  }
+}, [productId]);
+
+
+
+
+
+
+
+
   const updateProductCount = (productId, delta) => {
     const products = JSON.parse(localStorage.getItem('productsList')) || []
     const index = products.findIndex((p) => p.id === productId)

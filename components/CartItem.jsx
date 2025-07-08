@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import {
   decreaseCartItemQuantity,
@@ -17,6 +17,26 @@ export default function CartItem({
 }) {
   
 
+  const [productCount, setProductCount] = useState(0);
+
+useEffect(() => {
+  const pdtlist = JSON.parse(localStorage.getItem('productsList')) || [];
+  const product = pdtlist.find((p) => p.id === productId);
+  if (product) {
+    setProductCount(product.rating?.count || 0);
+  }
+}, [productId]);
+
+
+
+
+
+
+
+
+
+
+
   const updateProductCount = (productId, delta) => {
   const products = JSON.parse(localStorage.getItem('productsList')) || [];
   const index = products.findIndex(p => p.id === productId);
@@ -24,7 +44,7 @@ export default function CartItem({
     products[index].rating.count += delta;
     if (products[index].rating.count < 0) products[index].rating.count = 0;
     localStorage.setItem('productsList', JSON.stringify(products));
-   
+   setProductCount(products[index].rating.count); 
   }
 };
   const username = localStorage.getItem('username');
@@ -126,6 +146,9 @@ const removedQuantity = itemToRemove ? itemToRemove.quantity : 0;
   updateProductCount(productId, -1) // reduce stock
 }
           }}
+         disabled={productCount === 0}
+  style={productCount === 0 ? { backgroundColor: '#ccc', cursor: 'not-allowed' } : {}}
+  title={productCount === 0 ? 'Product is out of stock' : ''}
         >
           +
         </button>

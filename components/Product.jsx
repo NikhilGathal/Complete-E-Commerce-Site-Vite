@@ -5,15 +5,27 @@ import { useDispatch } from 'react-redux';
 import { addCartItem } from '../store/slices/cartSlice';
 import { addWishItem } from '../store/slices/wishListSlice';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { deleteProduct } from '../store/slices/productsSlice';
 
 export default function Product({ productId, title, rating, price, imageUrl }) {
   // console.log(rating.rate);
   // console.log(rating.count);
   const storedProducts = JSON.parse(localStorage.getItem("productsList")) || [];
-  const [productCount, setProductCount] = useState(storedProducts[productId-1].rating.count);
+  // const [productCount, setProductCount] = useState(storedProducts[productId-1].rating.count);
   
+
+  const [productCount, setProductCount] = useState(0);
+
+useEffect(() => {
+  const pdtlist = JSON.parse(localStorage.getItem('productsList')) || [];
+  const product = pdtlist.find((p) => p.id === productId);
+  if (product) {
+    setProductCount(product.rating?.count || 0);
+  }
+}, [productId]);
+
+
   
   const username = localStorage.getItem('username');
   const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {}
