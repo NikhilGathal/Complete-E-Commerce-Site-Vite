@@ -24,6 +24,12 @@
   color: #a870f1;
 }
 
+.heading-container .userp:hover
+{
+  color: #a870f1; 
+  text-decoration: none;
+}
+
 .suggestion-box {
   position: absolute;
   top: 50px; 
@@ -167,13 +173,14 @@
 
 @media (max-width: 1024px) {
   .suggestion-box {
-    top: 47px;
+    top: 40px;
+    left: -22px;
     padding: 5px;
     font-size: 11px !important;
   }
   .suggestion-box-home {
-    top: 47px;
-    left: -6px;
+    top: 40px;
+    left: -15px;
     padding: 5px;
     font-size: 11px !important;
   }
@@ -181,10 +188,13 @@
 
 @media (min-width: 697px) and (max-width: 805px) {
   .suggestion-box {
-    top: 37px;
+    top: 28px;
+    left: -26px;
+    font-size: 9px !important;
   }
   .suggestion-box-home {
-    top: 37px;
-    left: -15px;
+    top: 28px;
+    left: -17px;
+     font-size: 9px !important;
   }
 }

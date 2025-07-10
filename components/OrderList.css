@@ -29,6 +29,10 @@
   color: var(--text-color);
   margin-top: 100px;
 }
+.ord .userord:hover
+{
+   color: #a870f1;;
+}
 
 .order-container h1 
 {

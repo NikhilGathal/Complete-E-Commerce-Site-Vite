@@ -391,7 +391,7 @@ export default function Header({
                 <h3 className="heading">Profile</h3>
               ) : (
                 username !== adminUsername && (
-                  <h3 className="H heading">Profile</h3>
+                  <h3 className="userp H heading">Profile</h3>
                 )
               )}
 
