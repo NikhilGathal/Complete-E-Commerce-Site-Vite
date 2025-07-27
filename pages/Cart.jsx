@@ -8,6 +8,7 @@ import {
   removeallCartItem,
 } from '../store/slices/cartSlice'
 import { Link, useNavigate, useOutletContext } from 'react-router-dom'
+import { updateProductStock } from '../store/slices/productsSlice'
 
 export default function Cart() {
   const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {}
@@ -16,9 +17,12 @@ export default function Cart() {
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(true)
   const cartItems = useSelector(getAllCartItems)
+  const [isPlacingOrder, setIsPlacingOrder] = useState(false)
   // console.log(cartItems)
 
   const navigate = useNavigate()
+  const username = localStorage.getItem('username')
+  console.log(cartItems)
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -35,16 +39,22 @@ export default function Cart() {
   if (isLoading) {
     return (
       <div className="admin">
-      <h1>Loading Cart Items...</h1>
-    </div>
+        <h1>Loading Cart Items...</h1>
+      </div>
+    )
+  }
+  if (isPlacingOrder) {
+    return (
+      <div className="admin">
+        <h1 style={{ textAlign: 'center' }}>Processing your order...</h1>
+      </div>
     )
   }
 
   return (
     <>
-      {isLoading ? (
-        <h1 style={{ textAlign: 'center' }}>Loading Cart items...</h1>
-      ) : cartItems.length ? (
+      {' '}
+      {cartItems.length ? (
         <main className={`cart-container ${dark ? 'dark' : ''}`}>
           <div className="cart-container">
             <h2 className="item-wish">Cart Items</h2>
@@ -70,70 +80,12 @@ export default function Cart() {
                 )
               )}
               <div className="cart-header cart-item-container">
-                {/* <button
-                  onClick={() => {
-                    const order_Id = 'OD' + Date.now()
-                    const username = localStorage.getItem('username')
-                    const adminFromStorage = localStorage.getItem('Admin')
-
-                    // Condition 1: Check if Admin exists in localStorage
-                    if (!adminFromStorage) {
-                      alert(
-                        'Sign up as admin first before placing an order. After that, log in as a normal user to place an order.'
-                      )
-                      return
-                    }
-
-                    const existingAdmin = JSON.parse(adminFromStorage)
-
-                    // Condition 2: Check if user is logged in
-                    if (!username) {
-                      alert('Please login first to place an order')
-                      return
-                    }
-
-                    // Condition 3: Check if logged-in user is the Admin
-                    if (username === existingAdmin.username) {
-                      alert('Please login as a normal user to place an order')
-                      return
-                    }
-
-                    // If all conditions are met, proceed with placing the order
-                    dispatch(removeallCartItem())
-                    localStorage.removeItem(`${username}cart`)
-                    navigate('/OrderConfirmation', {
-                      state: {
-                        username,
-                        cartItems,
-                        totalPrice,
-                        order_Id
-                      },
-                    })
-
-                    // Save the order for the user
-                    const existingOrders =
-                      JSON.parse(localStorage.getItem(`${username}orders`)) ||
-                      []
-                    // Push the current cart items as a new array (representing the order)
-                    existingOrders.push([order_Id,...cartItems])
-                    // Update localStorage
-                    localStorage.setItem(
-                      `${username}orders`,
-                      JSON.stringify(existingOrders)
-                    )
-                  }}
-                  className="place"
-                >
-                  Place Order
-                </button> */}
-
                 <button
                   onClick={() => {
                     const order_Id = 'OD' + Date.now()
                     const username = localStorage.getItem('username')
                     const adminFromStorage = localStorage.getItem('Admin')
 
-                    // Condition 1: Check if Admin exists in localStorage
                     if (!adminFromStorage) {
                       alert(
                         'Sign up as admin first before placing an order. After that, log in as a normal user to place an order.'
@@ -143,70 +95,125 @@ export default function Cart() {
 
                     const existingAdmin = JSON.parse(adminFromStorage)
 
-                    // Condition 2: Check if user is logged in
                     if (!username) {
                       alert('Please login first to place an order')
                       return
                     }
 
-                    // Condition 3: Check if logged-in user is the Admin
                     if (username === existingAdmin.username) {
                       alert('Please login as a normal user to place an order')
                       return
                     }
 
-                    // If all conditions are met, proceed with placing the order
-                    dispatch(removeallCartItem())
-                    localStorage.removeItem(`${username}cart`)
-                    navigate('/OrderConfirmation', {
-                      state: {
-                        username,
-                        cartItems,
-                        totalPrice,
+                    const products =
+                      JSON.parse(localStorage.getItem('productsList')) || []
+
+                    // 🔎 Validate stock
+                    for (const item of cartItems) {
+                      const index = products.findIndex((p) => p.id === item.id)
+                      // console.log(index)
+
+                      const available =
+                        index !== -1 ? products[index].rating.count : 0
+                      // console.log(available)
+
+                      if (available === 0) {
+                        alert(
+                          `"${item.title}" is out of stock. Please remove it from the cart then try to place the order.`
+                        )
+                        return
+                      }
+                      if (item.quantity > available) {
+                        alert(
+                          `"${item.title}" has only ${available} in stock. You added ${item.quantity}. Please update your cart then try to place order.`
+                        )
+                        return
+                      }
+                    }
+
+                    // ✅ All checks passed — proceed
+                    setIsPlacingOrder(true)
+
+                    setTimeout(() => {
+                      // ✅ Reduce stock in localStorage
+                      cartItems.forEach((item) => {
+                        const index = products.findIndex(
+                          (p) => p.id === item.id
+                        )
+                        if (index !== -1) {
+                          products[index].rating.count -= item.quantity
+                          if (products[index].rating.count < 0) {
+                            products[index].rating.count = 0
+                          }
+
+                          // ✅ Dispatch Redux update for live UI sync
+                          dispatch(
+                            updateProductStock({
+                              productId: item.id,
+                              delta: -item.quantity,
+                            })
+                          )
+                        }
+                      })
+
+                      localStorage.setItem(
+                        'productsList',
+                        JSON.stringify(products)
+                      )
+
+                      // ✅ Save to user's orders
+                      const existingUserOrders =
+                        JSON.parse(localStorage.getItem(`${username}orders`)) ||
+                        []
+                      existingUserOrders.push([order_Id, ...cartItems])
+                      localStorage.setItem(
+                        `${username}orders`,
+                        JSON.stringify(existingUserOrders)
+                      )
+
+                      // ✅ Save to global orders
+                      const existingOrders =
+                        JSON.parse(localStorage.getItem('Orders')) || []
+                      const date = new Date()
+                      const formattedDate = date.toLocaleString('en-IN', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        second: 'numeric',
+                        hour12: true,
+                      })
+
+                      existingOrders.push([
                         order_Id,
-                      },
-                    })
+                        username,
+                        formattedDate,
+                        { items: cartItems, totalPrice },
+                      ])
+                      localStorage.setItem(
+                        'Orders',
+                        JSON.stringify(existingOrders)
+                      )
 
-                    // Save the order for the user (preserving the current functionality)
-                    const existingUserOrders =
-                      JSON.parse(localStorage.getItem(`${username}orders`)) ||
-                      []
-                    existingUserOrders.push([order_Id, ...cartItems])
-                    localStorage.setItem(
-                      `${username}orders`,
-                      JSON.stringify(existingUserOrders)
-                    )
-
-                    // Add new functionality: Save orders to centralized "Orders" key
-                    const existingOrders =
-                      JSON.parse(localStorage.getItem('Orders')) || []
-
-                    // Get current date and time in IST format
-                    const date = new Date();
-                    const formattedDate = date.toLocaleString('en-IN', { 
-                      weekday: 'long', 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric', 
-                      hour: 'numeric', 
-                      minute: 'numeric', 
-                      second: 'numeric',
-                      hour12: true
-                    });
-                    
-                    existingOrders.push([
-                      order_Id, // Order ID
-                      username, // Username
-                      formattedDate, // Store the formatted date
-                      { items: cartItems, totalPrice }, // Order details
-                    ]);
+                      // ✅ Clear cart
                     
 
-                    // Update localStorage
-                    localStorage.setItem(
-                      'Orders',
-                      JSON.stringify(existingOrders)
-                    )
+                      setIsPlacingOrder(false)
+
+                      // ✅ Navigate to confirmation page
+                      navigate('/OrderConfirmation', {
+                        state: {
+                          username,
+                          cartItems,
+                          totalPrice,
+                          order_Id,
+                        },
+                      })
+                        dispatch(removeallCartItem())
+                      localStorage.removeItem(`${username}cart`)
+                    }, 3000)
                   }}
                   className="place"
                 >

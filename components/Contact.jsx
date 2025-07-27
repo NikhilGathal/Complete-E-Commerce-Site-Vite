@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Link,
   Outlet,
@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom'
 
 const ContactUs = () => {
+  const navigate = useNavigate()
   const [, dark] = useOutletContext()
   const [formData, setFormData] = useState({
     name: '',
@@ -24,37 +25,42 @@ const ContactUs = () => {
   }
 
   const location = useLocation()
-  const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault()
     // Handle form submission logic here
     // Reset form
 
+    const isAdminLog = localStorage.getItem('isadminlog') === 'true'
+    const userlogin = localStorage.getItem('userlogin') === 'true'
+
+    // ❌ Block submission if user is not logged in or admin is logged in
+    if (!userlogin || isAdminLog) {
+      alert('Only logged-in users (not admins) can submit feedback.')
+      return
+    }
+
     const feedbackArray = JSON.parse(localStorage.getItem('feedbacks')) || []
 
-  // Create a new feedback object
-  const newFeedback = {
-    name: formData.name,
-    email: formData.email,
-    message: formData.message,
-  }
+    // Create a new feedback object
+    const newFeedback = {
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+    }
 
-  // Add the new feedback to the array
-  feedbackArray.push(newFeedback)
+    // Add the new feedback to the array
+    feedbackArray.push(newFeedback)
 
-  // Save the updated feedback array back to localStorage
-  localStorage.setItem('feedbacks', JSON.stringify(feedbackArray))
-
-
-
+    // Save the updated feedback array back to localStorage
+    localStorage.setItem('feedbacks', JSON.stringify(feedbackArray))
 
     setFormData({ name: '', email: '', message: '' })
 
     // After form submission, navigate to /contact/form
     navigate('feedback') // Programmatically navigate to /contact/form
     setTimeout(() => {
-      navigate("/contact");
-    }, 3000);
+      navigate('/contact')
+    }, 3000)
   }
 
   const isFormRoute = location.pathname === '/contact/feedback'
@@ -64,7 +70,7 @@ const ContactUs = () => {
       {!isFormRoute && (
         <main className="contact-main">
           <div className={`contact-us-container ${dark ? 'dark' : ''}`}>
-            <h1 className='cnt'>Contact Us</h1>
+            <h1 className="cnt">Contact Us</h1>
             <p style={{ textAlign: 'center' }}>
               If you have any questions or feedback, please reach out to us!
             </p>

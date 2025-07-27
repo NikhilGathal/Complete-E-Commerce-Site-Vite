@@ -22,6 +22,7 @@ import EditUser from '../components/EditUser'
 import EmailsList from '../components/EmailsList'
 import FeedbacksList from '../components/FeedbacksList'
 import OutOfStockProducts from '../components/OutOfStockProducts'
+import OrderCancelConfirm from '../components/OrderCancelConfirm.'
 
 const router = createBrowserRouter([
   {
@@ -80,7 +81,8 @@ const router = createBrowserRouter([
         path: '/Admin',
         element: <AdminDashBoard />,
       },
-      { path: '/update-product/:id', element: <UpdateProduct /> },
+      { path: '/update-product/:id', 
+        element: <UpdateProduct /> },
       {
         path: '/Add',
         element: <AddNewProduct />,
@@ -108,6 +110,10 @@ const router = createBrowserRouter([
        {
         path: '/OutOfStockProducts',
         element: <OutOfStockProducts/>,
+      },
+      {
+        path:"/OrderCancelConfirm",
+        element: <OrderCancelConfirm/>,
       },
     ],
   },

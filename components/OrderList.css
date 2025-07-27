@@ -33,7 +33,11 @@
 {
    color: #a870f1;;
 }
-
+.returnb 
+{
+  font-size: 15px;
+  padding: 15px;
+}
 .order-container h1 
 {
   color: var(--text-color);
@@ -119,9 +123,13 @@
   /* text-align: left; */
   margin: 4px 0;
 }
+.header-item.amp
+{
+    font-size: 1.1em;
+}
 .grid-row .amp 
 {
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 /* Optional styling for User Details */
@@ -155,40 +163,100 @@
   .addmm {
     padding-inline: 16px; /* Ensure consistent padding on small screens */
   }
+      .cancel-btn{
+    font-size: 16px;
+    padding: 7px;
+    border: 2px solid;
+  }
+}
+.grid-item span{
+  font-size: 30px;
 }
 
-@media (max-width: 630px) {
-  .order-grid .amp {
-    font-size: 14px;
+@media(max-width :860px)
+{
+  .header-item.amp
+{
+    font-size: 1em;
+}
+.header-item
+{
+  padding: 5px;
+}
+.grid-body
+{
+  font-size: 12px;
+}
+.grid-item span{
+  font-size: 12px;
+}
+}
+@media (max-width: 660px) {
+  .order-grid 
+  {
+    gap: 5px;
   }
+
+  .order-grid .amp {
+    font-size: 12px;
+  }
+  .grid-body
+{
+  font-size: 10px;
+}
+.grid-item span{
+  font-size: 10px;
+}
   .grid-item {
     padding: 6px;
   }
 }
 
-@media (max-width: 573px) {
+@media (max-width: 579px) {
   .order-grid .amp {
-    font-size: 11px;
+    font-size: 10px;
   }
   .grid-item {
     padding: 5px;
   }
+    .cancel-btn{
+    font-size: 9px;
+    padding: 5px;
+  }
 }
 
-@media (max-width: 490px) {
+@media (max-width: 516px) {
   .order-grid .amp {
     font-size: 9px;
   }
   .grid-item {
     padding: 3px;
   }
+  .cancel-btn{
+    font-size: 6px;
+    padding: 5px;
+  }
+    .username-column p 
+  {
+    font-size: 8px !important;
+  }
+  .grid-item span{
+  font-size: 8px;
+}
 }
 
 @media (max-width: 396px) {
   .order-grid .amp {
     font-size: 6px !important;
   }
+  .username-column p 
+  {
+    font-size: 6px !important;
+  }
   .grid-item {
     padding: 2px;
   }
+  .grid-item span{
+  font-size: 6px;
+}
 }

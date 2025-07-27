@@ -13,7 +13,8 @@ export default function ModalLogin({
   setuserlogin,
   setIsAdmin,
   setissign,
-  userlogin
+  userlogin,
+  setisadminlog,
 }) {
   const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {}
 
@@ -57,13 +58,15 @@ export default function ModalLogin({
       loginData.password === existingAdmin.password
     ) {
       alert('Admin logged in successfully!')
+      setisadminlog(true)
+      localStorage.setItem('isadminlog', 'true')
       localStorage.setItem('username', loginData.username)
       // localStorage.setItem("userlogin", JSON.stringify(true));
       setusername(loginData.username)
-      
+
       setIsAdmin(true) // Indicate user is an admin
       setuserlogin(true)
-     
+
       setislog(false)
       navigate('/')
       setLoginData({ username: '', password: '' })
@@ -162,8 +165,8 @@ export default function ModalLogin({
   }
 
   useEffect(() => {
-    localStorage.setItem("userlogin", JSON.stringify(userlogin));
-  }, [userlogin]);
+    localStorage.setItem('userlogin', JSON.stringify(userlogin))
+  }, [userlogin])
 
   return createPortal(
     <div onClick={m} className={`modal-overlay-log ${islog ? '' : 'hidden'}`}>
@@ -239,7 +242,10 @@ export default function ModalLogin({
               <button onClick={handleLogin} className="login1-button">
                 LogIn
               </button>
-              <button onClick={() => setislog(false)} className="cancel1-button">
+              <button
+                onClick={() => setislog(false)}
+                className="cancel1-button"
+              >
                 Cancel
               </button>
 

@@ -22,34 +22,16 @@ const ItemDetail = () => {
   const pdtlist = JSON.parse(localStorage.getItem('productsList'))
   // const [productCount, setProductCount] = useState(pdtlist[productId-1].rating?.count);
 
+  const [productCount, setProductCount] = useState(0)
 
-  const [productCount, setProductCount] = useState(0);
-
-useEffect(() => {
-  const pdtlist = JSON.parse(localStorage.getItem('productsList')) || [];
-  const product = pdtlist.find((p) => p.id === productId);
-  if (product) {
-    setProductCount(product.rating?.count || 0);
-  }
-}, [productId]);
-
-
-
-
-
-
-
-
-  const updateProductCount = (productId, delta) => {
-    const products = JSON.parse(localStorage.getItem('productsList')) || []
-    const index = products.findIndex((p) => p.id === productId)
-    if (index !== -1) {
-      products[index].rating.count += delta // delta = -1 for add to cart, +1 for remove
-      if (products[index].rating.count < 0) products[index].rating.count = 0
-      localStorage.setItem('productsList', JSON.stringify(products))
-      setProductCount(products[index].rating.count)
+  useEffect(() => {
+    const pdtlist = JSON.parse(localStorage.getItem('productsList')) || []
+    const product = pdtlist.find((p) => p.id === productId)
+    if (product) {
+      setProductCount(product.rating?.count || 0)
     }
-  }
+  }, [productId])
+
 
   const handleDelete = () => {
     dispatch(deleteProduct(productId))
@@ -125,15 +107,29 @@ useEffect(() => {
               Rating: {item.rating.rate} / 5 ({item.rating.count} reviews)
             </span>
           </div>
-          <div className="item-button">
+          <div className="item-button os">
             {isAdmin ? (
               <>
                 <button onClick={handleDelete}>Remove Product</button>
+
+                <p
+                  className="outofs"
+                  style={
+                    productCount === 0
+                      ? { color: 'red', fontWeight: 'bold' }
+                      : {}
+                  }
+                >
+                  {productCount === 0
+                    ? 'Out of Stock'
+                    : `Stock: ${productCount}`}
+                </p>
+
                 <button onClick={handleUpdateProduct}>Edit Product</button>
               </>
             ) : (
               <>
-                {productCount> 0 ? (
+                {productCount > 0 ? (
                   <button
                     onClick={() => {
                       const username = localStorage.getItem('username')
@@ -154,7 +150,7 @@ useEffect(() => {
                       localStorage.setItem(cartKey, JSON.stringify(storedCart))
                       dispatch(addCartItem({ productId }))
                       if (localStorage.getItem('username')) {
-                        updateProductCount(productId, -1) // reduce stock
+                        // updateProductCount(productId, -1) // reduce stock
                       }
                     }}
                   >
@@ -196,7 +192,7 @@ useEffect(() => {
           </div>
         </div>
       </div>
-      <Footer dark={dark} />
+      {/* <Footer dark={dark} /> */}
     </>
   )
 }

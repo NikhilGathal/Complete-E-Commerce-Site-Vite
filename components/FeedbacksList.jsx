@@ -1,28 +1,43 @@
-import React, { useEffect, useState } from "react";
-import { useOutletContext } from "react-router-dom";
-import "./FeedbacksList.css";
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useOutletContext } from 'react-router-dom'
+import './FeedbacksList.css'
 
 const FeedbacksList = () => {
-  const [, dark] = useOutletContext(); // Get dark mode value
-  const [feedbacks, setFeedbacks] = useState([]);
-  const [loading, setLoading] = useState(true); // New loading state
+  const [, dark] = useOutletContext() // Get dark mode value
+  const [feedbacks, setFeedbacks] = useState([])
+  const [loading, setLoading] = useState(true) // New loading state
+  const navigate = useNavigate()
+  const isAdminLog = localStorage.getItem('isadminlog') === 'true'
+  useEffect(() => {
+    if (!isAdminLog) {
+      navigate('/')
+    }
+  }, [isAdminLog])
 
+  if (!isAdminLog) {
+    return null // ✅ Prevents rendering if admin is not logged in
+  }
   useEffect(() => {
     // Simulate retrieving feedback array from localStorage
-    const storedFeedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
-    setFeedbacks(storedFeedbacks);
-    setTimeout(()=>
-      {
-        setLoading(false);
-      } ,900)// Set loading to false once feedbacks are fetched
-  }, []);
+    const storedFeedbacks = JSON.parse(localStorage.getItem('feedbacks')) || []
+    setFeedbacks(storedFeedbacks)
+    setTimeout(() => {
+      setLoading(false)
+    }, 900) // Set loading to false once feedbacks are fetched
+  }, [])
 
   return (
-    <div className={`feedbacks-container ${dark ? "dark" : ""}`}>
+    <div className={`feedbacks-container ${dark ? 'dark' : ''}`}>
       {loading ? (
-        <div className="admin"> <h1>Loading Feedbacks...</h1> </div> // Display loading message while feedbacks are being fetched
+        <div className="admin">
+          {' '}
+          <h1>Loading Feedbacks...</h1>{' '}
+        </div> // Display loading message while feedbacks are being fetched
       ) : feedbacks.length === 0 ? (
-        <div className="admin"> <h1>No Feedbacks Found</h1>  </div>// Display no feedbacks message if the list is empty
+        <div className="admin">
+          {' '}
+          <h1>No Feedbacks Found</h1>{' '}
+        </div> // Display no feedbacks message if the list is empty
       ) : (
         <>
           <h2 className="feedbacks-heading">Feedbacks List</h2>
@@ -51,12 +66,7 @@ const FeedbacksList = () => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default FeedbacksList;
-
-
-
-
-
+export default FeedbacksList

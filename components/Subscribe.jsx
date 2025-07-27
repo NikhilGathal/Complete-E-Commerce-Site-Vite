@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Subscribe.css' // Import your custom CSS file
-import { useOutletContext } from 'react-router-dom'
+import { useNavigate, useOutletContext } from 'react-router-dom'
 
 const Subscribe = ({ id }) => {
   const [, dark] = useOutletContext() // Dark mode context
@@ -9,9 +9,20 @@ const Subscribe = ({ id }) => {
   const [showHeading, setShowHeading] = useState(true) // State to manage the visibility of the heading
   const [errorMessage, setErrorMessage] = useState('') // State to manage error message
   const [emailValidationError, setEmailValidationError] = useState('') // State for email validation error
-
+  const navigate = useNavigate()
   // Email validation regex pattern (simple version)
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
+  const isAdminLog = localStorage.getItem('isadminlog') === 'true'
+  useEffect(() => {
+    if (!isAdminLog) {
+      navigate('/')
+    }
+  }, [isAdminLog])
+
+  if (!isAdminLog) {
+    return null // ✅ Prevents rendering if admin is not logged in
+  }
 
   const handleSubmit = () => {
     // Validate email format

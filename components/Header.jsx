@@ -31,6 +31,9 @@ export default function Header({
   const [islog, setislog] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
+  const [isadminlog, setisadminlog] = useState(() => {
+    return localStorage.getItem('isadminlog') === 'true' // returns false if key is missing or not "true"
+  })
   const navigate = useNavigate()
   // console.log(isAdmin);
   const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {}
@@ -41,7 +44,6 @@ export default function Header({
   const [username, setusername] = useState(() => {
     return localStorage.getItem('username') || ''
   })
-
   useEffect(() => {
     if (username) {
       setIsAdmin(true)
@@ -203,23 +205,6 @@ export default function Header({
       navigate('/')
     }
   }
-
-  // const scrollToSection = (id) => {
-  //   const section = document.getElementById(id);
-  //   let yOffset;
-
-  //   if (section) {
-  //     if (section.id === "subscribe") {  // Use a string for ID comparison
-  //       yOffset = -200;
-  //     } else {
-  //       yOffset = -100;
-  //     }
-  //     // Adjust offset based on header height
-  //     const y = section.getBoundingClientRect().top + window.scrollY + yOffset;
-  //     window.scrollTo({ top: y, behavior: "smooth" });
-  //   }
-  // };
-
   useEffect(() => {
     localStorage.setItem('userlogin', JSON.stringify(userlogin))
   }, [userlogin])
@@ -276,14 +261,6 @@ export default function Header({
             Shopee{' '}
           </h1>{' '}
         </Link>
-        {/* <i
-          onClick={() => {
-            localStorage.setItem('isdarkmode', !dark)
-            isdark(!dark)
-          }}
-          title={`${dark ? 'light mode' : 'dark mode'}`}
-          className={`mode fa-solid fa-2xl fa-${dark ? 'sun ' : 'moon '}  `}
-        ></i> */}
 
         <img
           onClick={() => {
@@ -296,35 +273,37 @@ export default function Header({
           className="mode"
         />
         <h3 id="wel"> {username ? `Welcome ${username}` : ''} </h3>
-        <div className="icon-contain">
-          <Link className="cart-icon" to="/cart">
-            <img
-              className={`c H ${dark ? 'dark' : ''} `}
-              title="Cart"
-              src={CartIcon}
-              alt="cart-icon"
-            />
+        {!isadminlog && (
+          <div className="icon-contain">
+            <Link className="cart-icon" to="/cart">
+              <img
+                className={`c H ${dark ? 'dark' : ''}`}
+                title="Cart"
+                src={CartIcon}
+                alt="cart-icon"
+              />
+              <div className="cart-items-count">
+                {cartItems.reduce(
+                  (accumulator, currentItem) =>
+                    accumulator + currentItem.quantity,
+                  0
+                )}
+              </div>
+            </Link>
 
-            <div className="cart-items-count">
-              {cartItems.reduce(
-                (accumulator, currentItem) =>
-                  accumulator + currentItem.quantity,
-                0
-              )}
-            </div>
-          </Link>
-          <Link className="cart-icon" to="/wish">
-            <img
-              title="WishList"
-              className="c heart H"
-              src={wishIcon}
-              alt="wish-icon"
-            />
-            <div className="cart-items-count">
-              {wish.reduce((acc, curr) => acc + curr.quantity, 0)}
-            </div>
-          </Link>
-        </div>
+            <Link className="cart-icon" to="/wish">
+              <img
+                title="WishList"
+                className="c heart H"
+                src={wishIcon}
+                alt="wish-icon"
+              />
+              <div className="cart-items-count">
+                {wish.reduce((acc, curr) => acc + curr.quantity, 0)}
+              </div>
+            </Link>
+          </div>
+        )}
 
         <div onClick={(e) => e.stopPropagation()} className="ham">
           <span onClick={toggleMenu} className="close-icon">
@@ -333,6 +312,9 @@ export default function Header({
           <div className="H sections-container">
             <h3 className="sett">Sections</h3>
             <div className="suggestion-box-home">
+              <p onClick={() => handleNavigation('hero')} className="H">
+                Home
+              </p>
               <p onClick={() => handleNavigation('category')} className="H">
                 Category
               </p>
@@ -345,26 +327,11 @@ export default function Header({
               <p onClick={() => handleNavigation('testimonials')} className="H">
                 Testimonials
               </p>
+              <p onClick={() => handleNavigation('foot')} className="H">
+                Footer
+              </p>
             </div>
           </div>
-
-          {/* location.pathname === "/"  &&  <div className="H sections-container">
-            <h3 className=" sett">Sections</h3>
-            <div className="suggestion-box-home">
-              <p onClick={() => scrollToSection('category')} className="H">
-                Category
-              </p>
-              <p onClick={() => scrollToSection('top-products')} className="H">
-                TopProducts
-              </p>
-              <p onClick={() => scrollToSection('subscribe')} className="H">
-                Subscription
-              </p>
-              <p onClick={() => scrollToSection('testimonials')} className="H">
-                Testimonials
-              </p>
-            </div>
-          </div> */}
 
           <h3
             className="H"
@@ -395,24 +362,6 @@ export default function Header({
                 )
               )}
 
-              {/* Render suggestion box only if username is not 'Admin' and exists */}
-              {/* {username && username !== 'Admin' && (
-                <div className="suggestion-box">
-                  <Link to="/myorder">
-                    <p>My Orders</p>
-                  </Link>
-                  <Link to="/Add">
-                    <p>Cart</p>
-                  </Link>
-                  <Link to="/wish">
-                    <p>WishList</p>
-                  </Link>
-                  <Link to="/">
-                    <p>Buy Again</p>
-                  </Link>
-                </div>
-              )} */}
-
               {username && (
                 <div className="suggestion-box">
                   {username === adminUsername ? (
@@ -426,9 +375,9 @@ export default function Header({
                       <Link to="/EditUser">
                         <p>Edit Profile</p>
                       </Link>
-                       <Link to="/Emailslist">
-                      <p>Subscription</p>
-                    </Link>
+                      <Link to="/Emailslist">
+                        <p>Subscription</p>
+                      </Link>
                       <Link to="/OutOfStockProducts">
                         <p>Out of Stock</p>
                       </Link>
@@ -491,10 +440,16 @@ export default function Header({
             setIsAdmin={setIsAdmin}
             setissign={setissign}
             userlogin={userlogin}
+            setisadminlog={setisadminlog}
           />
           <h3
             className="H"
             onClick={() => {
+              if (isadminlog) {
+                setisadminlog(false)
+                localStorage.removeItem('isadminlog')
+              }
+
               localStorage.removeItem('username')
               const storedCart =
                 JSON.parse(localStorage.getItem('cartItems')) || []
@@ -514,27 +469,6 @@ export default function Header({
           >
             Logout
           </h3>
-          {/* <NavLink
-            style={{
-              display: username ? 'inline' : 'none', // Show only if someone is logged in
-            }}
-            className={({ isActive }) => (isActive ? 'underline' : '')}
-            to="/myorder"
-          >
-            <h3 className="H">
-              {username === 'Admin' ? 'Orders' : 'My Orders'}
-            </h3>
-          </NavLink> */}
-
-          {/* <NavLink
-            style={{
-              display: username ? 'inline' : 'none', // Show only if someone is logged in
-            }}
-            className={({ isActive }) => (isActive ? 'underline' : '')}
-            to=""
-          >
-             </NavLink> */}
-
           <NavLink
             className={({ isActive }) => (isActive ? 'underline' : '')}
             to="/about"

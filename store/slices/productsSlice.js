@@ -61,6 +61,23 @@ const slice = createSlice({
         localStorage.setItem('productsList', JSON.stringify(state.list)); // Update localStorage
       }
     },
+
+    updateProductStock(state, action) {
+      const { productId, delta } = action.payload;
+      console.log(productId , ' ' , delta)
+      const index = state.list.findIndex((p) => p.id === productId);
+      console.log(index  + 'from slice');
+      
+      if (index !== -1) {
+        state.list[index].rating.count += delta;
+        // Ensure count doesn’t go below 0
+        if (state.list[index].rating.count < 0) {
+          state.list[index].rating.count = 0;
+        }
+        localStorage.setItem('productsList', JSON.stringify(state.list));
+      }
+    }
+
   },
 })
 
@@ -68,19 +85,9 @@ export const getAllProducts = (state) => state.products.list
 export const getProductLoadingState = (state) => state.products.loading
 export const getProductError = (state) => state.products.error
 
-export const { updateAllProducts, fetchProducts, fetchProductsError, deleteProduct, updateProduct, addProduct } = slice.actions
+export const { updateAllProducts, fetchProducts, fetchProductsError, deleteProduct, updateProduct, addProduct,updateProductStock } = slice.actions
 
-// export const fetchProductdata = () => (dispatch) => {
-//   dispatch(fetchProducts())
-//   fetch(`https://fakestoreapi.com/products`)
-//     .then((res) => res.json())
-//     .then((data) => {
-//       dispatch(updateAllProducts(data))
-//     })
-//     .catch(() => {
-//       dispatch(fetchProductsError())
-//     })
-// }
+
 // just for convention we have to call action creator that why below call back function is present
 // inside of dispatch as convention we have to call that function for that we are returning a function from  callback function
 export const fetchProductdata = () => (dispatch) => {
@@ -103,18 +110,13 @@ export const fetchProductdata = () => (dispatch) => {
       .catch(() => {
         // dispatch(fetchProductsError());
         console.log(" Failed to fetch data from API using local data ");
-        
+
         dispatch(updateAllProducts(productsList));
         localStorage.setItem('productsList', JSON.stringify(productsList));
       });
   }
 };
-
-
-
-
-
-
+export default slice.reducer
 
 
 // export const fetchProductdata = () => async (dispatch) => {
@@ -172,4 +174,17 @@ export const fetchProductdata = () => (dispatch) => {
 //   }
 // };
 
-export default slice.reducer
+
+// export const fetchProductdata = () => (dispatch) => {
+//   dispatch(fetchProducts())
+//   fetch(`https://fakestoreapi.com/products`)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       dispatch(updateAllProducts(data))
+//     })
+//     .catch(() => {
+//       dispatch(fetchProductsError())
+//     })
+// }
+
+
