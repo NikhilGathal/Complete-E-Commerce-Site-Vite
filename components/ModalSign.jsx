@@ -180,8 +180,7 @@ if (!existingEmails.includes(userData.email)) {
             <label>Sign up as Admin</label>
             
           </div>
-          <div className='already'>
-            {' '}
+          <div className='already'>      
             <p>If you have Account ?</p>
             <Link><h1 
            onClick={(e) => {

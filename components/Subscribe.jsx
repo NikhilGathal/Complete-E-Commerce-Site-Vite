@@ -13,16 +13,6 @@ const Subscribe = ({ id }) => {
   // Email validation regex pattern (simple version)
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
-  const isAdminLog = localStorage.getItem('isadminlog') === 'true'
-  useEffect(() => {
-    if (!isAdminLog) {
-      navigate('/')
-    }
-  }, [isAdminLog])
-
-  if (!isAdminLog) {
-    return null // ✅ Prevents rendering if admin is not logged in
-  }
 
   const handleSubmit = () => {
     // Validate email format
@@ -114,4 +104,4 @@ const Subscribe = ({ id }) => {
   )
 }
 
-export default Subscribe
+export default Subscribe;
