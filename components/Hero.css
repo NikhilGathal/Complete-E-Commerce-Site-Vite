@@ -16,6 +16,13 @@
   color: var(--text-color);
 }
 
+@media(max-width:460px)
+{
+  .hero-container { 
+    padding-inline: 16px;
+  }
+}
+
 @media (min-width: 1024px) and (max-width: 1245px) {
   .hero-container {
     max-width: 893px;
