@@ -99,21 +99,10 @@ export const fetchProductdata = () => (dispatch) => {
     dispatch(updateAllProducts(localData));
   } else {
     // Fetch data from API and store it in localStorage
-    dispatch(fetchProducts());
-    fetch(`https://fakestoreapi.com/products`)
-      .then((res) => res.json())
-      .then((data) => {
-        // Update Redux state and localStorage with the fetched data
-        dispatch(updateAllProducts(data));
-        localStorage.setItem('productsList', JSON.stringify(data));
-      })
-      .catch(() => {
-        // dispatch(fetchProductsError());
-        console.log(" Failed to fetch data from API using local data ");
-
+  
         dispatch(updateAllProducts(productsList));
         localStorage.setItem('productsList', JSON.stringify(productsList));
-      });
+     
   }
 };
 export default slice.reducer

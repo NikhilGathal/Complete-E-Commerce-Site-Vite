@@ -8,7 +8,10 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import women from '../assets/women.jpg'
 import './style.css';
-
+import carousal1 from '../assets/carousal1.jpg'
+import carousal2 from '../assets/carousal2.jpg'
+import carousal3 from '../assets/carousal3.jpg'
+import carousal4 from '../assets/carousal4.jpg'
 // Import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { Link, useOutletContext } from 'react-router-dom';
@@ -46,7 +49,7 @@ export default function Carousel() {
          <Link to="/diwali">  
          <img
             className='i'
-            src='https://rukminim2.flixcart.com/fk-p-flap/1200/250/image/d0e281a0cfa9c139.jpg?q=100'
+            src={carousal1}
             alt="Slide 1"
              loading="lazy"
           />
@@ -56,7 +59,7 @@ export default function Carousel() {
         <Link to={`/carousel/${categories[2]}`}>
         <img
             className='i'
-            src='https://rukminim2.flixcart.com/fk-p-flap/1200/250/image/126619f56d1f3607.jpg?q=100'
+                        src={carousal2}
             alt="Slide 2"
           />
         </Link>
@@ -65,7 +68,7 @@ export default function Carousel() {
           <Link to={`/carousel/${categories[0]}`}>
           <img
             className='i'
-            src='https://rukminim2.flixcart.com/fk-p-flap/1200/250/image/6493cebc0a00ece1.jpg?q=100'
+                      src={carousal3}
             alt="Slide 3"
           />
           </Link>
@@ -75,7 +78,7 @@ export default function Carousel() {
           <Link to={`/carousel/${categories[1]}`}>
           <img
             className='i'
-            src='https://rukminim2.flixcart.com/fk-p-flap/1200/250/image/d1b7c1632f530edd.jpeg?q=100'
+                      src={carousal4}
             alt="Slide 4"
           />
           </Link>

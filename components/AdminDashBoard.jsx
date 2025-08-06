@@ -133,7 +133,7 @@ function AdminDashBoard() {
 
                     <div className="amp grid-item">
                       {orderGroup.rating ? (
-                        <span
+                        <span className='stars'
                           style={{
                             color: dark ? 'gold' : '#ff6340',
                           }}
