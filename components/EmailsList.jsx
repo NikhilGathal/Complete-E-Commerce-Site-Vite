@@ -39,7 +39,7 @@ const EmailsList = () => {
       ) : emails.length === 0 ? (
         <div className="admin">
           {' '}
-          <h1>No Emails Found</h1>{' '}
+          <h1>No Subscribed Emails Found</h1>{' '}
         </div> // Display no emails message if the list is empty
       ) : (
         <>

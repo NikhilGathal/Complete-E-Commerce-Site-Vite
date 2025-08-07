@@ -9,6 +9,13 @@
   --text-color: black;
 }
 
+.cat-img-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cat-img-hover:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+}
 @media (min-width: 1024px ) and (max-width:1244px){
   .cat-cat {
     max-width: 937px;

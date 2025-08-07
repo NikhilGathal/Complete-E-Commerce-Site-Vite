@@ -75,7 +75,7 @@ const Category = ({ id }) => {
                     <img
                       src={data.img}
                       alt={data.title}
-                      className="cat-h-[220px] cat-w-[150px] cat-object-cover cat-rounded-md"
+                      className="cat-img-hover cat-h-[220px] cat-w-[150px] cat-object-cover cat-rounded-md"
                     />
                   </Link>
                   <div>
@@ -93,7 +93,7 @@ const Category = ({ id }) => {
               className="cat-flex cat-justify-center">
               <Link to="/Home">
                 <button className="cat-text-center cat-mt-10 cat-cursor-pointer cat-bg-primary cat-text-white cat-py-1 cat-px-5 cat-rounded-md">
-                  View All Products
+                 Discover More
                 </button>
               </Link>
             </div>

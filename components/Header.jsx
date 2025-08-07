@@ -184,6 +184,14 @@ export default function Header({
 
       // Get the users array from localStorage
       const users = JSON.parse(localStorage.getItem('users')) || []
+const userToDelete = users.find(user => user.username === currentUsername)
+    const emailToDelete = userToDelete?.email
+
+         if (emailToDelete) {
+      const emails = JSON.parse(localStorage.getItem('emails')) || []
+      const updatedEmails = emails.filter(email => email !== emailToDelete)
+      localStorage.setItem('emails', JSON.stringify(updatedEmails))
+    }
 
       // Remove the current user from the array
       const updatedUsers = users.filter(
