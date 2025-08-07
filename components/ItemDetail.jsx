@@ -61,7 +61,7 @@ const ItemDetail = () => {
         const product = productsList.find((p) => p.id === productId) // Find the product by ID
 
         if (!product) {
-          throw new Error('Product Out of Stock')
+          throw new Error('This Product is no longer Available')
         }
         setItem(product) // Set the product as the state
         setLoading(false) // Set loading to false
@@ -77,15 +77,15 @@ const ItemDetail = () => {
   if (loading)
     return (
       <>
-        {' '}
-        <div className="error-msg">Loading...</div> <Footer dark={dark} />{' '}
+        
+        <div className="error-msgi">Loading...</div> 
       </>
     )
   if (error)
     return (
       <>
-        {' '}
-        <div className="error-msg"> {error}</div> <Footer dark={dark} />{' '}
+        
+        <div className="error-msgi"> {error}</div> 
       </>
     )
 

@@ -64,6 +64,21 @@
   font-size: 1.1rem;
   color: rgb(231, 16, 45);
 }
+.error-msgi 
+{
+  
+  font-weight: bold;
+  font-size: larger;
+  font-size: 50px;
+  color: var(--text-color);
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  height: calc(
+    100vh - 50px
+  ); /* Full viewport height to ensure vertical centering */
+
+}
 
 @media (max-width: 1067px) {
   .item-info h1 {
@@ -80,6 +95,11 @@
 }
 
 @media (max-width: 844px) {
+
+  .error-msgi 
+  {
+    font-size: 22px;
+  }
   .item-detail-container {
     flex-direction: column;
   }
@@ -87,5 +107,12 @@
     font-size: 1.2rem;
     margin: 0;
     font-weight: bold;
+  }
+}
+@media (max-width: 400px) {
+
+  .error-msgi 
+  {
+    font-size: 15px;
   }
 }

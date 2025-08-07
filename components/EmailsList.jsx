@@ -33,12 +33,12 @@ const EmailsList = () => {
     <div className={`emails-list-container ${dark ? 'dark' : ''}`}>
       {loading ? (
         <div className="admin">
-          {' '}
+         
           <h1>Loading Emails...</h1>{' '}
         </div> // Display loading message while emails are being fetched
       ) : emails.length === 0 ? (
         <div className="admin">
-          {' '}
+          
           <h1>No Subscribed Emails Found</h1>{' '}
         </div> // Display no emails message if the list is empty
       ) : (
