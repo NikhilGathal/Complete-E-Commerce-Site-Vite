@@ -1,7 +1,7 @@
 
 
 
-import React, { useEffect } from 'react';
+import React, { useEffect ,useState} from 'react';
 
 import { FaStar } from 'react-icons/fa';
 import './TopProducts.css';
@@ -9,8 +9,7 @@ import { Link, useOutletContext } from 'react-router-dom';
 import AOS from 'aos'; // Import AOS
 import c from '../assets/3.jpg'
 import g from '../assets/7.jpg'
-import t from '../assets/20.jpg'
-
+import t from '../assets/20.jpg'// ✅ Will rerun if username changes
 const ProductsData = [
   {
     id: 3,
@@ -51,6 +50,16 @@ const ProductsData = [
 ];
 
 const TopProducts = ({ handleOrderPopup ,id }) => {
+
+ const username = localStorage.getItem('username');
+  const [isAdmin, setIsAdmin] = useState(false); // ✅ Track admin in state
+
+  useEffect(() => {
+    const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {};
+    setIsAdmin(username === existingAdmin.username); // ✅ update state
+  }, [username]); 
+
+
   const [, dark] = useOutletContext();
 
   // Initialize AOS when the component mounts
@@ -97,7 +106,11 @@ const TopProducts = ({ handleOrderPopup ,id }) => {
                   <FaStar />
                 </div>
                 <Link to={`/${data.id}`}>
-                  <button onClick={handleOrderPopup}>Order Now</button>
+                  <button onClick={handleOrderPopup}>
+                    
+{isAdmin ? "View Product" : "Order Now"}
+
+                    </button>
                 </Link>
               </div>
             </div>
