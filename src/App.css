@@ -33,6 +33,9 @@ header.dark,
   --text-color: white;
   --elements-color: hsl(209, 23%, 22%);
 }
+html {
+  scroll-behavior: smooth;
+}
 
 .item-detail {
   text-decoration-line: none;
