@@ -32,19 +32,26 @@
     text-align: center;
   }
   
-  .image-wrapper {
-   
-    width: 80px; 
-    height: 80px; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 50%; 
-    background-color:white; 
-    box-shadow:0 0 4px 5px rgba(0, 0, 0, 0.1); 
-     display: inline-block;
-  }
+.image-wrapper {
+  width: 80px; 
+  height: 80px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 50%; 
+  background-color: white; 
+  box-shadow: 0 0 4px 5px rgba(0, 0, 0, 0.1); 
+  display: inline-block;
+
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.image-wrapper:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.3); /* shadow all around */
+}
+
   
   .category-img {
     width: 100%; 
