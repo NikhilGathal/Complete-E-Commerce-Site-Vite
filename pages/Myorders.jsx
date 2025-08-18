@@ -209,8 +209,8 @@ function Myorders() {
           <h1>Loading Order Details...</h1>{' '}
         </div>
       ) : orders.length === 0 ? (
-        <div className="admin">
-          <h1>No Orders Yet</h1>{' '}
+        <div className="adminr">
+          <h1>No Orders Yet</h1>
           <Link to="/Home">
             <button className='returnb'>Return to Shop</button>
           </Link>

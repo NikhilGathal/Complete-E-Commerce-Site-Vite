@@ -147,6 +147,20 @@
   align-items: center;
    flex-direction: column;
 }
+.adminr {
+  width: 100%;
+  height: calc(100vh - 130px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   flex-direction: column;
+}
+.adminr h1 
+{
+  font-size: 45px;
+  color: var(--text-color);
+}
+
 .admin.a {
   margin-block: 80px; 
  }
