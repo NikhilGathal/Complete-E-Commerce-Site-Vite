@@ -85,3 +85,7 @@ margin: 0;
     background-color: #898989
   }
   
+  .form-group.p 
+  {
+position: relative;
+  }

@@ -50,6 +50,14 @@ export default function ModalLogin({
   }
 
   const handleLogin = () => {
+      if (!loginData.username.trim()) {
+    alert("Username is required!");
+    return;
+  }
+  if (!loginData.password.trim()) {
+    alert("Password is required!");
+    return;
+  }
     const existingUsers = JSON.parse(localStorage.getItem('users')) || []
 
     // Admin credentials
@@ -204,6 +212,7 @@ export default function ModalLogin({
                 value={loginData.username}
                 onChange={handleChange}
               />
+              {/* <p className='err-ms'>Username is needed</p> */}
               <input
                 placeholder="Password"
                 className="modal-input"
@@ -212,6 +221,7 @@ export default function ModalLogin({
                 value={loginData.password}
                 onChange={handleChange}
               />
+                {/* <p className='err-msp'>Password is needed</p> */}
               <div className="already">
                 {' '}
                 <p>If you dont have Account ?</p>

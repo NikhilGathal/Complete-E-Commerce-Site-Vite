@@ -3,6 +3,7 @@ import { useNavigate, useOutletContext } from 'react-router-dom'
 import './EditUser.css'
 
 const EditUser = () => {
+  const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
   const [, dark, , , , uname1, setUsername] = useOutletContext()
 
@@ -13,7 +14,7 @@ const EditUser = () => {
       navigate('/') // redirect if not logged in
     }
   }, [username])
-       if (!username) {
+  if (!username) {
     return null // Don't render anything until redirect is done
   }
   const [newUsername, setNewUsername] = useState(username)
@@ -153,14 +154,27 @@ const EditUser = () => {
               />
             </div>
 
-            <div className="form-group">
+            <div className="form-group p">
               <label>Password:</label>
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 name="password"
                 value={userData.password}
                 onChange={handleChange}
               />
+              <span
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '30px',
+                  top: '45px',
+                  transform: 'translateY(-50%)',
+                  cursor: 'pointer',
+                  userSelect: 'none',
+                }}
+              >
+                <i className="fa-solid fa-eye"></i>
+              </span>
             </div>
 
             <div className="form-group">
