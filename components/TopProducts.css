@@ -99,6 +99,7 @@ margin-inline: auto;
 
 .product-card .image-section img {
   max-width: 140px;
+  max-height: 175px;
   display: block;
   margin: auto;
   margin-top: -50px;

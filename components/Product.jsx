@@ -25,6 +25,9 @@ export default function Product({ productId, title, rating, price, imageUrl }) {
   // Handle delete for admin
   const handleDelete = () => {
     dispatch(deleteProduct(productId)) // Dispatch delete action
+    const topProducts = JSON.parse(localStorage.getItem("topProductList")) || []
+  const updatedTopProducts = topProducts.filter((id) => id !== productId)
+  localStorage.setItem("topProductList", JSON.stringify(updatedTopProducts))
   }
 
 

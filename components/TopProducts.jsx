@@ -1,19 +1,16 @@
-
-
-
-import React, { useEffect ,useState} from 'react';
-
-import { FaStar } from 'react-icons/fa';
-import './TopProducts.css';
-import { Link, useOutletContext } from 'react-router-dom';
-import AOS from 'aos'; // Import AOS
+import React, { useEffect, useState } from 'react'
+import { productsList } from '../store/productsList'
+import { FaStar } from 'react-icons/fa'
+import './TopProducts.css'
+import { Link, useOutletContext } from 'react-router-dom'
+import AOS from 'aos' // Import AOS
 import c from '../assets/3.jpg'
 import g from '../assets/7.jpg'
-import t from '../assets/20.jpg'// ✅ Will rerun if username changes
+import t from '../assets/20.jpg' // ✅ Will rerun if username changes
 const ProductsData = [
   {
     id: 3,
-    img: c,
+    image: c,
     title: 'Mens Cotton Jacket',
     description:
       'Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions...',
@@ -25,10 +22,10 @@ const ProductsData = [
   },
   {
     id: 7,
-    img: g,
+    image: g,
     title: 'White Gold Plated Princess',
     description:
-      "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her...",
+      'Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her...',
     price: '9.99',
     rating: {
       rate: 3,
@@ -37,7 +34,7 @@ const ProductsData = [
   },
   {
     id: 20,
-    img: t,
+    image: t,
     title: 'DANVOUY Womens T Shirt Casual Cotton Short',
     description:
       '95% Cotton, 5% Spandex. Features: Casual, Short Sleeve, Letter Print, V-Neck...',
@@ -47,28 +44,42 @@ const ProductsData = [
       count: 145,
     },
   },
-];
+]
 
-const TopProducts = ({ handleOrderPopup ,id }) => {
+const TopProducts = ({ handleOrderPopup, id }) => {
+  const [selectedProducts, setSelectedProducts] = useState(ProductsData)
 
- const username = localStorage.getItem('username');
-  const [isAdmin, setIsAdmin] = useState(false); // ✅ Track admin in state
+  const username = localStorage.getItem('username')
+  const [isAdmin, setIsAdmin] = useState(false) // ✅ Track admin in state
 
   useEffect(() => {
-    const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {};
-    setIsAdmin(username === existingAdmin.username); // ✅ update state
-  }, [username]); 
+    const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {}
+    setIsAdmin(username === existingAdmin.username) // ✅ update state
+  }, [username])
 
-
-  const [, dark] = useOutletContext();
+  const [, dark] = useOutletContext()
 
   // Initialize AOS when the component mounts
   useEffect(() => {
-    AOS.init(); // Initialize AOS
+    AOS.init() // Initialize AOS
     return () => {
-      AOS.refresh(); // Refresh AOS when the component unmounts
-    };
-  }, []);
+      AOS.refresh() // Refresh AOS when the component unmounts
+    }
+  }, [])
+
+  useEffect(() => {
+    const localData = JSON.parse(localStorage.getItem('topProductList')) || null
+
+     const temp = JSON.parse(localStorage.getItem('productsList')) || [...productsList]
+
+   if (localData && localData.length > 0) {
+  const ordered = localData
+    .map((id) => temp.find((p) => p.id === id))
+    .filter(Boolean) // remove null if id not found
+  setSelectedProducts(ordered)
+}
+
+  }, [])
 
   return (
     <div id={id} className={`tp ${dark ? 'dark' : ''}`}>
@@ -88,12 +99,12 @@ const TopProducts = ({ handleOrderPopup ,id }) => {
         </div>
         {/* Body section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20 md:gap-5 place-items-center">
-          {ProductsData.map((data) => (
+          {selectedProducts.map((data) => (
             <div data-aos="zoom-in" className="product-card" key={data.id}>
               {/* image section */}
               <div className="image-section">
                 <Link to={`/${data.id}`}>
-                  <img src={data.img} alt={data.title} className="image" />
+                  <img src={data.image} alt={data.title} className="image" />
                 </Link>
               </div>
               {/* details section */}
@@ -107,10 +118,8 @@ const TopProducts = ({ handleOrderPopup ,id }) => {
                 </div>
                 <Link to={`/${data.id}`}>
                   <button onClick={handleOrderPopup}>
-                    
-{isAdmin ? "View Product" : "Order Now"}
-
-                    </button>
+                    {isAdmin ? 'View Product' : 'Order Now'}
+                  </button>
                 </Link>
               </div>
             </div>
@@ -118,10 +127,7 @@ const TopProducts = ({ handleOrderPopup ,id }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TopProducts;
-
-
-
+export default TopProducts

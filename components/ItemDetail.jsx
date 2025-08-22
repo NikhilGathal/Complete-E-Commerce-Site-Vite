@@ -35,6 +35,9 @@ const ItemDetail = () => {
 
   const handleDelete = () => {
     dispatch(deleteProduct(productId))
+    const topProducts = JSON.parse(localStorage.getItem("topProductList")) || []
+  const updatedTopProducts = topProducts.filter((id) => id !== productId)
+  localStorage.setItem("topProductList", JSON.stringify(updatedTopProducts))
     navigate('/Home') // Dispatch delete action
   }
 
