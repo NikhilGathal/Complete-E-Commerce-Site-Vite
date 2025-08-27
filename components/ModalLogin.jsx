@@ -33,6 +33,19 @@ export default function ModalLogin({
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const [showPasswords, setShowPasswords] = useState({
+    login: false,
+    new: false,
+    confirm: false,
+  })
+
+  const togglePassword = (field) => {
+    setShowPasswords((prev) => ({
+      ...prev,
+      [field]: !prev[field],
+    }))
+  }
+
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -50,14 +63,14 @@ export default function ModalLogin({
   }
 
   const handleLogin = () => {
-      if (!loginData.username.trim()) {
-    alert("Username is required!");
-    return;
-  }
-  if (!loginData.password.trim()) {
-    alert("Password is required!");
-    return;
-  }
+    if (!loginData.username.trim()) {
+      alert('Username is required!')
+      return
+    }
+    if (!loginData.password.trim()) {
+      alert('Password is required!')
+      return
+    }
     const existingUsers = JSON.parse(localStorage.getItem('users')) || []
 
     // Admin credentials
@@ -188,19 +201,53 @@ export default function ModalLogin({
               <input
                 placeholder="Enter New Password"
                 className="modal-input"
-                type="password"
+                 type={showPasswords.new ? 'text' : 'password'}
                 name="password"
                 value={newPassword.password}
                 onChange={handleChange}
               />
+               <span
+                onClick={() => togglePassword('new')}
+                style={{
+                  position: 'absolute',
+                  right: '30px',
+                  top: '40px',
+                  transform: 'translateY(-50%)',
+                  cursor: 'pointer',
+                  userSelect: 'none',
+                }}
+              >
+                <i
+                  className={`fa-solid ${
+                    showPasswords.new ? 'fa-eye-slash' : 'fa-eye'
+                  }`}
+                ></i>
+              </span>
               <input
                 placeholder="Re-Enter New Password"
                 className="modal-input"
-                type="password"
+                type={showPasswords.confirm ? 'text' : 'password'}
                 name="confirmPassword"
                 value={newPassword.confirmPassword}
                 onChange={handleChange}
               />
+               <span
+                onClick={() => togglePassword('confirm')}
+                style={{
+                  position: 'absolute',
+                  right: '30px',
+                  top: '96px',
+                  transform: 'translateY(-50%)',
+                  cursor: 'pointer',
+                  userSelect: 'none',
+                }}
+              >
+                <i
+                  className={`fa-solid ${
+                    showPasswords.confirm ? 'fa-eye-slash' : 'fa-eye'
+                  }`}
+                ></i>
+              </span>
             </>
           ) : (
             <>
@@ -216,12 +263,31 @@ export default function ModalLogin({
               <input
                 placeholder="Password"
                 className="modal-input"
-                type="password"
+                type={showPasswords.login ? 'text' : 'password'}
                 name="password"
                 value={loginData.password}
                 onChange={handleChange}
               />
-                {/* <p className='err-msp'>Password is needed</p> */}
+
+              <span
+                onClick={() => togglePassword('login')}
+                style={{
+                  position: 'absolute',
+                  right: '30px',
+                  top: '96px',
+                  transform: 'translateY(-50%)',
+                  cursor: 'pointer',
+                  userSelect: 'none',
+                }}
+              >
+                <i
+                  className={`fa-solid ${
+                    showPasswords.login ? 'fa-eye-slash' : 'fa-eye'
+                  }`}
+                ></i>
+              </span>
+
+              {/* <p className='err-msp'>Password is needed</p> */}
               <div className="already">
                 {' '}
                 <p>If you dont have Account ?</p>

@@ -173,7 +173,11 @@ const EditUser = () => {
                   userSelect: 'none',
                 }}
               >
-                <i className="fa-solid fa-eye"></i>
+               <i
+                  className={`fa-solid ${
+                    showPassword ? 'fa-eye-slash' : 'fa-eye'
+                  }`}
+                ></i>
               </span>
             </div>
 

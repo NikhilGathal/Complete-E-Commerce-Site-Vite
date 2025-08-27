@@ -12,7 +12,7 @@ export default function ModalSign({ issign, setissign, setsignname,  setislog ,t
     address: '',
     isAdmin: false, // New state for checking admin
   })
-
+  const [showPassword, setShowPassword] = useState(false)
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -139,11 +139,28 @@ if (!existingEmails.includes(userData.email)) {
           <input
             placeholder="Password"
             className="modal-input"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             name="password"
             value={userData.password}
             onChange={handleChange}
           />
+           <span
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '30px',
+                  top: '96px',
+                  transform: 'translateY(-50%)',
+                  cursor: 'pointer',
+                  userSelect: 'none',
+                }}
+              >
+               <i
+                  className={`fa-solid ${
+                    showPassword ? 'fa-eye-slash' : 'fa-eye'
+                  }`}
+                ></i>
+              </span>
           <input
             placeholder="Phone no"
             className="modal-input"
