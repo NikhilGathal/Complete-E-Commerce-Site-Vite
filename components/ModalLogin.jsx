@@ -201,12 +201,12 @@ export default function ModalLogin({
               <input
                 placeholder="Enter New Password"
                 className="modal-input"
-                 type={showPasswords.new ? 'text' : 'password'}
+                type={showPasswords.new ? 'text' : 'password'}
                 name="password"
                 value={newPassword.password}
                 onChange={handleChange}
               />
-               <span
+              <span
                 onClick={() => togglePassword('new')}
                 style={{
                   position: 'absolute',
@@ -231,7 +231,7 @@ export default function ModalLogin({
                 value={newPassword.confirmPassword}
                 onChange={handleChange}
               />
-               <span
+              <span
                 onClick={() => togglePassword('confirm')}
                 style={{
                   position: 'absolute',
@@ -289,20 +289,21 @@ export default function ModalLogin({
 
               {/* <p className='err-msp'>Password is needed</p> */}
               <div className="already">
-                {' '}
+               
                 <p>If you dont have Account ?</p>
-                <Link>
-                  <h1
-                    onClick={(e) => {
-                      console.log('clicked')
-                      setissign(true)
-                      setislog(false)
-                    }}
-                    className=".H"
-                  >
-                    Sign In
-                  </h1>
-                </Link>
+                <h1
+                  onClick={(e) => {
+                    console.log('clicked')
+                    setissign(true)
+                    setislog(false)
+                  }}
+                  className=".H"
+                  style={{
+                    cursor: 'pointer',
+                  }}
+                >
+                  Sign In
+                </h1>
               </div>
             </>
           )}

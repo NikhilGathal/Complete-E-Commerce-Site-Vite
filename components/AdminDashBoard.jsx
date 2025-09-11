@@ -111,7 +111,7 @@ function AdminDashBoard() {
                     <div className="grid-item order-details-column">
                       {orderGroup.orderDetails.items?.map((product, idx) => (
                         <div key={idx} className="product-details ord">
-                          <Link to={`/${product.id}`}>
+                          <Link to={`/product/${product.id}`}>
                             <span className="amp userord">
                               Product: {product.title}
                             </span>

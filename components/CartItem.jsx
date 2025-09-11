@@ -48,11 +48,11 @@ const [isProductLoaded, setIsProductLoaded] = useState(false)
   return (
     <div className="cart-item-container">
       <div className="cart-item">
-        <Link to={`/${productId}`}>
+        <Link to={`/product/${productId}`}>
           <img src={imageUrl} alt={title} />
         </Link>
         <div>
-          <Link to={`/${productId}`}>
+          <Link to={`/product/${productId}`}>
             <h3> {title}</h3>
           </Link>
          {isProductLoaded &&  <h3 className="validmsg">

@@ -58,14 +58,14 @@ const OutOfStockProducts = () => {
                   <tr key={product.id} className="emails-table-row">
                     <td>{index + 1}</td>
                     <td>
-                      <Link to={`/${product.id}`} className="heading">
+                      <Link to={`/product/${product.id}`} className="heading">
                         {product.id}
                       </Link>{' '}
                       {/* ✅ clickable ID */}
                     </td>
 
                     <td>
-                      <Link to={`/${product.id}`} className="heading">
+                      <Link to={`/producte/${product.id}`} className="heading">
                         {product.title}
                       </Link>{' '}
                       {/* ✅ clickable Title */}

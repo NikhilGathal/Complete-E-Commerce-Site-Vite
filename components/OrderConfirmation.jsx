@@ -14,18 +14,27 @@ const OrderConfirmation = () => {
   const [issub, setissub] = useState(false)
   const existingAdmin = JSON.parse(localStorage.getItem('Admin')) || {}
   const location = useLocation()
-  const { username, cartItems, totalPrice, order_Id } = location.state
+
   const navigate = useNavigate()
   const user = localStorage.getItem('userlogin') === 'true'
 
+  const locationState = location.state;
+
+
   useEffect(() => {
-    if (!user) {
-      navigate('/') // redirect if not logged in
-    }
-  }, [user])
+
+    if (!user || !locationState) {
+    navigate('/');  // ✅ Safe to navigate inside useEffect
+  }
+  }, [locationState, navigate])
   if (!user) {
     return null // Don't render anything until redirect is done
   }
+  if (!locationState) {
+  return null;  // Just return null (or a loading spinner) while the redirect happens
+}
+
+  const { username, cartItems, totalPrice, order_Id } = location.state
 
   const getUserDetails = (username) => {
     const users = JSON.parse(localStorage.getItem('users'))

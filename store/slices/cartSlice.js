@@ -78,6 +78,7 @@ const slice = createSlice({
 // } )
 
 
+// below code is just to get cartitems whole data from productlist or slice from productslice
 const getCartItems = (state) => {
   return state.cartItems.list // Accessing the correct part of the state
     .map(({ productId, quantity }) => {
@@ -88,6 +89,14 @@ const getCartItems = (state) => {
     })
     .filter(({ title }) => title); // Ensure there's a title
 }
+//  export const getAllCartItems = createSelector( getCartItems,state=>state )
+
+// above filter is just to make sure even if api call to productlist is happens after api call to cartitems 
+// in that case to avoid error we need to use this filter 
+
+
+// below code is just to memoize the returned array from above getcartitms function 
+
 
 
 export const getAllCartItems = createSelector(

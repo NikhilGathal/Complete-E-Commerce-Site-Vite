@@ -85,12 +85,12 @@ export default function Product({ productId, title, rating, price, imageUrl }) {
   return (
     <div className="product">
       <div className="product-image">
-        <Link to={`/${productId}`}>
+        <Link to={`/product/${productId}`}>
           <img src={imageUrl} alt={title} />
         </Link>
       </div>
       <div className="title-container">
-        <Link to={`/${productId}`}>
+        <Link to={`/product/${productId}`}>
           <h3 className="item-detail">{title}</h3>
         </Link>
       </div>

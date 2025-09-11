@@ -244,7 +244,7 @@ function Myorders() {
                         className="ord"
                         key={`${order.id}-${item.id}-${idx}`}
                       >
-                        <Link to={`/${item.id}`}>
+                        <Link to={`/product/${item.id}`}>
                           <span className="userord amp">
                             Product: {item.title}
                           </span>

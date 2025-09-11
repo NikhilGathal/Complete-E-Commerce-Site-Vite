@@ -19,9 +19,9 @@ export default function Wishitem({ productId, title, rating, price, imageUrl, qu
   return (
     <div className="cart-item-container" key={productId}>
       <div className="cart-item">
-      <Link to={`/${productId}`}> <img src={imageUrl} alt={title} />  </Link>  
+      <Link to={`/product/${productId}`}> <img src={imageUrl} alt={title} />  </Link>  
         <div>
-        <Link to={`/${productId}`}>  <h3>{title}</h3> </Link>  
+        <Link to={`/product/${productId}`}>  <h3>{title}</h3> </Link>  
           <p>{rating} ★ ★ ★ ★</p>
         </div>
       </div>

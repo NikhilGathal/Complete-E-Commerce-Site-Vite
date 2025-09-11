@@ -65,7 +65,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: '/:productId',
+        path: '/product/:productId',
         element: <ItemDetail />,
       },
 
@@ -74,7 +74,7 @@ const router = createBrowserRouter([
         element: <CarouselPage />,
       },
       {
-      path:"/search/:searchTerm",
+        path: '/search/:searchTerm',
         element: <CarouselPage />,
       },
 
@@ -82,8 +82,7 @@ const router = createBrowserRouter([
         path: '/Admin',
         element: <AdminDashBoard />,
       },
-      { path: '/update-product/:id', 
-        element: <UpdateProduct /> },
+      { path: '/update-product/:id', element: <UpdateProduct /> },
       {
         path: '/Add',
         element: <AddNewProduct />,
@@ -106,19 +105,23 @@ const router = createBrowserRouter([
       },
       {
         path: '/FeedbacksList',
-        element: <FeedbacksList/>,
-      },
-       {
-        path: '/OutOfStockProducts',
-        element: <OutOfStockProducts/>,
+        element: <FeedbacksList />,
       },
       {
-        path:"/OrderCancelConfirm",
-        element: <OrderCancelConfirm/>,
+        path: '/OutOfStockProducts',
+        element: <OutOfStockProducts />,
       },
-       {
-        path:"/top",
-        element: <SelectProducts/>,
+      {
+        path: '/OrderCancelConfirm',
+        element: <OrderCancelConfirm />,
+      },
+      {
+        path: '/top',
+        element: <SelectProducts />,
+      },
+      {
+        path: '*',
+        element: <Home />,
       },
     ],
   },

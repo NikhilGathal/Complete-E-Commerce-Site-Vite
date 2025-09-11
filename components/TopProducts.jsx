@@ -103,7 +103,7 @@ const TopProducts = ({ handleOrderPopup, id }) => {
             <div data-aos="zoom-in" className="product-card" key={data.id}>
               {/* image section */}
               <div className="image-section">
-                <Link to={`/${data.id}`}>
+                <Link to={`/product/${data.id}`}>
                   <img src={data.image} alt={data.title} className="image" />
                 </Link>
               </div>

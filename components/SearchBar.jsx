@@ -59,7 +59,7 @@ export default function SearchBar({ setquery }) {
   const handleSuggestionClick = (suggestion) => {
     setQuery1(suggestion.title);
     setquery(suggestion.title.toLowerCase());
-    navigate(`/${suggestion.id}`);
+    navigate(`/product/${suggestion.id}`);
     setSuggestions([]);
     setHighlightedIndex(-1);
   };

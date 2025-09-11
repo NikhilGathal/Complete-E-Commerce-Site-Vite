@@ -199,13 +199,16 @@ if (!existingEmails.includes(userData.email)) {
           </div>
           <div className='already'>      
             <p>If you have Account ?</p>
-            <Link><h1 
+            <h1 
            onClick={(e) => {
             console.log("clicked");
             setissign(false)
             setislog(true)
           }}
-            className='.H'>Login</h1></Link>
+            style={{
+                    cursor: 'pointer',
+                  }}
+            className='.H'>Login</h1>
           </div>
         </div>
         <div className="modal-buttons">
