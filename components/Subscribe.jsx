@@ -79,7 +79,7 @@ const Subscribe = ({ id }) => {
             )}{' '}
             {/* Optional feedback */}
             {emailValidationError && (
-              <h1 className="subscribe-heading">{emailValidationError}</h1>
+              <h1 className="subscribe-heading" style={ {color : 'red' } }>{emailValidationError}</h1>
             )}{' '}
             {/* Show validation error */}
             <input
